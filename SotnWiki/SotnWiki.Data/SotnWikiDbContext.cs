@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace SotnWiki.Data
 {
-    class SotnWikiDbContext : DbContext
+    public class SotnWikiDbContext : DbContext, ISotnWikiDbContext
     {
         public SotnWikiDbContext()
             :base("SotnWikiDb")

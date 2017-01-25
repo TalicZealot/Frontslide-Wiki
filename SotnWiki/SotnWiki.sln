@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotnWiki.WebFormsClient", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotnWiki.WebFormsClient.Tests", "SotnWiki.WebFormsClient.Tests\SotnWiki.WebFormsClient.Tests.csproj", "{B78DE443-EC62-49C7-8DFF-F9F70B40A1AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotnWiki.Data.Common", "SotnWiki.Data.Common\SotnWiki.Data.Common.csproj", "{010D9912-3682-4400-8698-C8D23E8BA23C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AF205039-6124-4A31-9F46-4D1720504B4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotnWiki.Data.Common.Tests", "SotnWiki.Data.Common.Tests\SotnWiki.Data.Common.Tests.csproj", "{BF31B5D0-3C7D-4F16-98EE-3CA4B5C97F9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +39,20 @@ Global
 		{B78DE443-EC62-49C7-8DFF-F9F70B40A1AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B78DE443-EC62-49C7-8DFF-F9F70B40A1AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B78DE443-EC62-49C7-8DFF-F9F70B40A1AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{010D9912-3682-4400-8698-C8D23E8BA23C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{010D9912-3682-4400-8698-C8D23E8BA23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{010D9912-3682-4400-8698-C8D23E8BA23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{010D9912-3682-4400-8698-C8D23E8BA23C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF31B5D0-3C7D-4F16-98EE-3CA4B5C97F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF31B5D0-3C7D-4F16-98EE-3CA4B5C97F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF31B5D0-3C7D-4F16-98EE-3CA4B5C97F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF31B5D0-3C7D-4F16-98EE-3CA4B5C97F9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B78DE443-EC62-49C7-8DFF-F9F70B40A1AE} = {AF205039-6124-4A31-9F46-4D1720504B4C}
+		{BF31B5D0-3C7D-4F16-98EE-3CA4B5C97F9E} = {AF205039-6124-4A31-9F46-4D1720504B4C}
 	EndGlobalSection
 EndGlobal
