@@ -1,11 +1,11 @@
 ﻿using System;
+using Telerik.JustMock;
 using MSTestExtensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Data.Entity;
-using Telerik.JustMock;
 
 namespace SotnWiki.Data.Common.Tests.EfUnitOfWork
 {
+    [TestClass]
     public class ConstructorShould
     {
         [TestMethod]
@@ -14,7 +14,7 @@ namespace SotnWiki.Data.Common.Tests.EfUnitOfWork
             //Arrange
             //Act
             //Assert
-            ThrowsAssert.Throws<ArgumentNullException>(() => { new SotnWiki.Data.Common.EfUnitOfWork(null); }, "DbContext cannot be null!", ExceptionMessageCompareOptions.Exact, ExceptionInheritanceOptions.Inherits);
+            ThrowsAssert.Throws<ArgumentNullException>(() => { new SotnWiki.Data.Common.EfUnitOfWork(null); }, "DbContext cannot be null!", ExceptionMessageCompareOptions.Contains, ExceptionInheritanceOptions.Inherits);
         }
 
         [TestMethod]

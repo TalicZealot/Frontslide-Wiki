@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF31B5D0-3C7D-4F16-98EE-3CA4B5C97F9E}</ProjectGuid>
+    <ProjectGuid>{C0AD6E13-B037-40E5-951E-791092AF3846}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SotnWiki.Data.Common.Tests</RootNamespace>
@@ -35,26 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MSTestExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTestExtensions.4.0.0\lib\MSTestExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="Telerik.JustMock, Version=2016.2.426.1, Culture=neutral, PublicKeyToken=721b6c5bc0326b3a, processorArchitecture=MSIL">
       <HintPath>..\packages\JustMock.2016.2.426.1\lib\Net35\Telerik.JustMock.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.JustMock.EntityFramework, Version=2015.3.929.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JustMock.EntityFramework.2015.3.929.5\lib\Net45\Telerik.JustMock.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -73,17 +60,20 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="EfUnitOfWorkTests\ConstructorShould.cs" />
+    <Compile Include="EfUnitOfWork\ConstructorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SotnWiki.Data.Common\SotnWiki.Data.Common.csproj">
       <Project>{010d9912-3682-4400-8698-c8d23e8ba23c}</Project>
       <Name>SotnWiki.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SotnWiki.Data\SotnWiki.Data.csproj">
+      <Project>{a37d2b8d-2892-4270-9e35-df8b84d65c8e}</Project>
+      <Name>SotnWiki.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

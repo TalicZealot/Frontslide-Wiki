@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISotnWikiDbcontext.cs" />
     <Compile Include="Migrations\201701251429387_Initial.cs" />
     <Compile Include="Migrations\201701251429387_Initial.Designer.cs">
       <DependentUpon>201701251429387_Initial.cs</DependentUpon>
