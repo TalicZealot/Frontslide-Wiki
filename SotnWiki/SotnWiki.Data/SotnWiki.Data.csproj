@@ -50,10 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISotnWikiDbcontext.cs" />
-    <Compile Include="Migrations\201701251429387_Initial.cs" />
-    <Compile Include="Migrations\201701251429387_Initial.Designer.cs">
-      <DependentUpon>201701251429387_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SotnWikiDbContext.cs" />
@@ -67,11 +63,6 @@
       <Project>{5cfebc1d-5e6f-49a2-a146-a11a6f5b2845}</Project>
       <Name>SotnWiki.Models</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701251429387_Initial.resx">
-      <DependentUpon>201701251429387_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
