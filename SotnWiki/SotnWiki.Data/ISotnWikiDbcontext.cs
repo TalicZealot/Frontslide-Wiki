@@ -10,9 +10,11 @@ namespace SotnWiki.Data
 
         DbEntityEntry<T> Entry<T>(T entity) where T : class;
 
-        DbSet<Page> Pages { get; set; }
+        DbSet<Character> Characters { get; set; }
 
-        DbSet<Submit> Submits { get; set; }
+        DbSet<PageType> PageTypes { get; set; }
+
+        DbSet<Page> Pages { get; set; }
 
         DbSet<CvsBackup> CvsBackups { get; set; }
 
