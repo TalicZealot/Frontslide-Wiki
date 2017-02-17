@@ -41,13 +41,6 @@ namespace SotnWiki.WebFormsClient
                     Path = "~/Scripts/respond.min.js",
                     DebugPath = "~/Scripts/respond.js",
                 });
-            ScriptManager.ScriptResourceMapping.AddDefinition(
-                "script",
-                new ScriptResourceDefinition
-                {
-                    Path = "~/Scripts/script.js",
-                    DebugPath = "~/Scripts/script.js",
-                });
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using SotnWiki.Auth;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 
 namespace SotnWiki.WebFormsClient.Account
 {

@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace SotnWiki.Models
 {
     public class CvsBackup
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MinLength(4)]

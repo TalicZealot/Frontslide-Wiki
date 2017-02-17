@@ -1,10 +1,9 @@
-﻿using System;
-using System.Web;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Owin;
-using SotnWiki.WebFormsClient.Models;
+using SotnWiki.Auth;
+using System;
+using System.Web;
 
 namespace SotnWiki.WebFormsClient.Account
 {
@@ -24,7 +23,7 @@ namespace SotnWiki.WebFormsClient.Account
 
         private void RedirectOnFail()
         {
-            Response.Redirect((User.Identity.IsAuthenticated) ? "~/Account/Manage" : "~/Account/Login");
+            Response.Redirect("~/Default");
         }
 
         protected void Page_Load()
@@ -73,13 +72,9 @@ namespace SotnWiki.WebFormsClient.Account
                         return;
                     }
                 }
-                else
-                {
-                    email.Text = loginInfo.Email;
-                }
             }
-        }        
-        
+        }
+
         protected void LogIn_Click(object sender, EventArgs e)
         {
             CreateAndLoginUser();
@@ -93,7 +88,8 @@ namespace SotnWiki.WebFormsClient.Account
             }
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = email.Text, Email = email.Text };
+            var externalName = Context.GetOwinContext().Authentication.GetExternalLoginInfo().DefaultUserName;
+            var user = new ApplicationUser() { UserName = externalName, Email = externalName };
             IdentityResult result = manager.Create(user);
             if (result.Succeeded)
             {
@@ -107,11 +103,6 @@ namespace SotnWiki.WebFormsClient.Account
                 if (result.Succeeded)
                 {
                     signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // var code = manager.GenerateEmailConfirmationToken(user.Id);
-                    // Send this link via email: IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id)
-
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                     return;
                 }
@@ -119,9 +110,9 @@ namespace SotnWiki.WebFormsClient.Account
             AddErrors(result);
         }
 
-        private void AddErrors(IdentityResult result) 
+        private void AddErrors(IdentityResult result)
         {
-            foreach (var error in result.Errors) 
+            foreach (var error in result.Errors)
             {
                 ModelState.AddModelError("", error);
             }

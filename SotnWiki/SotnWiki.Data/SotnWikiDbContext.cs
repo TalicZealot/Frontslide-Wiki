@@ -13,8 +13,6 @@ namespace SotnWiki.Data
 
         public DbSet<Character> Characters { get; set; }
 
-        public DbSet<PageType> PageTypes { get; set; }
-
         public DbSet<Page> Pages { get; set; }
 
         public DbSet<CvsBackup> CvsBackups { get; set; }

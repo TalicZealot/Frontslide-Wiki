@@ -1,24 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SotnWiki.Models
 {
     public class Page
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MinLength(4)]
         public string Title { get; set; }
-
-        [Required]
-        [MinLength(4)]
-        public string Character { get; set; }
-
-        [Required]
-        [MinLength(4)]
-        public string Category { get; set; }
 
         [Required]
         [MinLength(20)]

@@ -13,6 +13,7 @@ namespace SotnWiki.WebFormsClient
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
+            //routes.MapPageRoute("404", "{*url}", "~/PageNotFound.aspx");
         }
     }
 }
