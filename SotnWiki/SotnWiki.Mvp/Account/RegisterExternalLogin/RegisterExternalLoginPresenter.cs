@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WebFormsMvp;
 
 namespace SotnWiki.Mvp.Account.RegisterExternalLogin
 {
-    class RegisterExternalLoginPresenter
+    public class RegisterExternalLoginPresenter : Presenter<IRegisterExternalLoginView>
     {
+        public RegisterExternalLoginPresenter(IRegisterExternalLoginView view)
+            : base(view)
+        {
+
+        }
     }
 }

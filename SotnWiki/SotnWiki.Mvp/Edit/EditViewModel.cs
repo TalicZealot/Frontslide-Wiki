@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace SotnWiki.Mvp.Edit
 {
-    class EditViewModel
+    public class EditViewModel
     {
+        public string Content { get; set; }
+
+        public string Title { get; set; }
     }
 }

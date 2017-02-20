@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SotnWiki.Mvp.Account.RegisterExternalLogin
+﻿namespace SotnWiki.Mvp.Account.RegisterExternalLogin
 {
-    class RegisterExternalLoginViewModel
+    public class RegisterExternalLoginViewModel
     {
     }
 }

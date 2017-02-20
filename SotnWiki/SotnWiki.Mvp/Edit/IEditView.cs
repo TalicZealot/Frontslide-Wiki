@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SotnWiki.Mvp.CustomEventArgs;
+using System;
+using WebFormsMvp;
 
 namespace SotnWiki.Mvp.Edit
 {
-    interface IEditView
+    public interface IEditView : IView<EditViewModel>
     {
+        event EventHandler<PageEventArgs> OnPageGetContent;
+        event EventHandler<EditPageEventArgs> OnSubmitPageEdit;
     }
 }

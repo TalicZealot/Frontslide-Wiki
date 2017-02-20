@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SotnWiki.Mvp.NewPage
 {
-    class NewPageViewModel
+    public class NewPageViewModel
     {
     }
 }

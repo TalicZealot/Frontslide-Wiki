@@ -1,15 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using SotnWiki.Mvp.CustomEventArgs;
+using SotnWiki.Mvp.NewPage;
+using System;
+using WebFormsMvp;
+using WebFormsMvp.Web;
 
 namespace SotnWiki.WebFormsClient
 {
-    public partial class NewPage : System.Web.UI.Page
+    [PresenterBinding(typeof(NewPagePresenter))]
+    public partial class NewPage : MvpPage<NewPageViewModel>, INewPageView
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public event EventHandler<PageSubmitEventArgs> OnSubmitNewPage;
+
+        protected void submitPage_Click(object sender, EventArgs e)
+        {
+            this.OnSubmitNewPage?.Invoke(this, new PageSubmitEventArgs(this.DropDownCharacter.SelectedValue, this.DropDownType.SelectedValue, this.TextBoxPageTitle.Text, this.editPageText.Text, false));
+        }
+
+        protected void Unnamed_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

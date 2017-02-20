@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SotnWiki.Mvp.CustomEventArgs;
+using System;
+using WebFormsMvp;
 
 namespace SotnWiki.Mvp.Page
 {
-    public interface IPageView
+    public interface IPageView : IView<PageViewModel>
     {
+        event EventHandler<PageEventArgs> OnPageGetContent;
     }
 }

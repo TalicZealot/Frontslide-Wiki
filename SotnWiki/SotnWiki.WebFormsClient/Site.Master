@@ -45,19 +45,22 @@
                 </div>
                 <ul>
                     <li>
-                        <a href="#">Main Page</a>
+                        <a href="/">Main Page</a>
                     </li>
                     <li>
                         <span class="expand retracted">Alucard</span>
                         <ul class="dropdown">
                             <li>
-                                <a href="#">Any%</a>
+                                <a href="/page?title=alucard">Main</a>
                             </li>
                             <li>
-                                <a href="#">All Bosses</a>
+                                <a href="/page?title=alucard-any%">Any%</a>
                             </li>
                             <li>
-                                <a href="#">Glitchless</a>
+                                <a href="/page?title=alucard-all-bosses">All Bosses</a>
+                            </li>
+                            <li>
+                                <a href="/page?title=alucard-glitchless">Glitchless</a>
                             </li>
                         </ul>
                     </li>
@@ -65,10 +68,13 @@
                         <span class="expand retracted">Richter</span>
                         <ul class="dropdown">
                             <li>
-                                <a href="#">Any%</a>
+                                <a href="/page?title=richter">Main</a>
                             </li>
                             <li>
-                                <a href="#">All Bosses</a>
+                                <a href="/page?title=richter-any%">Any%</a>
+                            </li>
+                            <li>
+                                <a href="/page?title=richter-any%">All Bosses</a>
                             </li>
                         </ul>
                     </li>
@@ -76,25 +82,32 @@
                         <span class="expand retracted">Maria</span>
                         <ul class="dropdown">
                             <li>
-                                <a href="#">Any%</a>
+                                <a href="/page?title=maria">Main</a>
                             </li>
                             <li>
-                                <a href="#">All Bosses</a>
+                                <a href="/page?title=maria-any%">Any%</a>
+                            </li>
+                            <li>
+                                <a href="/page?title=maria-any%">All Bosses</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
+                <asp:Panel runat="server" DefaultButton="SearchButton" CssClass="search-panel">
+                    <asp:TextBox runat="server" ID="TextBoxSearchParam" ClientIDMode="Predictable" type="text" name="q" placeholder="Search in SotnWiki"></asp:TextBox>
+                    <asp:Button runat="server" ID="SearchButton" ClientIDMode="Predictable" OnClick="SearchButton_Click" />
+                </asp:Panel>
             </nav>
             <main>
                 <nav class="auth">
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
+                            <div>
                                 <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
-                            </ul>
+                            </div>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
+                            <ul>
                                 <li><span runat="server" title="Manage your account"><%: Context.User.Identity.GetUserName()  %></span></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
@@ -103,10 +116,8 @@
                         </LoggedInTemplate>
                     </asp:LoginView>
                 </nav>
-                <div Id="content">
-                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
                 <footer>
                     Course project of Talic_Zealot for Telerik Academy Season 7
                 </footer>

@@ -76,6 +76,13 @@ namespace SotnWiki.WebFormsClient
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
+
+        protected void SearchButton_Click(object sender, EventArgs e)
+        {
+            string textToSearchFor = this.TextBoxSearchParam.Text;
+            string queryParam = string.IsNullOrEmpty(textToSearchFor) ? string.Empty : string.Format("?q={0}", textToSearchFor);
+            Response.Redirect("~/search" + queryParam);
+        }
     }
 
 }

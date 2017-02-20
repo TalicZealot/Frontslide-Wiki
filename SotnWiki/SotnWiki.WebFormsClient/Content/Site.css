@@ -12,24 +12,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
     background: #ffffff;
-    background: -moz-linear-gradient(top, #ffffff 0%, #ebebeb 9%);
-    background: -webkit-linear-gradient(top, #ffffff 0%, #ebebeb 9%);
-    background: linear-gradient(to bottom, #ffffff 0%, #ebebeb 9%);
+    background: -moz-linear-gradient(top, #ffffff 0%, #ebebeb 20%);
+    background: -webkit-linear-gradient(top, #ffffff 0%, #ebebeb 20%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ebebeb 20%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ebebeb', GradientType=0);
 }
-
-article {
-    overflow: hidden;
-}
-
-    article img {
-        float: left;
-        padding: 0.3em;
-        border: 1px solid grey;
-        margin-right: 1em;
-        margin-bottom: 1em;
-        align-self: center;
-    }
 
 a {
     text-decoration: none;
@@ -88,7 +75,7 @@ ul {
 }
 
 .aside {
-    width: 10em;
+    width: 170px;
 }
 
     .aside ul {
@@ -132,7 +119,6 @@ ul {
 }
 
 main {
-    width: 85%;
     width: auto;
     flex-grow: 1;
 }
@@ -141,7 +127,17 @@ main {
     padding: 1.75em;
     background-color: white;
     border: 1px solid #a7d7f9;
+    overflow: hidden;
 }
+
+    #content img {
+        float: left;
+        padding: 0.3em;
+        border: 1px solid grey;
+        margin-right: 1em;
+        margin-bottom: 1em;
+        align-self: center;
+    }
 
 #editArea {
     resize: none;
@@ -151,33 +147,31 @@ main {
     float: right;
     overflow: hidden;
     border: 1px solid #a7d7f9;
-    padding: 0.5 em;
+    padding: 0;
     margin-left: 1em;
     margin-bottom: 1em;
     font-size: 0.75em;
     line-height: 2em;
     background-color: #ebebeb;
+    border-collapse: collapse;
 }
+    .infobox td {
+        padding-left: 0.4em;
+        padding-right: 0.4em;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+    }
 
-    .infobox h4 {
-        padding: 0.3em;
+    .infobox tr:first-of-type td {
+        border-bottom: 1px solid #a7d7f9;
+    }
+
+    .infobox tr:nth-of-type(2) td {
+        padding-top: 1.3em;
+    }
+
+    .infobox td:nth-child(2n+1) {
         font-weight: bold;
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: center;
-    }
-
-    .infobox div {
-        float: left;
-        padding: 0.5em;
-    }
-
-    .infobox .infolabel {
-        font-weight: bold;
-        color: #0645ad;
-    }
-
-    .infobox .infotext {
-        padding-right: 0.5em;
     }
 
 main h1,
@@ -194,8 +188,8 @@ main h4 {
 .auth {
     display: -webkit-flex;
     display: flex;
-    justify-content: flex-end;
     padding: 0.6em;
+    justify-content: flex-end;
 }
 
     .auth ul {
@@ -210,6 +204,42 @@ main h4 {
         float: left;
     }
 
+.editor-panel {
+}
+
+    .editor-panel ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+        .editor-panel ul li:first-of-type {
+            border-left: 1px solid #a7d7f9;
+        }
+
+        .editor-panel ul li {
+            float: left;
+            background-color: white;
+            border-right: 1px solid #a7d7f9;
+            border-bottom: 1px solid #a7d7f9;
+            font-size: 0.85em;
+            color: black;
+        }
+
+            .editor-panel ul li:hover {
+                background-color: #7d7d7d;
+                color: white;
+            }
+
+            .editor-panel ul li a {
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+                display: block;
+                text-decoration: none;
+                color: inherit;
+            }
+
 #twitter {
     width: 141px;
     height: 16px;
@@ -217,6 +247,14 @@ main h4 {
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+
+#editPageText {
+    width: 100%;
+    height: 500px;
+    resize: none;
+    line-height: 1.5em;
+    resize: vertical;
 }
 
 footer {
@@ -227,15 +265,28 @@ footer {
     font-size: 0.7em;
 }
 
-.error {
-    text-align: center;
+
+.search-panel {
+    border: 1px solid #a7d7f9;
+    background-color: white;
+    width: 90%;
+    margin-left: 5%;
 }
 
-    .error h1,
-    .error h2 {
-        font-family: Georgia, 'Times New Roman', Times, serif;
-        border: none;
-        font-weight: normal;
-        page-break-after: avoid;
-        margin-bottom: 1em;
-    }
+#TextBoxSearchParam {
+    padding-left: 0.5em;
+    width: 110px;
+    height: 20px;
+    border: none;
+}
+
+#SearchButton {
+    width: 12px;
+    height: 20px;
+    background-image: url('./search.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+}

@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
+using System.Web.Routing;
 
 namespace SotnWiki.WebFormsClient
 {
@@ -13,7 +10,6 @@ namespace SotnWiki.WebFormsClient
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
-            //routes.MapPageRoute("404", "{*url}", "~/PageNotFound.aspx");
         }
     }
 }

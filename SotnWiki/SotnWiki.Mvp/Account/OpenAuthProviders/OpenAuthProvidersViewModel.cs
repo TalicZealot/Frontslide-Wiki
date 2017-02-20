@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SotnWiki.Mvp.Account.OpenAuthProviders
 {
-    class OpenAuthProvidersViewModel
+    public class OpenAuthProvidersViewModel
     {
     }
 }

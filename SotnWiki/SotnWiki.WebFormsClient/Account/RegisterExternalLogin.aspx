@@ -5,11 +5,11 @@
     <asp:PlaceHolder runat="server">
         <div class="form-horizontal">
             <p class="text-info">
-                You've successfully authenticated with <strong><%: ProviderName %></strong>. You can now log in.
+                You've successfully authenticated with <strong><%: ProviderName %></strong>.
             </p>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button runat="server" Text="Log in" CssClass="btn btn-default" OnClick="LogIn_Click" />
+                    <asp:Button runat="server" Text="confirm registration and log in" CssClass="btn btn-default" OnClick="LogIn_Click" />
                 </div>
             </div>
         </div>

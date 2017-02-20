@@ -1,15 +1,16 @@
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
+using Ninject.Web.Common;
+using SotnWiki.WebFormsClient.App_Start.NinjectModules;
+using System;
+using System.Web;
+using WebFormsMvp.Binder;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(SotnWiki.WebFormsClient.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(SotnWiki.WebFormsClient.App_Start.NinjectWebCommon), "Stop")]
 
 namespace SotnWiki.WebFormsClient.App_Start
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +62,11 @@ namespace SotnWiki.WebFormsClient.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Load(new MvpNinjectModule());
+            kernel.Load(new ServicesNinjectModule());
+            kernel.Load(new DataNinjectModule());
+
+            PresenterBinder.Factory = kernel.Get<IPresenterFactory>();
         }        
     }
 }

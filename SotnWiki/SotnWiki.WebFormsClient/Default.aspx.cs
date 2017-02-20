@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using SotnWiki.Mvp.Default;
+using System;
+using WebFormsMvp;
+using WebFormsMvp.Web;
 
 namespace SotnWiki.WebFormsClient
 {
-    public partial class _Default : Page
+    [PresenterBinding(typeof(DefaultPresenter))]
+    public partial class _Default : MvpPage<DefaultViewModel>, IDefaultView
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
