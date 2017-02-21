@@ -1,9 +1,9 @@
-﻿using SotnWiki.Mvp.Search;
+﻿using SotnWiki.Mvp.CustomEventArgs;
+using SotnWiki.Mvp.Search;
 using System;
+using System.Linq;
 using WebFormsMvp;
 using WebFormsMvp.Web;
-using SotnWiki.Mvp.CustomEventArgs;
-using System.Linq;
 
 namespace SotnWiki.WebFormsClient
 {
@@ -12,13 +12,9 @@ namespace SotnWiki.WebFormsClient
     {
         public event EventHandler<SearchEventArgs> OnPageGetContent;
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            this.OnPageGetContent?.Invoke(this, new SearchEventArgs(Request.QueryString["q"]));
-        }
-
         public IQueryable<SotnWiki.Models.Page> ResultsListView_GetData()
         {
+            this.OnPageGetContent?.Invoke(this, new SearchEventArgs(Request.QueryString["q"]));
             return this.Model.Results;
         }
     }

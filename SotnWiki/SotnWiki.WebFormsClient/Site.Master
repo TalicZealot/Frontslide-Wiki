@@ -95,6 +95,7 @@
                 </ul>
                 <asp:Panel runat="server" DefaultButton="SearchButton" CssClass="search-panel">
                     <asp:TextBox runat="server" ID="TextBoxSearchParam" ClientIDMode="Predictable" type="text" name="q" placeholder="Search in SotnWiki"></asp:TextBox>
+                    <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="TextBoxSearchParam" ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{5,30}$" EnableClientScript="true" runat="server" ErrorMessage="Minimum 5 and Maximum 20 characters required."></asp:RegularExpressionValidator>
                     <asp:Button runat="server" ID="SearchButton" ClientIDMode="Predictable" OnClick="SearchButton_Click" />
                 </asp:Panel>
             </nav>

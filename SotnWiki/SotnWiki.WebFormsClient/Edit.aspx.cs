@@ -19,7 +19,7 @@ namespace SotnWiki.WebFormsClient
 
         protected void submitPage_Click(object sender, EventArgs e)
         {
-            this.OnSubmitPageEdit?.Invoke(this, new EditPageEventArgs(this.Model.Title, this.Model.Content, false));
+            this.OnSubmitPageEdit?.Invoke(this, new EditPageEventArgs(this.Model.Title, this.editPageText.Text, false));
         }
     }
 }

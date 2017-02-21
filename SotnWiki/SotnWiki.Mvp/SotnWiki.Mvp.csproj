@@ -57,8 +57,11 @@
     <Compile Include="Account\RegisterExternalLogin\RegisterExternalLoginPresenter.cs" />
     <Compile Include="Account\RegisterExternalLogin\RegisterExternalLoginViewModel.cs" />
     <Compile Include="CustomEventArgs\EditPageEventArgs.cs" />
+    <Compile Include="CustomEventArgs\IdEventArgs.cs" />
     <Compile Include="CustomEventArgs\PageEventArgs.cs" />
     <Compile Include="CustomEventArgs\PageSubmitEventArgs.cs" />
+    <Compile Include="CustomEventArgs\PublishEditEventArgs.cs" />
+    <Compile Include="CustomEventArgs\PublishEventArgs.cs" />
     <Compile Include="CustomEventArgs\SearchEventArgs.cs" />
     <Compile Include="Default\DefaultPresenter.cs" />
     <Compile Include="Default\DefaultViewModel.cs" />
@@ -72,20 +75,29 @@
     <Compile Include="Page\IPageView.cs" />
     <Compile Include="Page\PagePresenter.cs" />
     <Compile Include="Page\PageViewModel.cs" />
+    <Compile Include="PendingEdits\IPendingEditsView.cs" />
+    <Compile Include="PendingEdits\PendingEditsPresenter.cs" />
+    <Compile Include="PendingEdits\PendingEditsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublishEdit\IPublishEditView.cs" />
+    <Compile Include="PublishEdit\PublishEditPresenter.cs" />
+    <Compile Include="PublishEdit\PublishEditViewModel.cs" />
+    <Compile Include="Publish\IPublishView.cs" />
+    <Compile Include="Publish\PublishPresenter.cs" />
+    <Compile Include="Publish\PublishViewModel.cs" />
     <Compile Include="Search\ISearchView.cs" />
     <Compile Include="Search\SearchPresenter.cs" />
     <Compile Include="Search\SearchViewModel.cs" />
     <Compile Include="SiteMaster\ISiteMasterView.cs" />
     <Compile Include="SiteMaster\SiteMasterPresenter.cs" />
     <Compile Include="SiteMaster\SiteMasterViewModel.cs" />
+    <Compile Include="Submissions\ISubmissionsView.cs" />
+    <Compile Include="Submissions\SubmissionsPresenter.cs" />
+    <Compile Include="Submissions\SubmissionsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\SotnWiki.Models\SotnWiki.Models.csproj">

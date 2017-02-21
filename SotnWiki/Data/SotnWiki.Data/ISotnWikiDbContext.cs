@@ -16,10 +16,6 @@ namespace SotnWiki.Data
 
         IDbSet<PageContentSubmission> PageContentSubmissions { get; set; }
 
-        IDbSet<CvsBackup> CvsBackups { get; set; }
-
-        IDbSet<SrComBackup> SrComBackups { get; set; }
-
         int SaveChanges();
     }
 }

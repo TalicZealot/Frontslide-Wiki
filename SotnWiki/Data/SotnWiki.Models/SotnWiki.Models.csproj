@@ -50,11 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
-    <Compile Include="CvsBackup.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="PageContentSubmissions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SrComBackup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

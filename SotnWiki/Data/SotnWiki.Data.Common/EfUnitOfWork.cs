@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 
 namespace SotnWiki.Data.Common
 {
@@ -8,10 +9,7 @@ namespace SotnWiki.Data.Common
 
         public EfUnitOfWork(ISotnWikiDbContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException("DbContext cannot be null!");
-            }
+            Guard.WhenArgument(context, nameof(ISotnWikiDbContext)).IsNull().Throw();
             this.context = context;
         }
 

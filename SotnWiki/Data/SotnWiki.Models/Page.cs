@@ -28,7 +28,7 @@ namespace SotnWiki.Models
         public string Title { get; set; }
 
         [Required]
-        [MinLength(20)]
+        [MinLength(250)]
         public string Content { get; set; }
 
         [Required]

@@ -1,4 +1,5 @@
-﻿using SotnWiki.DataServices.Contracts;
+﻿using Bytes2you.Validation;
+using SotnWiki.DataServices.Contracts;
 using SotnWiki.Mvp.CustomEventArgs;
 using WebFormsMvp;
 
@@ -11,6 +12,8 @@ namespace SotnWiki.Mvp.NewPage
         public NewPagePresenter(INewPageView view, IPageService pageService)
             : base(view)
         {
+            Guard.WhenArgument(pageService, nameof(IPageService)).IsNull().Throw();
+
             this.pageService = pageService;
             this.View.OnSubmitNewPage += View_OnSubmitNewPage;
         }

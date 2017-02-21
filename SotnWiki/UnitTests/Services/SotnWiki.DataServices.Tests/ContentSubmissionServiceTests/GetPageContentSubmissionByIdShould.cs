@@ -1,0 +1,37 @@
+﻿using Moq;
+using NUnit.Framework;
+using SotnWiki.Data.Common;
+using SotnWiki.DataServices.Contracts;
+using SotnWiki.Models;
+using System;
+
+namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
+{
+    [TestFixture]
+    public class GetPageContentSubmissionByIdShould
+    {
+        [Test]
+        public void CallCommitMethodOfUnitOfWork()
+        {
+            //Arrange
+            var mockedPageService = new Mock<IPageService>();
+            var mockedPageContentSubmissionRepository = new Mock<IRepository<PageContentSubmission>>();
+            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
+
+            var edit = new PageContentSubmission()
+            {
+                Content = "edit old content",
+                PageHistory = null
+            };
+
+            //Act
+            submissionServiceUnderTest.GetPageContentSubmissionById(Guid.NewGuid());
+
+            //Assert
+            mockedPageContentSubmissionRepository.Verify(m => m.GetById(It.IsAny<Guid>()), Times.Once());
+        }
+    }
+}

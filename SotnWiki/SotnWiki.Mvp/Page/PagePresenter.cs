@@ -1,4 +1,5 @@
-﻿using SotnWiki.DataServices.Contracts;
+﻿using Bytes2you.Validation;
+using SotnWiki.DataServices.Contracts;
 using SotnWiki.Mvp.CustomEventArgs;
 using SotnWiki.TextManipulation.Contracts;
 using WebFormsMvp;
@@ -13,6 +14,9 @@ namespace SotnWiki.Mvp.Page
         public PagePresenter(IPageView view, IPageService pageService, IMarkupConverter markupConverter)
             : base(view)
         {
+            Guard.WhenArgument(pageService, nameof(IPageService)).IsNull().Throw();
+            Guard.WhenArgument(markupConverter, nameof(IMarkupConverter)).IsNull().Throw();
+
             this.markupConverter = markupConverter;
             this.pageService = pageService;
             this.View.OnPageGetContent += this.View_OnPageGetContent;

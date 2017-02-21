@@ -138,6 +138,70 @@ main {
         margin-bottom: 1em;
         align-self: center;
     }
+#archiveHeading {
+    min-height: 24px;
+    background-image: url('./cvsLogo.png');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    padding-left: 200px;
+}
+
+#CategoryGridView {
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    margin-left: 1em;
+    margin-bottom: 1em;
+    font-size: 1em;
+    line-height: 2em;
+    color: white;
+    font-weight: bold;
+    background-color: #050505;
+    border-collapse: collapse;
+}
+
+    #CategoryGridView th {
+        background-color: #494949;
+        border: none;
+        padding-left: 2em;
+        padding-right: 2em;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+    }
+    #CategoryGridView th a {
+        color: white;
+    }
+
+    #CategoryGridView td {
+        border: none;
+        text-align: center;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+    }
+
+    #CategoryGridView tr:first-of-type td {
+    }
+
+    #CategoryGridView tr:nth-child(2n+1) {
+        background-color: #222222;
+        padding-top: 1.3em;
+    }
+
+    #CategoryGridView tr:nth-child(2) {
+        color: #ffd700;
+    }
+
+    #CategoryGridView tr:nth-child(3) {
+        color: #DCDCDC;
+    }
+
+    #CategoryGridView tr:nth-child(4) {
+        color: #D58638;
+    }
+
+    #CategoryGridView td:nth-child(2n+1) {
+        font-weight: bold;
+    }
 
 #editArea {
     resize: none;
@@ -155,6 +219,7 @@ main {
     background-color: #ebebeb;
     border-collapse: collapse;
 }
+
     .infobox td {
         padding-left: 0.4em;
         padding-right: 0.4em;

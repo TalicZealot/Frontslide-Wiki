@@ -103,26 +103,12 @@ ipch/
 # Installshield output folder
 [Ee]xpress/
 
-# DocProject is a documentation generator add-in
-DocProject/buildhelp/
-DocProject/Help/*.HxT
-DocProject/Help/*.HxC
-DocProject/Help/*.hhc
-DocProject/Help/*.hhk
-DocProject/Help/*.hhp
-DocProject/Help/Html2
-DocProject/Help/html
-
-# Click-Once directory
-publish/
-
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
 # TODO: Comment the next line if you want to checkin your web deploy settings 
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
-*.publishproj
 
 # NuGet Packages
 *.nupkg
@@ -222,11 +208,8 @@ _Pvt_Extensions
 *.docx#
 *.doc
 *.doc#
-*.png
 *.pdf
 *.exe
-
-*.jpg
 
 typings/
 prepros.*

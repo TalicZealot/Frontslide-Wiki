@@ -1,4 +1,5 @@
-﻿using SotnWiki.DataServices.Contracts;
+﻿using Bytes2you.Validation;
+using SotnWiki.DataServices.Contracts;
 using SotnWiki.Mvp.CustomEventArgs;
 using SotnWiki.Mvp.Page;
 using System.Linq;
@@ -13,8 +14,9 @@ namespace SotnWiki.Mvp.Search
         public SearchPresenter(ISearchView view, IPageService pageService)
             : base(view)
         {
-            this.pageService = pageService;
+            Guard.WhenArgument(pageService, nameof(IPageService)).IsNull().Throw();
 
+            this.pageService = pageService;
             this.View.OnPageGetContent += View_OnPageGetContent;
         }
 

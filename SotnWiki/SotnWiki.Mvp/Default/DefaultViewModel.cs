@@ -8,5 +8,8 @@ namespace SotnWiki.Mvp.Default
 {
     public class DefaultViewModel
     {
+        public string PageHtml { get; set; }
+
+        public string Title { get; set; }
     }
 }

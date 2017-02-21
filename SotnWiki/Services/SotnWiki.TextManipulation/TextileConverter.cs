@@ -12,6 +12,10 @@ namespace SotnWiki.TextManipulation
     {
         public string ScriptToHtml(string script)
         {
+            if (script == null)
+            {
+                throw new ArgumentNullException("script");
+            }
             return TextileFormatter.FormatString(script);
         }
     }
