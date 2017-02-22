@@ -29,14 +29,14 @@ namespace SotnWiki.DataServices
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            return this.pageRepository.GetAll().Where(x => x.IsPublished && string.Equals(x.Title, title, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            return this.pageRepository.GetAll(x => x.IsPublished && string.Equals(x.Title.ToLower(), title.ToLower())).FirstOrDefault();
         }
 
         public Page GetSubmissionByTitle(string title)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            return this.pageRepository.GetAll().Where(x => !x.IsPublished && string.Equals(x.Title, title, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            return this.pageRepository.GetAll(x => !x.IsPublished && string.Equals(x.Title.ToLower(), title.ToLower())).FirstOrDefault();
         }
 
         public Page GetPageById(Guid id)
@@ -46,9 +46,13 @@ namespace SotnWiki.DataServices
 
         public void CreatePage(string characterName, string type, string title, string content, bool publish)
         {
+            Guard.WhenArgument(characterName, "characterName").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(type, "type").IsNullOrEmpty().Throw();
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(content, "content").IsNullOrEmpty().Throw();
 
-            var character = this.characterRepository.GetAll().Where(x => x.Name == characterName).FirstOrDefault();
+            var characterId = this.characterRepository.GetAll(x => string.Equals(x.Name, characterName), y => y.Id).FirstOrDefault();
+            var character = this.characterRepository.GetById(characterId);
 
             using (var unitOfWork = this.unitOfWorkFactory())
             {
@@ -90,6 +94,7 @@ namespace SotnWiki.DataServices
 
         public void PublishPage(string editedContent, string title)
         {
+            Guard.WhenArgument(editedContent, "editedContent").IsNullOrEmpty().Throw();
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
             var page = this.GetSubmissionByTitle(title);
@@ -116,25 +121,28 @@ namespace SotnWiki.DataServices
 
         public IEnumerable<Page> GetSubmissions()
         {
-            return this.pageRepository.GetAll().Where(x => !x.IsPublished).ToList();
+            var result = this.pageRepository.GetAll(x => !x.IsPublished, y => new { Content = y.Content, CreatedOn = y.CreatedOn, Title = y.Title }).ToList();
+            return result.Select(z => new Page { Content = z.Content, CreatedOn = z.CreatedOn, Title = z.Title }).ToList();
         }
 
         public IEnumerable<Page> FindPages(string text)
         {
             Guard.WhenArgument(text, "text").IsNullOrEmpty().Throw();
 
-            IEnumerable<Page> exactTitleMatch = this.pageRepository.GetAll().Where(x => x.IsPublished && string.Equals(x.Title, text, StringComparison.OrdinalIgnoreCase)).ToList();
+            IEnumerable<Page> exactTitleMatch = this.pageRepository.GetAll(x => x.IsPublished && string.Equals(x.Title.ToLower(), text.ToLower()), y => new { Content = y.Content, CreatedOn = y.CreatedOn, Title = y.Title })
+                .Select(z => new Page { Content = z.Content, CreatedOn = z.CreatedOn, Title = z.Title }).ToList();
 
             if (exactTitleMatch.Count() > 0)
             {
                 return exactTitleMatch;
             }
 
-            return this.pageRepository.GetAll().Where(
-                x => x.IsPublished && x.Title.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0
+            return this.pageRepository.GetAll(
+                x => x.IsPublished && x.Title.IndexOf(text) >= 0
                 ||
-                x.IsPublished && x.Content.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0
-            ).ToList();
+                x.IsPublished && x.Content.IndexOf(text) >= 0
+            , y => new { Content = y.Content, CreatedOn = y.CreatedOn, Title = y.Title })
+            .Select(z => new Page { Content = z.Content, CreatedOn = z.CreatedOn, Title = z.Title }).ToList();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenTitleArgumentIsEmptyString()
+        public void ThrowArgumentExceptionWhenTitleArgumentIsEmptyString()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();

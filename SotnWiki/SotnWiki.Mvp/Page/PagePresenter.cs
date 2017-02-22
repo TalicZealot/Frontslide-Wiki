@@ -30,6 +30,7 @@ namespace SotnWiki.Mvp.Page
                 Response.StatusCode = 404;
                 Response.Status = "404 not found";
                 Response.End();
+                return;
             }
 
             this.View.Model.PageHtml = this.markupConverter.ScriptToHtml(page.Content);

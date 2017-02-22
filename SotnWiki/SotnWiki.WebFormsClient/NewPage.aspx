@@ -27,7 +27,7 @@
         </div>
         <p>This site uses textile markup, for documentation visit <a href="https://txstyle.org/">txstyle.org</a>.</p>
         <asp:TextBox ID="editPageText" ClientIDMode="Static" TextMode="MultiLine" Columns="40" Rows="40" runat="server" />
-        <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="editPageText" ID="RegularExpressionValidator3" ValidationExpression="^[\w]{250,9000}$" EnableClientScript="true" runat="server" ErrorMessage="Minimum 250 characters required."></asp:RegularExpressionValidator>
+        <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="editPageText" ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{250,9000}$" EnableClientScript="true" runat="server" ErrorMessage="Minimum 250 characters required."></asp:RegularExpressionValidator>
         <asp:Button ID="submitPage" Text="Submit" runat="server" OnClick="submitPage_Click" />
     </div>
     <asp:LoginView runat="server" ViewStateMode="Disabled">

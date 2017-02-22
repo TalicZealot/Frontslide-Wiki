@@ -39,46 +39,28 @@ namespace SotnWiki.Data.Common
             entry.State = EntityState.Deleted;
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter)
         {
-            return this.dbSet.ToList(); 
+            return this.dbSet.Where(filter).ToList();
         }
 
-        //public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter, int page, int pageSize)
-        //{
-        //    if (page < 0)
-        //    {
-        //        throw new ArgumentException("Page must be a value equal to or greater than zero.");
-        //    }
+        public IEnumerable<T1> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> selectExpression)
+        {
+            IQueryable<T> result = this.dbSet;
 
-        //    if (pageSize < 0)
-        //    {
-        //        throw new ArgumentException("Page Size must be a value equal to or greater than zero.");
-        //    }
-
-        //    if (filter == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(filter));
-        //    }
-
-        //    return this.BuildQuery<int>(filter, page, pageSize).ToList();
-        //}
-
-        //private IQueryable<T> BuildQuery<K>(Expression<Func<T, bool>> filter, int page, int pageSize)
-        //{
-        //    IQueryable<T> queryToExecute = this.dbSet;
-
-        //    if (filter != null)
-        //    {
-        //        queryToExecute = queryToExecute.Where(filter);
-        //    }
-
-        //    queryToExecute = queryToExecute
-        //        .Skip(page * pageSize)
-        //        .Take(pageSize);
-
-        //    return queryToExecute;
-        //}
+            if (filterExpression != null)
+            {
+                result = result.Where(filterExpression);
+            }
+            if (selectExpression != null)
+            {
+                return result.Select(selectExpression).ToList();
+            }
+            else
+            {
+                return result.OfType<T1>().ToList();
+            }
+        }
 
         public T GetById(object id)
         {
