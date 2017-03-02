@@ -1,8 +1,8 @@
 ﻿using Moq;
 using NUnit.Framework;
-using System;
 using SotnWiki.Data.Common;
 using SotnWiki.Models;
+using System;
 
 namespace SotnWiki.DataServices.Tests.PageServiceTests
 {
