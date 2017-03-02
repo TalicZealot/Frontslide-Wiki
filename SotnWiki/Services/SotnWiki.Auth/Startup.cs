@@ -50,8 +50,8 @@ namespace SotnWiki.Auth
 
             app.UseTwitterAuthentication(new TwitterAuthenticationOptions
             {
-                ConsumerKey = "FPW5V1xmVqigu1Vig9BgoB499",
-                ConsumerSecret = "UMJIatA0j8rK99GCIU4FWF65l1Jp5xDMtFYHUlhVhgfiIaguHX",
+                ConsumerKey = "xx",
+                ConsumerSecret = "xx",
                 BackchannelCertificateValidator = new Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator(new[]
     {
         "A5EF0B11CEC04103A34A659048B21CE0572D7D47",
