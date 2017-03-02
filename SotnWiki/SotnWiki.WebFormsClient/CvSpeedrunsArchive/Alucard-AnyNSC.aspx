@@ -9,18 +9,22 @@
                     <asp:Parameter DefaultValue="0" Name="Category" Type="Int32" />
                 </SelectParameters>
             </asp:SqlDataSource>
-            <asp:GridView ID="CategoryGridView" ClientIDMode="Static" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-                <Columns>
-                    <asp:BoundField DataField="Runner" HeaderText="Runner" />
-                    <asp:BoundField DataField="Time" HeaderText="Time ▲" SortExpression="Time" />
-                    <asp:HyperLinkField HeaderText="Video" DataTextField="Url" DataNavigateUrlFields="Url" />
-                    <asp:TemplateField HeaderText="Platform ▲" SortExpression="Platform" >
-                        <ItemTemplate>
-                            <%# Enum.GetName(typeof(CvSpeedruns.Models.Platform),Convert.ToInt32(Eval("Platform"))) %>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <asp:GridView ID="CategoryGridView" ClientIDMode="Static" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+                        <Columns>
+                            <asp:BoundField DataField="Runner" HeaderText="Runner" />
+                            <asp:BoundField DataField="Time" HeaderText="Time ▲" SortExpression="Time" />
+                            <asp:HyperLinkField HeaderText="Video" DataTextField="Url" DataNavigateUrlFields="Url" />
+                            <asp:TemplateField HeaderText="Platform ▲" SortExpression="Platform">
+                                <ItemTemplate>
+                                    <%# Enum.GetName(typeof(CvSpeedruns.Models.Platform),Convert.ToInt32(Eval("Platform"))) %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
     </div>
 </asp:Content>

@@ -12,7 +12,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
     public class GetSubmissionsShould
     {
         [Test]
-        [Ignore("How the hell do I tell moq the type is anonymous")]
+        [Ignore("TODO: Integration test")]
         public void CallGetAllMethodOfPageRepository()
         {
             //Arrange

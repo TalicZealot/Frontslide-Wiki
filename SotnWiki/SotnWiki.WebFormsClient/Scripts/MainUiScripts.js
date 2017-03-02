@@ -1,13 +1,26 @@
 $(function () {
     $('.expand').click(function () {
-        console.log('asdf');
-        if ($(this).hasClass('retracted') && !$(this).hasClass('nobkg')) {
-            $(this).addClass('expanded');
-            $(this).removeClass('retracted');
+        var button = $(this);
+
+        if (button.hasClass('retracted') && !$(this).hasClass('nobkg')) {
+            button.addClass('expanded');
+            button.removeClass('retracted');
         } else {
-            $(this).removeClass('expanded');
-            $(this).addClass('retracted');
+            button.removeClass('expanded');
+            button.addClass('retracted');
         }
-        $(this).next().slideToggle('fast', function () { });
+
+        if (button.hasClass('nobkg')) {
+            button.parent().next().slideToggle('fast', function () { });
+            if (button.text() == "hide") {
+                button.text("show");
+            }
+            else {
+                button.text("hide");
+            }
+        }
+        else {
+            button.next().slideToggle('fast', function () { });
+        }
     });
 });

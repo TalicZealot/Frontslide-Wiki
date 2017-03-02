@@ -2,29 +2,26 @@
 using NUnit.Framework;
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.Mvp.CustomEventArgs;
-using SotnWiki.Mvp.Page;
-using SotnWiki.TextManipulation.Contracts;
+using SotnWiki.Mvp.Publish;
 using System.Web;
 
-namespace SotnWiki.Mvp.Tests.PagePresenterTests
+namespace SotnWiki.Mvp.Tests.PublishPresenterTests
 {
     [TestFixture]
     public class View_OnPageGetContentShould
     {
         [Test]
-        public void SetsHttpResponseTo404()
+        public void SetHttpResponseTo404WhenPageIsNotFound()
         {
             //Arrange
-            var mockedView = new Mock<IPageView>();
-            mockedView.Setup(v => v.Model).Returns(new PageViewModel());
+            var mockedView = new Mock<IPublishView>();
+            mockedView.Setup(v => v.Model).Returns(new PublishViewModel());
             var mockedPageService = new Mock<IPageService>();
-            var mockedConverter = new Mock<IMarkupConverter>();
-            var pagePresenterUnderTest = new PagePresenter(mockedView.Object, mockedPageService.Object, mockedConverter.Object);
+            var publishPresenterUnderTest = new PublishPresenter(mockedView.Object, mockedPageService.Object);
             mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns((SotnWiki.Models.Page)null);
             var mockedHttpContext = new Mock<HttpContextBase>();
             var mockedHttpResponseBase = new Mock<HttpResponseBase>();
-
-            pagePresenterUnderTest.HttpContext = mockedHttpContext.Object;
+            publishPresenterUnderTest.HttpContext = mockedHttpContext.Object;
             mockedHttpContext.Setup(x => x.Response).Returns(mockedHttpResponseBase.Object);
             mockedHttpResponseBase.SetupSet(x => x.StatusCode = 404).Verifiable();
             mockedHttpResponseBase.SetupSet(x => x.Status = "404 not found").Verifiable();
@@ -40,18 +37,18 @@ namespace SotnWiki.Mvp.Tests.PagePresenterTests
         public void SetViewModelTitleCorrectly()
         {
             //Arrange
-            var mockedView = new Mock<IPageView>();
-            mockedView.Setup(v => v.Model).Returns(new PageViewModel());
+            var mockedView = new Mock<IPublishView>();
+            mockedView.Setup(v => v.Model).Returns(new PublishViewModel());
             var mockedPageService = new Mock<IPageService>();
-            var mockedConverter = new Mock<IMarkupConverter>();
-            var pagePresenterUnderTest = new PagePresenter(mockedView.Object, mockedPageService.Object, mockedConverter.Object);
+            var publishPresenterUnderTest = new PublishPresenter(mockedView.Object, mockedPageService.Object);
             string expectedTitle = "page title";
+            string expectedContent = "edit content";
             var page = new SotnWiki.Models.Page()
             {
-                Title = expectedTitle
+                Title = expectedTitle,
+                Content = expectedContent
             };
-
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageService.Setup(x => x.GetSubmissionByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             mockedView.Raise(v => v.OnPageGetContent += null, new PageEventArgs(""));
@@ -61,28 +58,25 @@ namespace SotnWiki.Mvp.Tests.PagePresenterTests
         }
 
         [Test]
-        public void SetViewModelHtmlCorrectly()
+        public void SetViewModelContentCorrectly()
         {
             //Arrange
-            var mockedView = new Mock<IPageView>();
-            mockedView.Setup(v => v.Model).Returns(new PageViewModel());
+            var mockedView = new Mock<IPublishView>();
+            mockedView.Setup(v => v.Model).Returns(new PublishViewModel());
             var mockedPageService = new Mock<IPageService>();
-            var mockedConverter = new Mock<IMarkupConverter>();
-            var defaultPresenterUnderTest = new PagePresenter(mockedView.Object, mockedPageService.Object, mockedConverter.Object);
-            string expectedContent = "<h1>";
+            var publishPresenterUnderTest = new PublishPresenter(mockedView.Object, mockedPageService.Object);
+            string expectedContent = "edit content";
             var page = new SotnWiki.Models.Page()
             {
-                Title = "aa",
-                Content = ".h1"
+                Content = expectedContent
             };
-            mockedConverter.Setup(x => x.ScriptToHtml(It.IsAny<string>())).Returns(expectedContent);
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageService.Setup(x => x.GetSubmissionByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             mockedView.Raise(v => v.OnPageGetContent += null, new PageEventArgs(""));
 
             //Assert
-            Assert.AreEqual(expectedContent, mockedView.Object.Model.PageHtml);
+            Assert.AreEqual(expectedContent, mockedView.Object.Model.Content);
         }
     }
 }

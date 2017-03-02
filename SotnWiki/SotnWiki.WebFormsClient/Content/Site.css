@@ -138,6 +138,22 @@ main {
         margin-bottom: 1em;
         align-self: center;
     }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4 {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        border-bottom: 1px solid #a7d7f9;
+        font-weight: normal;
+        page-break-after: avoid;
+        margin-bottom: 1em;
+    }
+
+    #content p {
+        padding-top: 0.5em;
+    }
+
 #archiveHeading {
     min-height: 24px;
     background-image: url('./cvsLogo.png');
@@ -168,9 +184,10 @@ main {
         padding-top: 0.2em;
         padding-bottom: 0.2em;
     }
-    #CategoryGridView th a {
-        color: white;
-    }
+
+        #CategoryGridView th a {
+            color: white;
+        }
 
     #CategoryGridView td {
         border: none;
@@ -238,17 +255,6 @@ main {
     .infobox td:nth-child(2n+1) {
         font-weight: bold;
     }
-
-main h1,
-main h2,
-main h3,
-main h4 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    border-bottom: 1px solid #a7d7f9;
-    font-weight: normal;
-    page-break-after: avoid;
-    margin-bottom: 1em;
-}
 
 .auth {
     display: -webkit-flex;

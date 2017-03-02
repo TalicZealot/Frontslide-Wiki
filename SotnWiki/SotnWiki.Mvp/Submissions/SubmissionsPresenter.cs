@@ -9,15 +9,11 @@ namespace SotnWiki.Mvp.Submissions
     public class SubmissionsPresenter : Presenter<ISubmissionsView>
     {
         private readonly IPageService pageService;
-        private readonly IMarkupConverter markupConverter;
 
-        public SubmissionsPresenter(ISubmissionsView view, IPageService pageService, IMarkupConverter markupConverter)
+        public SubmissionsPresenter(ISubmissionsView view, IPageService pageService)
             : base(view)
         {
             Guard.WhenArgument(pageService, nameof(IPageService)).IsNull().Throw();
-            Guard.WhenArgument(markupConverter, nameof(IMarkupConverter)).IsNull().Throw();
-
-            this.markupConverter = markupConverter;
             this.pageService = pageService;
             this.View.OnGetSubmissions += View_OnGetSubmissions;
         }

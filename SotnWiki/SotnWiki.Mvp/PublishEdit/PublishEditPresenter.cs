@@ -26,6 +26,15 @@ namespace SotnWiki.Mvp.PublishEdit
         private void View_OnPageGetContent(object sender, IdEventArgs args)
         {
             var result = this.contentSubmissionService.GetPageContentSubmissionById(args.Id);
+
+            if (result == null)
+            {
+                Response.StatusCode = 404;
+                Response.Status = "404 not found";
+                Response.End();
+                return;
+            }
+
             this.View.Model.Title = args.Title;
             this.View.Model.Content = result.Content;
         }
@@ -40,7 +49,7 @@ namespace SotnWiki.Mvp.PublishEdit
         private void View_OnDismissEdit(object sender, IdEventArgs args)
         {
             this.contentSubmissionService.DismissEdit(args.Id);
-            string title = args.Title.Replace(' ', '-');
+            string title = args.Title.ToLower().Replace(' ', '-');
             Response.Redirect(string.Format("~/pendingedits?title={0}", title));
         }
     }

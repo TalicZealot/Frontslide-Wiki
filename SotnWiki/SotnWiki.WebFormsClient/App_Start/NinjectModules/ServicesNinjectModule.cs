@@ -17,7 +17,8 @@ namespace SotnWiki.WebFormsClient.App_Start.NinjectModules
                 .BindDefaultInterface()
             );
 
-            this.Bind<IMarkupConverter>().To<TextileConverter>().InRequestScope();
+            this.Bind<IMarkupConverter>().To<TextileConverter>().WhenInjectedInto(typeof(IMarkupConverter));
+            this.Bind<IMarkupConverter>().To<TextileConverterWithDivs>().InRequestScope();
         }
     }
 }

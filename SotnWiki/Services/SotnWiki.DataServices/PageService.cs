@@ -53,41 +53,29 @@ namespace SotnWiki.DataServices
 
             var characterId = this.characterRepository.GetAll(x => string.Equals(x.Name, characterName), y => y.Id).FirstOrDefault();
             var character = this.characterRepository.GetById(characterId);
+            var pageToCreate = new Page()
+            {
+                Title = title,
+                Content = content,
+                IsPublished = publish
+            };
+
+            if (type == "General")
+            {
+                pageToCreate.GeneralCharacter = character;
+            }
+            else if (type == "Category")
+            {
+                pageToCreate.CategoryCharacter = character;
+            }
+            else if (type == "Glitch")
+            {
+                pageToCreate.GlitchCharacter = character;
+            }
 
             using (var unitOfWork = this.unitOfWorkFactory())
             {
-                if (type == "General")
-                {
-                    this.pageRepository.Add(
-                    new Page() {
-                        Title = title,
-                        GeneralCharacter = character,
-                        Content = content,
-                        IsPublished = publish
-                    });
-                }
-                else if (type == "Category")
-                {
-                    this.pageRepository.Add(
-                    new Page()
-                    {
-                        Title = title,
-                        CategoryCharacter = character,
-                        Content = content,
-                        IsPublished = publish
-                    });
-                }
-                else if (type == "Glitch")
-                {
-                    this.pageRepository.Add(
-                    new Page()
-                    {
-                        Title = title,
-                        GlitchCharacter = character,
-                        Content = content,
-                        IsPublished = publish
-                    });
-                }
+                this.pageRepository.Add(pageToCreate);
                 unitOfWork.Commit();
             }
         }
