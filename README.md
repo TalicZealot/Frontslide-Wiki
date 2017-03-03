@@ -10,9 +10,9 @@ A lightweight wiki-like web app
 * Authentication exclusively through Twitter for ease of use and security (Identity/Oauth)
 
 * **Implemented with the purpose of beinmg a wiki for the Castlevania: Symphony of the Night speedrunning community**
-..* Automatic backup of speedrun.com leaderboard
-..* Dynamic world record display in category pages
-..* Archive of the old leaderboard
+  * Automatic backup of speedrun.com leaderboard
+  * Dynamic world record display in category pages
+  * Archive of the old leaderboard
 
 # Technical
 
