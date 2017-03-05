@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - SOTN speedrunning wiki</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="mainwrap">
+        <nav class="aside">
+            <div>
+                <a class="logo" href="/" title="Visit the main page"></a>
+            </div>
+            <ul>
+                <li>
+                    <a href="/">Main Page</a>
+                </li>
+                <li>
+                    <span class="expand retracted">Alucard</span>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="/alucard">Main</a>
+                        </li>
+                        <li>
+                            <a href="/alucard-any%">Any%</a>
+                        </li>
+                        <li>
+                            <a href="/alucard-all-bosses">All Bosses</a>
+                        </li>
+                        <li>
+                            <a href="/alucard-glitchless">Glitchless</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand retracted">Richter</span>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="/richter">Main</a>
+                        </li>
+                        <li>
+                            <a href="/richter-any%">Any%</a>
+                        </li>
+                        <li>
+                            <a href="/richter-any%">All Bosses</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand retracted">Maria</span>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="/maria">Main</a>
+                        </li>
+                        <li>
+                            <a href="/maria-any%">Any%</a>
+                        </li>
+                        <li>
+                            <a href="/maria-any%">All Bosses</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="search-panel">
+                @Html.TextBox("search")
+            </div>
+        </nav>
+        <main>
+            <nav class="auth">
+                @Html.Partial("_LoginPartial")
+            </nav>
+            @RenderBody()
+            <footer>
+                Course project of Talic_Zealot for Telerik Academy Season 7
+            </footer>
+        </main>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/site")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
