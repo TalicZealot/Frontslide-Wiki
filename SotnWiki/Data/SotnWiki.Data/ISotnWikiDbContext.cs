@@ -17,6 +17,8 @@ namespace SotnWiki.Data
 
         IDbSet<PageContentSubmission> PageContentSubmissions { get; set; }
 
+        IDbSet<Run> Runs { get; set; }
+
         int SaveChanges();
     }
 }

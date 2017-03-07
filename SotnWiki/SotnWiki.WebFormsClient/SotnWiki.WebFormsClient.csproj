@@ -412,10 +412,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\CvSpeedruns\CvSpeedruns.Models\CvSpeedruns.Models.csproj">
-      <Project>{b0c89990-6a91-42de-8cd4-addeb748922b}</Project>
-      <Name>CvSpeedruns.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Data\SotnWiki.Data.Common\SotnWiki.Data.Common.csproj">
       <Project>{010d9912-3682-4400-8698-c8d23e8ba23c}</Project>
       <Name>SotnWiki.Data.Common</Name>

@@ -13,6 +13,14 @@ namespace SotnWiki.MvcClient
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.LowercaseUrls = true;
+
+            routes.MapRoute(
+                name: "Page",
+                url: "{name}",
+                defaults: new { controller = "Home", action = "Page" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

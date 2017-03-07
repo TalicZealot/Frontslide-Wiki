@@ -1,4 +1,4 @@
-﻿namespace CvSpeedruns.Models
+﻿namespace SotnWiki.Models
 {
     public enum Platform
     {

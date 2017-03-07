@@ -2,7 +2,6 @@
 using SotnWiki.Data.Common;
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.Models;
-using CvSpeedruns.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +28,13 @@ namespace SotnWiki.DataServices
 
             return runRepository.GetAll(x => string.Equals(x.Category, categoryName), y => new {y.Runner, y.Time, y.Url, y.Platform})
                .Select(z => new Run {Runner = z.Runner, Time = z.Time, Url = z.Url, Platform = z.Platform}).ToList();
+        }
+
+        public Run getWorldRecordInCategory(string categoryName)
+        {
+            Guard.WhenArgument(categoryName, "categoryName").IsNullOrEmpty().Throw();
+
+            return this.getRunsInCategory(categoryName).OrderByDescending(r => r.Time).FirstOrDefault();
         }
     }
 }

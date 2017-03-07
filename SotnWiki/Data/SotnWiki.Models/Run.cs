@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CvSpeedruns.Models
+namespace SotnWiki.Models
 {
     public class Run
     {

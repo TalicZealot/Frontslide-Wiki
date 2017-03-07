@@ -21,12 +21,14 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
             var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            Expression<Func<Page, bool>> filter = (Page model) => !model.IsPublished;
+            Expression<Func<Page, Type>> select = (Page model) => model.GetType();
 
             //Act
             pageServiceUnderTest.GetSubmissions();
 
             //Assert
-            mockedPageRepository.Verify(m => m.GetAll<Tuple<string, DateTime, string>>(It.IsAny<Expression<Func<Page, bool>>>(), It.IsAny<Expression<Func<Page, Tuple<string, DateTime, string>>>>()), Times.Once());
+            mockedPageRepository.Verify(m => m.GetAll(filter, select), Times.Once());
         }
     }
 }

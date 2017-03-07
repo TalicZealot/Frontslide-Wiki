@@ -16,5 +16,7 @@ namespace SotnWiki.Data
         public IDbSet<Page> Pages { get; set; }
 
         public IDbSet<PageContentSubmission> PageContentSubmissions { get; set; }
+
+        public IDbSet<Run> Runs { get; set; }
     }
 }
