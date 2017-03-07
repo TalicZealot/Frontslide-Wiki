@@ -53,6 +53,11 @@ namespace SotnWiki.DataServices
 
             var characterId = this.characterRepository.GetAll(x => string.Equals(x.Name, characterName), y => y.Id).FirstOrDefault();
             var character = this.characterRepository.GetById(characterId);
+            if (character == null)
+            {
+                throw new NullReferenceException("Character not found!");
+            }
+
             var pageToCreate = new Page()
             {
                 Title = title,
@@ -86,6 +91,11 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
             var page = this.GetSubmissionByTitle(title);
+            if (page == null)
+            {
+                throw new NullReferenceException("Page not found!");
+            }
+
             page.Content = editedContent;
             page.IsPublished = true;
             using (var unitOfWork = this.unitOfWorkFactory())
@@ -100,6 +110,11 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
             var page = this.GetSubmissionByTitle(title);
+            if (page == null)
+            {
+                throw new NullReferenceException("Page not found!");
+            }
+
             using (var unitOfWork = this.unitOfWorkFactory())
             {
                 this.pageRepository.Delete(page);

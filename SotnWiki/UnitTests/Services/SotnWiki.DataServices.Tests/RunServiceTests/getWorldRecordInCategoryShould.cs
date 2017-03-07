@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 namespace SotnWiki.DataServices.Tests.RunServiceTests
 {
     [TestFixture]
-    public class getWorldRecordInCategoryShould
+    public class GetWorldRecordInCategoryShould
     {
         [TestFixture]
         public class ConstructorShould
@@ -27,7 +27,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
 
                 //Act
                 var exc = Assert.Throws<ArgumentNullException>(() => {
-                    serviceUnderTest.getWorldRecordInCategory(null);
+                    serviceUnderTest.GetWorldRecordInCategory(null);
                 });
 
                 //Assert
@@ -45,7 +45,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
 
                 //Act
                 var exc = Assert.Throws<ArgumentException>(() => {
-                    serviceUnderTest.getWorldRecordInCategory("");
+                    serviceUnderTest.GetWorldRecordInCategory("");
                 });
 
                 //Assert
@@ -71,7 +71,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
                 var expectedWR = new Run() { Runner = "runner2", Time = "1:11", Url = "testurl2", Platform = Platform.Playstation };
 
                 //Act
-                var result = serviceUnderTest.getWorldRecordInCategory("test");
+                var result = serviceUnderTest.GetWorldRecordInCategory("test");
 
                 //Assert
 

@@ -7,7 +7,7 @@ using System;
 namespace SotnWiki.DataServices.Tests.RunServiceTests
 {
     [TestFixture]
-    public class getRunsInCategoryShould
+    public class GetRunsInCategoryShould
     {
         [TestFixture]
         public class ConstructorShould
@@ -23,7 +23,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
 
                 //Act
                 var exc = Assert.Throws<ArgumentNullException>(() => {
-                    serviceUnderTest.getRunsInCategory(null);
+                    serviceUnderTest.GetRunsInCategory(null);
                 });
 
                 //Assert
@@ -41,7 +41,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
 
                 //Act
                 var exc = Assert.Throws<ArgumentException>(() => {
-                    serviceUnderTest.getRunsInCategory("");
+                    serviceUnderTest.GetRunsInCategory("");
                 });
 
                 //Assert

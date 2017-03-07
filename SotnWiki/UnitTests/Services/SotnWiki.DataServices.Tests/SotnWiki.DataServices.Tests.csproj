@@ -61,8 +61,8 @@
     <Compile Include="PageServiceTests\PublishPageShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunServiceTests\ConstructorShould.cs" />
-    <Compile Include="RunServiceTests\getRunsInCategoryShould.cs" />
-    <Compile Include="RunServiceTests\getWorldRecordInCategoryShould.cs" />
+    <Compile Include="RunServiceTests\GetRunsInCategoryShould.cs" />
+    <Compile Include="RunServiceTests\GetWorldRecordInCategoryShould.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

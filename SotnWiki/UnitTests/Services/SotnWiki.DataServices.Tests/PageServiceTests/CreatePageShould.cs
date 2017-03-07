@@ -155,7 +155,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void CallsCommitMethodOfUnitOfWork()
+        public void ThrowNullReferenceExceptionWhenCharacterRepositoryDoesntFindCharacter()
         {
             //Arrange
             var mockedPageRepository = new Mock<IRepository<Page>>();
@@ -170,6 +170,34 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
                 LastEdit = null,
             };
             queryResult.Add(page);
+            mockedCharacterRepository.Setup(r => r.GetById(It.IsAny<Guid>())).Returns((Character)null);
+            var expectedExceptionMessage = "Character not found!";
+
+            //Act
+            var exc = Assert.Throws<NullReferenceException>(() => pageServiceUnderTest.CreatePage("aa", "aa", "aa", "aa", false));
+
+            //Assert
+            StringAssert.Contains(expectedExceptionMessage, exc.Message);
+        }
+
+        [Test]
+        public void CallCommitMethodOfUnitOfWork()
+        {
+            //Arrange
+            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedCharacterRepository = new Mock<IRepository<Character>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            var queryResult = new List<Page>();
+            var page = new Page()
+            {
+                Content = "aa",
+                LastEdit = null,
+            };
+            queryResult.Add(page);
+            var character = new Character() { Id = Guid.NewGuid() };
+            mockedCharacterRepository.Setup(r => r.GetById(It.IsAny<Guid>())).Returns(character);
 
             //Act
             pageServiceUnderTest.CreatePage("aa", "aa", "aa", "aa", false);

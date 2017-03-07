@@ -22,7 +22,7 @@ namespace SotnWiki.DataServices
             this.unitOfWorkFactory = unitOfWorkFactory;
         }
 
-        public IEnumerable<Run> getRunsInCategory(string categoryName)
+        public IEnumerable<Run> GetRunsInCategory(string categoryName)
         {
             Guard.WhenArgument(categoryName, "categoryName").IsNullOrEmpty().Throw();
 
@@ -30,11 +30,11 @@ namespace SotnWiki.DataServices
                .Select(z => new Run {Runner = z.Runner, Time = z.Time, Url = z.Url, Platform = z.Platform}).ToList();
         }
 
-        public Run getWorldRecordInCategory(string categoryName)
+        public Run GetWorldRecordInCategory(string categoryName)
         {
             Guard.WhenArgument(categoryName, "categoryName").IsNullOrEmpty().Throw();
 
-            return this.getRunsInCategory(categoryName).OrderByDescending(r => r.Time).FirstOrDefault();
+            return this.GetRunsInCategory(categoryName).OrderByDescending(r => r.Time).FirstOrDefault();
         }
     }
 }

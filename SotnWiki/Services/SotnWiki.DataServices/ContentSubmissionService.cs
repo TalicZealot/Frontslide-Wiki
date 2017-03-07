@@ -32,6 +32,11 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
             var page = this.pageService.GetPageByTitle(title);
+            if (page == null)
+            {
+                throw new NullReferenceException("Page not found!");
+            }
+
             var submission = new PageContentSubmission() { Content = content, PageEdit = page };
 
             using (var unitOfWork = this.unitOfWorkFactory())
