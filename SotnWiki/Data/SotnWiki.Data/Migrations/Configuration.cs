@@ -1,4 +1,5 @@
 using SotnWiki.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -15,16 +16,22 @@ namespace SotnWiki.Data.Migrations
 
         protected override void Seed(SotnWiki.Data.SotnWikiDbContext context)
         {
+            var siteId = Guid.NewGuid();
             IList<Character> characters = new List<Character>()
             {
-                new Character () { Name = "Site"},
+                new Character () { Name = "Site", Id = siteId },
                 new Character () { Name = "Alucard"},
                 new Character () { Name = "Richter"},
                 new Character () { Name = "Maria"}
             };
-
             context.Characters.AddOrUpdate(characters.ToArray());
 
+            IList<Page> pages = new List<Page>()
+            {
+                new Page () { Id = Guid.NewGuid(), IsPublished = true, Title = "Main Page", CreatedOn = DateTime.Now, GeneralCharacter = context.Characters.Find(siteId) ,
+                Content = "Sample Data Most GUI development environments allow the developer to define screen layout with a graphical editor that allows you to drag and drop the controls onto a space in the form. This pretty much handles the form layout. This way it's easy to setup a pleasing layout of controls on the form (although it isn't always the best way to do it - we'll come to that later."}
+            };
+            context.Pages.AddOrUpdate(pages.ToArray());
 
             IList<Run> runs = new List<Run>()
             {
@@ -93,7 +100,6 @@ namespace SotnWiki.Data.Migrations
                 //new Run () { Runner = "krispearman", Time = "16:54", Category = Category.CvsAlucardAnyNSC, Platform = Platform.Xbox360},
                 //new Run () { Runner = "Adam Grise", Time = "16:54", Category = Category.CvsAlucardAnyNSC, Platform = Platform.Playstation
             };
-
             context.Runs.AddOrUpdate(runs.ToArray());
         }
     }
