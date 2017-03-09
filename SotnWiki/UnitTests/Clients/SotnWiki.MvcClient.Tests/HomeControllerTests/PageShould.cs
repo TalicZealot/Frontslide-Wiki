@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using SotnWiki.DataServices.Contracts;
+using SotnWiki.Models;
 using SotnWiki.MvcClient.Controllers;
 using SotnWiki.MvcClient.Models;
 using SotnWiki.TextManipulation.Contracts;
@@ -12,6 +13,24 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
     [TestFixture]
     public class PageShould
     {
+        [Test]
+        public void ReturnObjectOfTypeHttpNotFoundResultIfPageServiceReturnsNull()
+        {
+            //Arrange
+            var mockedConverter = new Mock<IMarkupConverter>();
+            var mockedPageService = new Mock<IPageService>();
+            var controllerUnderTest = new HomeController(mockedPageService.Object, mockedConverter.Object);
+            string expectedContent = "<h1>";
+            mockedConverter.Setup(x => x.ScriptToHtml(It.IsAny<string>())).Returns(expectedContent);
+            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns((Page)null);
+
+            //Act
+            var result = controllerUnderTest.Page("asd");
+
+            //Assert
+            Assert.IsInstanceOf<HttpNotFoundResult>(result);
+        }
+
         [Test]
         public void ThrowArgumentNullExceptionIfPassedNameParameterIsNull()
         {

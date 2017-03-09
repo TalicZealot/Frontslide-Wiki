@@ -2,10 +2,6 @@
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.MvcClient.Models;
 using SotnWiki.TextManipulation.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SotnWiki.MvcClient.Controllers
@@ -29,10 +25,7 @@ namespace SotnWiki.MvcClient.Controllers
             var page = this.pageService.GetPageByTitle("Main Page");
             if (page == null)
             {
-                Response.StatusCode = 404;
-                Response.Status = "404 not found";
-                Response.End();
-                return View();
+                return HttpNotFound();
             }
 
             var model = new PageViewModel();
@@ -49,10 +42,7 @@ namespace SotnWiki.MvcClient.Controllers
             var page = this.pageService.GetPageByTitle(name);
             if (page == null)
             {
-                Response.StatusCode = 404;
-                Response.Status = "404 not found";
-                Response.End();
-                return View();
+                return HttpNotFound();
             }
 
             var model = new PageViewModel();
