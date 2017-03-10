@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using SotnWiki.Data.Common;
+using SotnWiki.Data.Common.Contracts;
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.Models;
 using System;
@@ -16,12 +17,11 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
-            var mockedPageContentSubmissionRepository = new Mock<IRepository<PageContentSubmission>>();
-            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            var mockedPageRepository = new Mock<IPageRepository>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
-            var expectedEditContent = "page old content";
             var pendingEdits = new List<PageContentSubmission>();
             var edit1 = new PageContentSubmission()
             {
@@ -36,14 +36,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             pendingEdits.Add(edit1);
             pendingEdits.Add(edit2);
 
-            var page = new Page()
-            {
-                Content = expectedEditContent,
-                LastEdit = null,
-                Pending = pendingEdits
-            };
-
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageContentSubmissionRepository.Setup(x => x.GetSubmissions(It.IsAny<string>())).Returns(pendingEdits);
 
             //Act
             var result = submissionServiceUnderTest.GetSubmissions("tuturutka");

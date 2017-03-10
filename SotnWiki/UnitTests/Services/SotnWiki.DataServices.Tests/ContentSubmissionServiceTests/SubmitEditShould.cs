@@ -5,6 +5,7 @@ using System;
 using SotnWiki.Data.Common;
 using SotnWiki.Models;
 using System.Collections.Generic;
+using SotnWiki.Data.Common.Contracts;
 
 namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
 {
@@ -16,8 +17,8 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
-            var mockedPageContentSubmissionRepository = new Mock<IRepository<PageContentSubmission>>();
-            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            var mockedPageRepository = new Mock<IPageRepository>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
             string expectedExceptionMessage = "title";
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
@@ -34,8 +35,8 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
-            var mockedPageContentSubmissionRepository = new Mock<IRepository<PageContentSubmission>>();
-            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            var mockedPageRepository = new Mock<IPageRepository>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
             string expectedExceptionMessage = "title";
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
@@ -54,8 +55,8 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var mockedPageService = new Mock<IPageService>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var mockedPageContentSubmissionRepository = new Mock<IRepository<PageContentSubmission>>();
-            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            var mockedPageRepository = new Mock<IPageRepository>();
             var edits = new List<PageContentSubmission>();
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
             mockedPageContentSubmissionRepository.Setup(x => x.Add(It.IsAny<PageContentSubmission>())).Callback<PageContentSubmission>(
@@ -79,8 +80,8 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var mockedPageService = new Mock<IPageService>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var mockedPageContentSubmissionRepository = new Mock<IRepository<PageContentSubmission>>();
-            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            var mockedPageRepository = new Mock<IPageRepository>();
             var edits = new List<PageContentSubmission>();
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
             mockedPageContentSubmissionRepository.Setup(x => x.Add(It.IsAny<PageContentSubmission>())).Callback<PageContentSubmission>(
@@ -108,8 +109,8 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
-            var mockedPageContentSubmissionRepository = new Mock<IRepository<PageContentSubmission>>();
-            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            var mockedPageRepository = new Mock<IPageRepository>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
             var edits = new List<PageContentSubmission>();
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);

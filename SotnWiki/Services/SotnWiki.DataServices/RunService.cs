@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using SotnWiki.Data.Common;
+using SotnWiki.Data.Common.Contracts;
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.Models;
 using System;
@@ -10,12 +11,12 @@ namespace SotnWiki.DataServices
 {
     public class RunService
     {
-        private readonly IRepository<Run> runRepository;
+        private readonly IRunRepository runRepository;
         private readonly Func<IUnitOfWork> unitOfWorkFactory;
 
-        public RunService(IRepository<Run> runRepository, Func<IUnitOfWork> unitOfWorkFactory)
+        public RunService(IRunRepository runRepository, Func<IUnitOfWork> unitOfWorkFactory)
         {
-            Guard.WhenArgument(runRepository, nameof(IRepository<Page>)).IsNull().Throw();
+            Guard.WhenArgument(runRepository, nameof(IRunRepository)).IsNull().Throw();
             Guard.WhenArgument(unitOfWorkFactory, nameof(Func<IUnitOfWork>)).IsNull().Throw();
 
             this.runRepository = runRepository;
@@ -26,15 +27,14 @@ namespace SotnWiki.DataServices
         {
             Guard.WhenArgument(categoryName, "categoryName").IsNullOrEmpty().Throw();
 
-            return runRepository.GetAll(x => string.Equals(x.Category, categoryName), y => new {y.Runner, y.Time, y.Url, y.Platform})
-               .Select(z => new Run {Runner = z.Runner, Time = z.Time, Url = z.Url, Platform = z.Platform}).ToList();
+            return this.runRepository.GetRunsInCategory(categoryName);
         }
 
         public Run GetWorldRecordInCategory(string categoryName)
         {
             Guard.WhenArgument(categoryName, "categoryName").IsNullOrEmpty().Throw();
 
-            return this.GetRunsInCategory(categoryName).OrderByDescending(r => r.Time).FirstOrDefault();
+            return this.runRepository.GetWorldRecordInCategory(categoryName);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Bytes2you.Validation;
 using SotnWiki.Data.Common;
+using SotnWiki.Data.Common.Contracts;
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.Models;
 using System;
@@ -9,16 +10,16 @@ namespace SotnWiki.DataServices
 {
     public class ContentSubmissionService : IContentSubmissionService
     {
-        private readonly IRepository<PageContentSubmission> pageContentSubmissionRepository;
-        private readonly IRepository<Page> pageRepository;
+        private readonly IContentSubmissionRepository pageContentSubmissionRepository;
+        private readonly IPageRepository pageRepository;
         private readonly Func<IUnitOfWork> unitOfWorkFactory;
         private readonly IPageService pageService;
 
-        public ContentSubmissionService(IRepository<PageContentSubmission> pageContentSubmissionRepository, IRepository<Page> pageRepository, Func<IUnitOfWork> unitOfWorkFactory, IPageService pageService)
+        public ContentSubmissionService(IContentSubmissionRepository pageContentSubmissionRepository, IPageRepository pageRepository, Func<IUnitOfWork> unitOfWorkFactory, IPageService pageService)
         {
             Guard.WhenArgument(pageService, nameof(IPageService)).IsNull().Throw();
-            Guard.WhenArgument(pageContentSubmissionRepository, nameof(IRepository<PageContentSubmission>)).IsNull().Throw();
-            Guard.WhenArgument(pageRepository, nameof(IRepository<Page>)).IsNull().Throw();
+            Guard.WhenArgument(pageContentSubmissionRepository, nameof(IContentSubmissionRepository)).IsNull().Throw();
+            Guard.WhenArgument(pageRepository, nameof(IPageRepository)).IsNull().Throw();
             Guard.WhenArgument(unitOfWorkFactory, nameof(Func<IUnitOfWork>)).IsNull().Throw();
 
             this.pageService = pageService;
@@ -57,6 +58,7 @@ namespace SotnWiki.DataServices
             pageContentSubmission.Content = page.Content;
             page.Content = content;
             page.LastEdit = DateTime.Now;
+
             using (var unitOfWork = this.unitOfWorkFactory())
             {
                 this.pageRepository.Update(page);
@@ -85,8 +87,7 @@ namespace SotnWiki.DataServices
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            var page = this.pageService.GetPageByTitle(title);
-            return page.Pending;
+            return this.pageContentSubmissionRepository.GetSubmissions(title);
         }
     }
 }

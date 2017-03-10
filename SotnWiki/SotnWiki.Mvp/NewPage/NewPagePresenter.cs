@@ -2,6 +2,8 @@
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.Mvp.CustomEventArgs;
 using WebFormsMvp;
+using System;
+using SotnWiki.Models;
 
 namespace SotnWiki.Mvp.NewPage
 {
@@ -20,7 +22,7 @@ namespace SotnWiki.Mvp.NewPage
 
         private void View_OnSubmitNewPage(object sender, PageSubmitEventArgs args)
         {
-            this.pageService.CreatePage(args.Character, args.Type, args.Title, args.Content, false);
+            this.pageService.CreatePage((int)Enum.Parse(typeof(CharacterIdEnum), args.Character), args.Type, args.Title, args.Content, false);
             if (args.Publish)
             {
                 string title = args.Title.ToLower().Replace(' ', '-');

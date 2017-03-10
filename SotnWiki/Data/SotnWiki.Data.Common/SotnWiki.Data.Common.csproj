@@ -53,12 +53,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICharacterRepository.cs" />
+    <Compile Include="Contracts\IContentSubmissionRepository.cs" />
+    <Compile Include="Contracts\IPageRepository.cs" />
+    <Compile Include="Contracts\IRunRepository.cs" />
     <Compile Include="EfGenericRepository.cs" />
     <Compile Include="EfUnitOfWork.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="PageRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CharacterRepository.cs" />
+    <Compile Include="Repositories\ContentSubmissionRepository.cs" />
+    <Compile Include="Repositories\PageRepository.cs" />
+    <Compile Include="Repositories\RunRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -71,7 +78,12 @@
       <Project>{a37d2b8d-2892-4270-9e35-df8b84d65c8e}</Project>
       <Name>SotnWiki.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SotnWiki.Models\SotnWiki.Models.csproj">
+      <Project>{5CFEBC1D-5E6F-49A2-A146-A11A6F5B2845}</Project>
+      <Name>SotnWiki.Models</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

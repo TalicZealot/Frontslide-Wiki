@@ -4,6 +4,7 @@ using SotnWiki.DataServices.Contracts;
 using System;
 using SotnWiki.Data.Common;
 using SotnWiki.Models;
+using SotnWiki.Data.Common.Contracts;
 
 namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
 {
@@ -14,8 +15,8 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         public void ThrowArgumentNullExceptionWhenPageServicetIsNull()
         {
             //Arrange
-            var mockedPageContentSubmissionRepository = new Mock<IRepository<PageContentSubmission>>();
-            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            var mockedPageRepository = new Mock<IPageRepository>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object;};
             string expectedExceptionMessage = "IPageService";
 
@@ -32,9 +33,9 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
-            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedPageRepository = new Mock<IPageRepository>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
-            string expectedExceptionMessage = "IRepository";
+            string expectedExceptionMessage = "IContentSubmissionRepository";
 
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => {
@@ -50,9 +51,9 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
-            var mockedPageContentSubmissionRepository = new Mock<IRepository<PageContentSubmission>>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
-            string expectedExceptionMessage = "IRepository";
+            string expectedExceptionMessage = "IPageRepository";
 
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => {
@@ -68,8 +69,8 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
-            var mockedPageContentSubmissionRepository = new Mock<IRepository<PageContentSubmission>>();
-            var mockedPageRepository = new Mock<IRepository<Page>>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            var mockedPageRepository = new Mock<IPageRepository>();
             string expectedExceptionMessage = "Func";
 
             //Act

@@ -25,6 +25,14 @@ namespace SotnWiki.Data.Common
             }
         }
 
+        protected IDbSet<T> DbSet
+        {
+            get
+            {
+                return this.dbSet;
+            }
+        }
+
         public void Add(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();

@@ -13,7 +13,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
         {
             //Arrange
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
-            string expectedExceptionMessage = "IRepository";
+            string expectedExceptionMessage = "IRunRepository";
 
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => {

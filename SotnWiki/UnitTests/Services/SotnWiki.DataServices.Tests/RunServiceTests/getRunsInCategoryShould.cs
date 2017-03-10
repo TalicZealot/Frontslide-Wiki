@@ -3,6 +3,7 @@ using Moq;
 using NUnit.Framework;
 using SotnWiki.Data.Common;
 using System;
+using SotnWiki.Data.Common.Contracts;
 
 namespace SotnWiki.DataServices.Tests.RunServiceTests
 {
@@ -16,7 +17,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
             public void ThrowArgumentNullExceptionWhenPassedCategoryNameIsNull()
             {
                 //Arrange
-                var mockedRunRepository = new Mock<IRepository<Run>>();
+                var mockedRunRepository = new Mock<IRunRepository>();
                 Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
                 var serviceUnderTest = new RunService(mockedRunRepository.Object, mockedUnitOfWorkFactory);
                 string expectedExceptionMessage = "categoryName";
@@ -34,7 +35,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
             public void ThrowArgumentNullExceptionWhenPassedCategoryNameIsEmpty()
             {
                 //Arrange
-                var mockedRunRepository = new Mock<IRepository<Run>>();
+                var mockedRunRepository = new Mock<IRunRepository>();
                 Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
                 var serviceUnderTest = new RunService(mockedRunRepository.Object, mockedUnitOfWorkFactory);
                 string expectedExceptionMessage = "categoryName";

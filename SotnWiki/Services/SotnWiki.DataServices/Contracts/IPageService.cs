@@ -8,9 +8,7 @@ namespace SotnWiki.DataServices.Contracts
     {
         Page GetPageByTitle(string title);
 
-        Page GetPageById(Guid id);
-
-        void CreatePage(string characterName, string type, string title, string content, bool publish);
+        void CreatePage(int characterId, string type, string title, string content, bool publish);
 
         IEnumerable<Page> FindPages(string text);
 

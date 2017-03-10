@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Category.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="CharacterIdEnum.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="PageContentSubmissions.cs" />
     <Compile Include="Platform.cs" />

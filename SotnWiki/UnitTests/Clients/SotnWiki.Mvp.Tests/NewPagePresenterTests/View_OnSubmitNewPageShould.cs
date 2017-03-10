@@ -25,7 +25,7 @@ namespace SotnWiki.Mvp.Tests.NewPagePresenterTests
             mockedHttpResponseBase.Setup(x => x.Redirect(It.IsAny<string>())).Verifiable();
 
             //Act
-            mockedView.Raise(v => v.OnSubmitNewPage += null, new PageSubmitEventArgs("aa", "aa", "aa", "aa", false));
+            mockedView.Raise(v => v.OnSubmitNewPage += null, new PageSubmitEventArgs("Site", "aa", "aa", "aa", false));
 
             //Assert
             mockedHttpResponseBase.Verify(x => x.Redirect(It.IsAny<string>()), Times.Once);
@@ -46,10 +46,10 @@ namespace SotnWiki.Mvp.Tests.NewPagePresenterTests
             mockedHttpResponseBase.Setup(x => x.Redirect(It.IsAny<string>())).Verifiable();
 
             //Act
-            mockedView.Raise(v => v.OnSubmitNewPage += null, new PageSubmitEventArgs("aa", "aa", "aa", "aa", false));
+            mockedView.Raise(v => v.OnSubmitNewPage += null, new PageSubmitEventArgs("Site", "aa", "aa", "aa", false));
 
             //Assert
-            mockedPageService.Verify(x => x.CreatePage(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>()), Times.Once);
+            mockedPageService.Verify(x => x.CreatePage(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>()), Times.Once);
         }
     }
 }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using SotnWiki.Data.Common.Contracts;
 
 namespace SotnWiki.DataServices.Tests.RunServiceTests
 {
@@ -20,7 +21,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
             public void ThrowArgumentNullExceptionWhenPassedCategoryNameIsNull()
             {
                 //Arrange
-                var mockedRunRepository = new Mock<IRepository<Run>>();
+                var mockedRunRepository = new Mock<IRunRepository>();
                 Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
                 var serviceUnderTest = new RunService(mockedRunRepository.Object, mockedUnitOfWorkFactory);
                 string expectedExceptionMessage = "categoryName";
@@ -38,7 +39,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
             public void ThrowArgumentNullExceptionWhenPassedCategoryNameIsEmpty()
             {
                 //Arrange
-                var mockedRunRepository = new Mock<IRepository<Run>>();
+                var mockedRunRepository = new Mock<IRunRepository>();
                 Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
                 var serviceUnderTest = new RunService(mockedRunRepository.Object, mockedUnitOfWorkFactory);
                 string expectedExceptionMessage = "categoryName";
@@ -50,32 +51,6 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
 
                 //Assert
                 StringAssert.Contains(expectedExceptionMessage, exc.Message);
-            }
-
-            [Test]
-            [Ignore("TODO: Integration test")]
-            public void ReturnTheRunWithTheLowestTime()
-            {
-                //Arrange
-                var mockedRunRepository = new Mock<IRepository<Run>>();
-                Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
-                var serviceUnderTest = new RunService(mockedRunRepository.Object, mockedUnitOfWorkFactory);
-                var runs = new[]
-                {
-                    new {Runner = "runner1", Time = "33:33", Url = "testurl1", Platform = Platform.Playstation},
-                    new {Runner = "runner2", Time = "1:11", Url = "testurl2", Platform = Platform.Playstation},
-                    new {Runner = "runner3", Time = "22:22", Url = "testurl3", Platform = Platform.Playstation}
-                }.ToList();
-
-                mockedRunRepository.Setup(r => r.GetAll(It.IsAny<Expression<Func<Run, bool>>>(), It.IsAny<Expression<Func<Run, Type>>>())).Returns((IEnumerable<Type>)runs);
-                var expectedWR = new Run() { Runner = "runner2", Time = "1:11", Url = "testurl2", Platform = Platform.Playstation };
-
-                //Act
-                var result = serviceUnderTest.GetWorldRecordInCategory("test");
-
-                //Assert
-
-                Assert.AreEqual(expectedWR, result);
             }
         }
     }
