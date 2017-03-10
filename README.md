@@ -16,10 +16,12 @@ A lightweight wiki-like web app
 
 # Technical
 
-* Etity Framework code first database
-* Abstract data layer through a generic repository
-* Services for data, authentication and text encoding
+* Onion architecture
+* Dependency inversion through depencency injection
 * Initial implementation with ASP.NET WebForms client using MVP architectural pattern
 * Reimplemented with ASP.NET MVC5
 * High code coverage unit tests
 * Integration tested
+* Automatic unit testing, local deployment and integration testing through Jenkins
+* Automatic daily backups of the runs on speedrun.com/sotn
+* Dynamically generated world record for category pages
