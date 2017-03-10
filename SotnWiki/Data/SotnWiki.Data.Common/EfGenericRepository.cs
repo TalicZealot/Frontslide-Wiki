@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace SotnWiki.Data.Common
 {
-    public class EfGenericRepository<T> : IEfGenericRepository<T> where T : class
+    public class EfGenericRepository<T> where T : class
     {
         private readonly ISotnWikiDbContext context;
         private readonly IDbSet<T> dbSet;
