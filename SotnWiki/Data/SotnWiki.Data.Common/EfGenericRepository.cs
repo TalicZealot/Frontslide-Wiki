@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace SotnWiki.Data.Common
 {
-    public class EfGenericRepository<T> : IRepository<T> where T : class
+    public class EfGenericRepository<T> : IEfGenericRepository<T> where T : class
     {
         private readonly ISotnWikiDbContext context;
         private readonly IDbSet<T> dbSet;
@@ -45,29 +45,6 @@ namespace SotnWiki.Data.Common
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
             var entry = this.context.Entry(entity);
             entry.State = EntityState.Deleted;
-        }
-
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter)
-        {
-            return this.dbSet.Where(filter).ToList();
-        }
-
-        public IEnumerable<T1> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> selectExpression)
-        {
-            IQueryable<T> result = this.dbSet;
-
-            if (filterExpression != null)
-            {
-                result = result.Where(filterExpression);
-            }
-            if (selectExpression != null)
-            {
-                return result.Select(selectExpression).ToList();
-            }
-            else
-            {
-                return result.OfType<T1>().ToList();
-            }
         }
 
         public T GetById(object id)

@@ -15,7 +15,7 @@ namespace SotnWiki.MvcClient.App_Start.Ninject_Modules
             this.Bind<Func<IUnitOfWork>>().ToMethod(ctx => () => ctx.Kernel.Get<IUnitOfWork>());
             this.Bind<IUnitOfWork>().To<EfUnitOfWork>();
 
-            this.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
+            this.Bind(typeof(IEfGenericRepository<>)).To(typeof(EfGenericRepository<>));
         }
     }
 }
