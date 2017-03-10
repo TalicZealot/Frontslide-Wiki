@@ -26,5 +26,15 @@ namespace SotnWiki.Data.Common.Repositories
 
             return this.DbSet.Where(x => string.Equals(x.Category, categoryName)).OrderByDescending(r => r.Time).FirstOrDefault();
         }
+
+        public IEnumerable<Run> GetCvsRuns()
+        {
+            return this.DbSet.Where(x => (int)x.Category > 9).ToList();
+        }
+
+        public IEnumerable<Run> GetSrComRuns()
+        {
+            return this.DbSet.Where(x => (int)x.Category < 10).ToList();
+        }
     }
 }

@@ -8,5 +8,9 @@ namespace SotnWiki.Data.Common.Contracts
         IEnumerable<Run> GetRunsInCategory(string categoryName);
 
         Run GetWorldRecordInCategory(string categoryName);
+
+        IEnumerable<Run> GetCvsRuns();
+
+        IEnumerable<Run> GetSrComRuns();
     }
 }

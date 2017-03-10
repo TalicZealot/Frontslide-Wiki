@@ -1,11 +1,9 @@
 ﻿using Bytes2you.Validation;
 using SotnWiki.Data.Common;
 using SotnWiki.Data.Common.Contracts;
-using SotnWiki.DataServices.Contracts;
 using SotnWiki.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SotnWiki.DataServices
 {
@@ -35,6 +33,16 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(categoryName, "categoryName").IsNullOrEmpty().Throw();
 
             return this.runRepository.GetWorldRecordInCategory(categoryName);
+        }
+
+        public IEnumerable<Run> GetCvsRuns()
+        {
+            return this.runRepository.GetCvsRuns();
+        }
+
+        public IEnumerable<Run> SrComRuns()
+        {
+            return this.runRepository.GetSrComRuns();
         }
     }
 }
