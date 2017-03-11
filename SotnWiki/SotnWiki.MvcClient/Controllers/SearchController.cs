@@ -2,6 +2,7 @@
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.MvcClient.Models;
 using SotnWiki.TextManipulation.Contracts;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace SotnWiki.MvcClient.Controllers
@@ -19,7 +20,12 @@ namespace SotnWiki.MvcClient.Controllers
 
         public ActionResult Search(string searchPhrase)
         {
-            return View();
+            var results = this.pageService.FindPages(searchPhrase);
+            var model = new SearchViewModel();
+            model.Results = results.ToList();
+            model.searchPhrase = searchPhrase;
+
+            return View(model);
         }
     }
 }

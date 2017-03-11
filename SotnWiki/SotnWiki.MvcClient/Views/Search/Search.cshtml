@@ -1,0 +1,15 @@
+﻿@model SotnWiki.MvcClient.Models.SearchViewModel
+@{
+    ViewBag.Title = "Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Search Results for "@Model.searchPhrase"</h1>
+
+@foreach (var page in Model.Results)
+{
+    <div>
+        <h3>@page.Title</h3>
+        <p>@page.Content</p>
+    </div>
+}

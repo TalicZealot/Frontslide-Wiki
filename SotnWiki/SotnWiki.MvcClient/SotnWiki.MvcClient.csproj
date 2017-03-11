@@ -48,12 +48,20 @@
       <HintPath>..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Glimpse.Ado, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Glimpse.Core, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Glimpse.1.8.2\lib\net45\Glimpse.Core.dll</HintPath>
+    <Reference Include="Glimpse.Core, Version=1.8.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.EF6, Version=1.6.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.EF6.1.6.5\lib\net45\Glimpse.EF6.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -244,6 +252,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\LeaderboardViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -291,16 +300,16 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
-    <Content Include="Views\Home\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Shared\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Leaderboards\CvSpeedrunsArchive.cshtml" />
     <Content Include="Views\Leaderboards\Current.cshtml" />
     <Content Include="Views\Shared\_EditorPanelPartial.cshtml" />
     <Content Include="Views\Edit\NewPage.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Errors\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
