@@ -18,18 +18,30 @@ namespace SotnWiki.MvcClient.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit()
+        public ActionResult Edit(string asd)
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Edit(string aasd)
+        public ActionResult Edit(string aasd, string asfd)
         {
             return View();
         }
 
         public ActionResult Edits()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult NewPage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewPage(string aasd)
         {
             return View();
         }

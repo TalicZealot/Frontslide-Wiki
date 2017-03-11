@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "NewPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>NewPage</h1>
+
+@using (Html.BeginForm("NewPage", "Edit", "POST"))
+{
+    @Html.TextArea("content");
+    <input type="submit" name="submitButton" value="Submit" />
+    if (this.User.IsInRole("Editor") || this.User.IsInRole("Admin"))
+    {
+        <input type="submit" name="submitButton" value="Publish" />
+    }
+}

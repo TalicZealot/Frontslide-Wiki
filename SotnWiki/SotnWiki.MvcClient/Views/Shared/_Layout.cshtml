@@ -16,22 +16,22 @@
             </div>
             <ul>
                 <li>
-                    <a href="/">Main Page</a>
+                    @Html.ActionLink("Main Page", "Index", "Home")
                 </li>
                 <li>
                     <span class="expand retracted">Alucard</span>
                     <ul class="dropdown">
                         <li>
-                            <a href="/alucard">Main</a>
+                            @Html.ActionLink("Main", "Page", "Home", new { name = "Alucard" }, null)
                         </li>
                         <li>
-                            <a href="/alucard-any%">Any%</a>
+                            @Html.ActionLink("Any%", "Page", "Home", new { name = "Alucard_Any%" }, null)
                         </li>
                         <li>
-                            <a href="/alucard-all-bosses">All Bosses</a>
+                            @Html.ActionLink("All Bosses", "Page", "Home", new { name = "Alucard_All_Bosses" }, null)
                         </li>
                         <li>
-                            <a href="/alucard-glitchless">Glitchless</a>
+                            @Html.ActionLink("Glitchless", "Page", "Home", new { name = "Alucard_Glitchless" }, null)
                         </li>
                     </ul>
                 </li>
@@ -39,13 +39,13 @@
                     <span class="expand retracted">Richter</span>
                     <ul class="dropdown">
                         <li>
-                            <a href="/richter">Main</a>
+                            @Html.ActionLink("Main", "Page", "Home", new { name = "Richter" }, null)
                         </li>
                         <li>
-                            <a href="/richter-any%">Any%</a>
+                            @Html.ActionLink("Any%", "Page", "Home", new { name = "Richter_Any%" }, null)
                         </li>
                         <li>
-                            <a href="/richter-any%">All Bosses</a>
+                            @Html.ActionLink("All Bosses", "Page", "Home", new { name = "Richter_All_Bosses" }, null)
                         </li>
                     </ul>
                 </li>
@@ -53,26 +53,47 @@
                     <span class="expand retracted">Maria</span>
                     <ul class="dropdown">
                         <li>
-                            <a href="/maria">Main</a>
+                            @Html.ActionLink("Main", "Page", "Home", new { name = "Maria" }, null)
                         </li>
                         <li>
-                            <a href="/maria-any%">Any%</a>
+                            @Html.ActionLink("Any%", "Page", "Home", new { name = "Maria_Any%" }, null)
                         </li>
                         <li>
-                            <a href="/maria-any%">All Bosses</a>
+                            @Html.ActionLink("All Bosses", "Page", "Home", new { name = "Maria_All_Bosses" }, null)
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="expand retracted">Leaderboards</span>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="https://www.speedrun.com/sotn">speedrun.com/sotn</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("Daily Backup", "Current", "Leaderboards")
+                        </li>
+                        <li>
+                            @Html.ActionLink("CvS Archive", "CvSpeedrunsArchive", "Leaderboards")
                         </li>
                     </ul>
                 </li>
             </ul>
             <div class="search-panel">
-                @Html.TextBox("search")
+                @using (Html.BeginForm("Search", "Search", "GET"))
+                {
+                    @Html.TextBox("searchPhrase")
+                    <input type="submit" value="" />
+                }
             </div>
         </nav>
         <main>
             <nav class="auth">
                 @Html.Partial("_LoginPartial")
             </nav>
-            @RenderBody()
+            <div id="content">
+                @RenderBody()
+            </div>
+            @Html.Partial("_EditorPanelPartial")
             <footer>
                 Course project of Talic_Zealot for Telerik Academy Season 7
             </footer>

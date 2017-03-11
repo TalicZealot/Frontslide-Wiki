@@ -17,7 +17,7 @@ namespace SotnWiki.MvcClient.Controllers
             this.pageService = pageService;
         }
 
-        public ActionResult Search()
+        public ActionResult Search(string searchPhrase)
         {
             return View();
         }

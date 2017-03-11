@@ -1,13 +1,14 @@
 ﻿using Bytes2you.Validation;
 using SotnWiki.Data.Common;
 using SotnWiki.Data.Common.Contracts;
+using SotnWiki.DataServices.Contracts;
 using SotnWiki.Models;
 using System;
 using System.Collections.Generic;
 
 namespace SotnWiki.DataServices
 {
-    public class RunService
+    public class RunService : IRunService
     {
         private readonly IRunRepository runRepository;
         private readonly Func<IUnitOfWork> unitOfWorkFactory;
@@ -40,7 +41,7 @@ namespace SotnWiki.DataServices
             return this.runRepository.GetCvsRuns();
         }
 
-        public IEnumerable<Run> SrComRuns()
+        public IEnumerable<Run> GetSrComRuns()
         {
             return this.runRepository.GetSrComRuns();
         }

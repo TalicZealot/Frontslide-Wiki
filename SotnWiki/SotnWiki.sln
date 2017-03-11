@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration Tests", "Integr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotnWiki.MvcClient.Tests", "UnitTests\Clients\SotnWiki.MvcClient.Tests\SotnWiki.MvcClient.Tests.csproj", "{EF82F805-A28B-4055-B4D5-81941FA065F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotnWiki.DTOs", "Data\SotnWiki.DTOs\SotnWiki.DTOs.csproj", "{ECA94FBD-C719-415C-93FB-3651550E13CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,10 @@ Global
 		{EF82F805-A28B-4055-B4D5-81941FA065F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF82F805-A28B-4055-B4D5-81941FA065F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF82F805-A28B-4055-B4D5-81941FA065F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECA94FBD-C719-415C-93FB-3651550E13CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECA94FBD-C719-415C-93FB-3651550E13CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECA94FBD-C719-415C-93FB-3651550E13CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECA94FBD-C719-415C-93FB-3651550E13CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,5 +137,6 @@ Global
 		{F584017E-2215-44DC-829A-8D698C346E4A} = {727D55F1-F331-45F1-ABDC-EBA746248295}
 		{410FACCC-A0D3-466A-B4EA-2F13E4B76126} = {A1B580FF-E935-4EA6-95DF-10BC214B351F}
 		{EF82F805-A28B-4055-B4D5-81941FA065F2} = {727D55F1-F331-45F1-ABDC-EBA746248295}
+		{ECA94FBD-C719-415C-93FB-3651550E13CA} = {DB551605-07A9-483A-BCC1-9253078E367A}
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,20 @@
-﻿@{
+﻿@model SotnWiki.MvcClient.Models.LeaderboardViewModel
+@{
     ViewBag.Title = "CvSpeedruns Archive";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var alucardAnyGrid = new WebGrid(Model.AlucardAnyNSC, ajaxUpdateContainerId: "alucardAnyContainer", canPage: false);
 }
 
-<div id="content">
-</div>
+@Scripts.Render("~/bundles/jquery")
+
+@alucardAnyGrid.GetHtml(
+       htmlAttributes: new { id = "alucardAnyContainer" },
+       tableStyle: "cvsCategory",
+       columns: alucardAnyGrid.Columns(
+           alucardAnyGrid.Column("Runner", "Runner", canSort: false),
+           alucardAnyGrid.Column("Time", "Time", canSort: false),
+           alucardAnyGrid.Column("Url", "Url", canSort: false, format: @<a href="@item">@item</a>),
+           alucardAnyGrid.Column("Platform", "Platform")
+           )
+       )

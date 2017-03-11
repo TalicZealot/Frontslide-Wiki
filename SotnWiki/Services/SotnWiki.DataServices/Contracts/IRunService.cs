@@ -5,8 +5,12 @@ namespace SotnWiki.DataServices.Contracts
 {
     public interface IRunService
     {
-        IEnumerable<Run> getRunsInCategory(string categoryName);
+        IEnumerable<Run> GetRunsInCategory(string categoryName);
 
-        Run getWorldRecordInCategory(string categoryName);
+        Run GetWorldRecordInCategory(string categoryName);
+
+        IEnumerable<Run> GetCvsRuns();
+
+        IEnumerable<Run> GetSrComRuns();
     }
 }
