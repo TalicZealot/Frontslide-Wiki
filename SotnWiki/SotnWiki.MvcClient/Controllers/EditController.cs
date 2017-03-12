@@ -1,7 +1,6 @@
 ﻿using Bytes2you.Validation;
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.MvcClient.Models;
-using SotnWiki.TextManipulation.Contracts;
 using System.Web.Mvc;
 
 namespace SotnWiki.MvcClient.Controllers

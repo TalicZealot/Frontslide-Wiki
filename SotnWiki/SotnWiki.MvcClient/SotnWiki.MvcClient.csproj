@@ -241,6 +241,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaderboardsController.cs" />
@@ -282,6 +283,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\spa\index.js" />
+    <Content Include="Scripts\spa\leaderboards-controller.js" />
+    <Content Include="Scripts\spa\navigo-router.js" />
+    <Content Include="Scripts\spa\navigo.min.js" />
+    <Content Include="Scripts\spa\row-generator.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -309,6 +315,7 @@
     <Content Include="Views\Edit\NewPage.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Edit\Edit.cshtml" />
+    <Content Include="Views\Leaderboards\Leaderboards.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

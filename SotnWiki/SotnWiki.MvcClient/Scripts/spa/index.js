@@ -1,0 +1,3 @@
+﻿$(() => {
+    router.start('#content');
+});
