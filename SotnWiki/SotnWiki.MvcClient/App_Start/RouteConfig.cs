@@ -16,15 +16,21 @@ namespace SotnWiki.MvcClient
             routes.LowercaseUrls = true;
 
             routes.MapRoute(
-                name: "Page",
-                url: "{name}",
-                defaults: new { controller = "Home", action = "Page" }
+                name: "NewPage",
+                url: "NewPage",
+                defaults: new { controller = "Edit", action = "NewPage" }
             );
 
+            //routes.MapRoute(
+            //    name: "Edit",
+            //    url: "Edit/{name}",
+            //    defaults: new { controller = "Edit", action = "Edit" }
+            //);
+
             routes.MapRoute(
-                name: "Edit",
-                url: "Edit/{name}",
-                defaults: new { controller = "Edit", action = "Edit" }
+                name: "Search",
+                url: "Search/{searchPhrase}",
+                defaults: new { controller = "Search", action = "Search" }
             );
 
             routes.MapRoute(
@@ -34,15 +40,9 @@ namespace SotnWiki.MvcClient
             );
 
             routes.MapRoute(
-                name: "NewPage",
-                url: "New_Page",
-                defaults: new { controller = "Edit", action = "NewPage" }
-            );
-
-            routes.MapRoute(
-                name: "Search",
-                url: "Search/{searchPhrase}",
-                defaults: new { controller = "Search", action = "Search" }
+                name: "Page",
+                url: "{name}",
+                defaults: new { controller = "Home", action = "Page" }
             );
 
             routes.MapRoute(

@@ -3,7 +3,7 @@
     ViewBag.Title = "CvSpeedruns Archive";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var alucardAnyGrid = new WebGrid(Model.AlucardAnyNSC, ajaxUpdateContainerId: "alucardAnyContainer", canPage: false);
+    var alucardAnyGrid = new WebGrid(Model.AlucardAnyNSC, ajaxUpdateContainerId: "alucardAnyContainer", canPage: false, canSort: false);
 }
 
 @Scripts.Render("~/bundles/jquery")
@@ -12,9 +12,9 @@
        htmlAttributes: new { id = "alucardAnyContainer" },
        tableStyle: "cvsCategory",
        columns: alucardAnyGrid.Columns(
-           alucardAnyGrid.Column("Runner", "Runner", canSort: false),
-           alucardAnyGrid.Column("Time", "Time", canSort: false),
-           alucardAnyGrid.Column("Url", "Url", canSort: false, format: @<a href="@item">@item</a>),
-           alucardAnyGrid.Column("Platform", "Platform")
+           alucardAnyGrid.Column("Runner", "Runner"),
+           alucardAnyGrid.Column("Time", "Time"),
+           alucardAnyGrid.Column("Url", "Url", format: @<a href="@item.Url">@item.Url</a>),
+           alucardAnyGrid.Column("Platform")
            )
        )

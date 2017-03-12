@@ -41,7 +41,7 @@ namespace SotnWiki.MvcClient.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewPage(string aasd)
+        public ActionResult NewPage(NewPageModel model)
         {
             return View();
         }

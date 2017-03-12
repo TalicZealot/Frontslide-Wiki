@@ -14,7 +14,8 @@ namespace SotnWiki.Models
         {
             this.history = new HashSet<PageContentSubmission>();
             this.pending = new HashSet<PageContentSubmission>();
-            CreatedOn = DateTime.Now;
+            this.CreatedOn = DateTime.Now;
+            this.LastEdit = this.CreatedOn;
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

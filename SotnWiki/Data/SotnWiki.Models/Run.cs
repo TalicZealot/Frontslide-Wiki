@@ -14,6 +14,8 @@ namespace SotnWiki.Models
 
         public string Time { get; set; }
 
+        public DateTime? Date { get; set; }
+
         public string Url { get; set; }
 
         public Category Category { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Bytes2you.Validation;
 using SotnWiki.Data.Common.Contracts;
 using SotnWiki.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,14 +18,14 @@ namespace SotnWiki.Data.Common.Repositories
         {
             Guard.WhenArgument(categoryName, "categoryName").IsNullOrEmpty().Throw();
 
-            return this.DbSet.Where(x => string.Equals(x.Category, categoryName)).ToList();
+            return this.DbSet.Where(x => x.Category.ToString() == categoryName).ToList();
         }
 
         public Run GetWorldRecordInCategory(string categoryName)
         {
             Guard.WhenArgument(categoryName, "categoryName").IsNullOrEmpty().Throw();
 
-            return this.DbSet.Where(x => string.Equals(x.Category, categoryName)).OrderByDescending(r => r.Time).FirstOrDefault();
+            return this.DbSet.Where(x => x.Category.ToString() == categoryName).OrderByDescending(r => r.Time).FirstOrDefault();
         }
 
         public IEnumerable<Run> GetCvsRuns()
