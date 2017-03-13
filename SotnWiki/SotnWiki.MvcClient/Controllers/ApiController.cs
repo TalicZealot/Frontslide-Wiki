@@ -20,7 +20,8 @@ namespace SotnWiki.MvcClient.Controllers
 
         public ActionResult CvSpeedrunsAlucardAny()
         {
-            var alucardAny = this.runService.GetRunsInCategory(Enum.GetName(typeof(Category), 10)).OrderBy(x => x.Time).ToList();
+            var alucardAny = this.runService.GetRunsInCategory(Enum.GetName(typeof(Category), 10)).OrderBy(x => x.Time)
+                .Select(x => new {Runner = x.Runner, Time = x.Time, Url = x.Url, Platform = x.Platform.ToString()}).ToList();
 
             return Json(alucardAny, JsonRequestBehavior.AllowGet);
         }

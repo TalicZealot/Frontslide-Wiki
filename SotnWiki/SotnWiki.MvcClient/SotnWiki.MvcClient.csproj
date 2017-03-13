@@ -309,8 +309,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
     <Content Include="Views\Shared\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Leaderboards\CvSpeedrunsArchive.cshtml" />
-    <Content Include="Views\Leaderboards\Current.cshtml" />
     <Content Include="Views\Shared\_EditorPanelPartial.cshtml" />
     <Content Include="Views\Edit\NewPage.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />

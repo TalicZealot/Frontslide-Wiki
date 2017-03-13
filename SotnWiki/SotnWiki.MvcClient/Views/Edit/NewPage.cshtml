@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>NewPage</h1>
+<h1>New Page</h1>
 @using (Html.BeginForm("NewPage", "Edit", "POST"))
 {
     @Html.DropDownListFor(m => m.Character, new SelectList(Enum.GetValues(typeof(SotnWiki.Models.CharacterIdEnum))), "Select section")

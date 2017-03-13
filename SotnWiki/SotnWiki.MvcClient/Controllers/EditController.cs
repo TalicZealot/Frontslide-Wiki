@@ -1,6 +1,7 @@
 ﻿using Bytes2you.Validation;
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.MvcClient.Models;
+using System;
 using System.Web.Mvc;
 
 namespace SotnWiki.MvcClient.Controllers
@@ -17,13 +18,13 @@ namespace SotnWiki.MvcClient.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(string asd)
+        public ActionResult Edit(string name)
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Edit(string aasd, string asfd)
+        public ActionResult Edit(NewPageModel model)
         {
             return View();
         }
@@ -42,7 +43,14 @@ namespace SotnWiki.MvcClient.Controllers
         [HttpPost]
         public ActionResult NewPage(NewPageModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                this.pageService.CreatePage((int)Enum.Parse(typeof(SotnWiki.Models.CharacterIdEnum), model.Character),
+                    model.Type, model.Title, model.Content, false);
+                return this.RedirectToAction("Page", "Home", new { name = model.Title });
+            }
+
+            return new HttpStatusCodeResult(500);
         }
     }
 }
