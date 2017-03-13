@@ -38,6 +38,10 @@
       <HintPath>..\..\..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.10.0.1-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -47,6 +51,17 @@
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllerTests\AlucardACEShould.cs" />
+    <Compile Include="ApiControllerTests\AlucardAllBossesShould.cs" />
+    <Compile Include="ApiControllerTests\AlucardAnyNSCShould.cs" />
+    <Compile Include="ApiControllerTests\AlucardLowPercentWolfShould.cs" />
+    <Compile Include="ApiControllerTests\ConstructorShould.cs" />
+    <Compile Include="ApiControllerTests\MariaAllBossesEmuShould.cs" />
+    <Compile Include="ApiControllerTests\MariaAllBossesShould.cs" />
+    <Compile Include="ApiControllerTests\MariaAnyEmuShould.cs" />
+    <Compile Include="ApiControllerTests\MariaAnyShould.cs" />
+    <Compile Include="ApiControllerTests\RichterAllBossesShould.cs" />
+    <Compile Include="ApiControllerTests\RichterAnyShould.cs" />
     <Compile Include="HomeControllerTests\ConstructorShould.cs" />
     <Compile Include="HomeControllerTests\IndexShould.cs" />
     <Compile Include="HomeControllerTests\PageShould.cs" />
