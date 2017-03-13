@@ -3,9 +3,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Leaderboards</h2>
 <a href="#CvsAlucardAny%NSC">AlucardAny%NSC</a>
 
-<table id="leaderboard">
+<table id="leaderboard" class="leaderboard">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Time</th>
+            <th>Video</th>
+            <th>Platform</th>
+            <th>Date</th>
+        </tr>
+    </thead>
 </table>
 @Scripts.Render("~/bundles/spa")

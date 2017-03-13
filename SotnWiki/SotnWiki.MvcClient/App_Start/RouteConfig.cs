@@ -21,16 +21,22 @@ namespace SotnWiki.MvcClient
                 defaults: new { controller = "Edit", action = "NewPage" }
             );
 
-            //routes.MapRoute(
-            //    name: "Edit",
-            //    url: "Edit/{name}",
-            //    defaults: new { controller = "Edit", action = "Edit" }
-            //);
+            routes.MapRoute(
+                name: "Edit",
+                url: "Edit/{name}",
+                defaults: new { controller = "Edit", action = "Edit" }
+            );
 
             routes.MapRoute(
                 name: "Search",
                 url: "Search/{searchPhrase}",
                 defaults: new { controller = "Search", action = "Search" }
+            );
+
+            routes.MapRoute(
+                name: "Leaderboards",
+                url: "Leaderboards",
+                defaults: new { controller = "Leaderboards", action = "Leaderboards" }
             );
 
             routes.MapRoute(

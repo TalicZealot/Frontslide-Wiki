@@ -5,9 +5,13 @@
 <div class="editor-panel">
     <ul>
         <li>@Html.ActionLink("New Page", "NewPage", "Edit")</li>
-        @if ((string)currentAction == "Index" || (string)currentAction == "Page")
+        @if ((string)currentAction == "Page")
         {
-            <li>@Html.ActionLink("Edit Page", "Edit", "Edit")</li>
+            <li>@Html.ActionLink("Edit Page", "Edit", "Edit", ViewContext.RouteData.Values["name"], null)</li>
+        }
+        @if ((string)currentAction == "Index")
+        {
+            <li>@Html.ActionLink("Edit Page", "Edit", "Edit", "main-page", null)</li>
         }
         @if (this.User.IsInRole("Editor") || this.User.IsInRole("Admin"))
         {
