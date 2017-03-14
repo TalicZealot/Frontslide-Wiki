@@ -3,147 +3,144 @@
     var router = new Navigo(null, true);
 
     router.on('alucardAnyNSC', () => {
-        leaderboardsController.alucardAnyNSC()
+        leaderboardsController.getCategory('AlucardAnyNSC')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('alucardAllBosses', () => {
-        leaderboardsController.alucardAllBosses()
+        leaderboardsController.getCategory('AlucardAllBosses')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('alucardACE', () => {
-        leaderboardsController.alucardACE()
+        leaderboardsController.getCategory('AlucardACE')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('alucardLowPercentWolf', () => {
-        leaderboardsController.alucardLowPercentWolf()
+        leaderboardsController.getCategory('AlucardLowPercentWolf')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('richterAny', () => {
-        leaderboardsController.richterAny()
+        leaderboardsController.getCategory('RichterAny')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('richterAllBosses', () => {
-        leaderboardsController.richterAllBosses()
+        leaderboardsController.getCategory('RichterAllBosses')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('mariaAny', () => {
-        leaderboardsController.mariaAny()
+        leaderboardsController.getCategory('MariaAny')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('mariaAllBosses', () => {
-        leaderboardsController.mariaAllBosses()
+        leaderboardsController.getCategory('MariaAllBosses')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('mariaAnyEmu', () => {
-        leaderboardsController.mariaAnyEmu()
+        leaderboardsController.getCategory('MariaAnyEmu')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('mariaAllBossesEmu', () => {
-        leaderboardsController.mariaAllBossesEmu()
+        leaderboardsController.getCategory('MariaAllBossesEmu')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
-    /////////////////////////////////////////////////////////////////////////
-
     router.on('cvsAlucardAnyNSC', () => {
-        leaderboardsController.cvsAlucardAnyNSC()
+        leaderboardsController.getCategory('CvsAlucardAnyNSC')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('cvsAlucardAllBosses', () => {
-        leaderboardsController.cvsAlucardAllBosses()
+        leaderboardsController.getCategory('CvsAlucardAllBosses')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('cvsAlucardACE', () => {
-        leaderboardsController.cvsAlucardACE()
+        leaderboardsController.getCategory('CvsAlucardACE')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('cvsAlucardLowPercentWolf', () => {
-        leaderboardsController.cvsAlucardLowPercentWolf()
+        leaderboardsController.getCategory('CvsAlucardLowPercentWolf')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
-    router.on('cvsAichterAny', () => {
-        leaderboardsController.cvsAichterAny()
+    router.on('cvsRichterAny', () => {
+        leaderboardsController.getCategory('CvsRichterAny')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('cvsRichterAllBosses', () => {
-        leaderboardsController.cvsRichterAllBosses()
+        leaderboardsController.getCategory('CvsRichterAllBosses')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('cvsMariaAny', () => {
-        leaderboardsController.cvsMariaAny()
+        leaderboardsController.getCategory('CvsMariaAny')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('cvsMariaAllBosses', () => {
-        leaderboardsController.cvsMariaAllBosses()
+        leaderboardsController.getCategory('CvsMariaAllBosses')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('cvsMariaAnyEmu', () => {
-        leaderboardsController.cvsMariaAnyEmu()
+        leaderboardsController.getCategory('CvsMariaAnyEmu')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
 
     router.on('cvsMariaAllBossesEmu', () => {
-        leaderboardsController.cvsMariaAllBossesEmu()
+        leaderboardsController.getCategory('CvsMariaAllBossesEmu')
         .then((runs) => {
             rowGenerator.generateRows(runs);
         });
     });
-
     /////////////////////////////////////////////////////////////////////////
 
     router.on(() => {
