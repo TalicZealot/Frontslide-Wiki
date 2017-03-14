@@ -16,6 +16,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
             //Arrange
             string expectedExceptionMessage = "IPageService";
             var mockedConverter = new Mock<IMarkupConverter>();
+
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => { new HomeController(null, mockedConverter.Object); });
 
@@ -29,6 +30,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
             //Arrange
             string expectedExceptionMessage = "IMarkupConverter";
             var mockedPageService = new Mock<IPageService>();
+
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => { new HomeController(mockedPageService.Object, null); });
 
