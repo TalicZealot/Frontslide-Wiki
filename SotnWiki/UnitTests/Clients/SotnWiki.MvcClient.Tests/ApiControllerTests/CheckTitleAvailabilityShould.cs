@@ -5,8 +5,6 @@ using SotnWiki.DataServices.Contracts;
 using SotnWiki.Models;
 using SotnWiki.MvcClient.Controllers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace SotnWiki.MvcClient.Tests.ApiControllerTests
