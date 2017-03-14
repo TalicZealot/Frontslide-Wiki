@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllerTests\CategoryShould.cs" />
+    <Compile Include="ApiControllerTests\CheckTitleAvailabilityShould.cs" />
+    <Compile Include="ApiControllerTests\ConstructorShould.cs" />
     <Compile Include="HomeControllerTests\ConstructorShould.cs" />
     <Compile Include="HomeControllerTests\IndexShould.cs" />
     <Compile Include="HomeControllerTests\PageShould.cs" />
