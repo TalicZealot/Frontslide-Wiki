@@ -51,17 +51,7 @@
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiControllerTests\AlucardACEShould.cs" />
-    <Compile Include="ApiControllerTests\AlucardAllBossesShould.cs" />
-    <Compile Include="ApiControllerTests\AlucardAnyNSCShould.cs" />
-    <Compile Include="ApiControllerTests\AlucardLowPercentWolfShould.cs" />
-    <Compile Include="ApiControllerTests\ConstructorShould.cs" />
-    <Compile Include="ApiControllerTests\MariaAllBossesEmuShould.cs" />
-    <Compile Include="ApiControllerTests\MariaAllBossesShould.cs" />
-    <Compile Include="ApiControllerTests\MariaAnyEmuShould.cs" />
-    <Compile Include="ApiControllerTests\MariaAnyShould.cs" />
-    <Compile Include="ApiControllerTests\RichterAllBossesShould.cs" />
-    <Compile Include="ApiControllerTests\RichterAnyShould.cs" />
+    <Compile Include="ApiControllerTests\CategoryShould.cs" />
     <Compile Include="HomeControllerTests\ConstructorShould.cs" />
     <Compile Include="HomeControllerTests\IndexShould.cs" />
     <Compile Include="HomeControllerTests\PageShould.cs" />

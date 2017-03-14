@@ -4,6 +4,7 @@ using NUnit.Framework;
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.Models;
 using SotnWiki.MvcClient.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -11,8 +12,38 @@ using System.Web.Mvc;
 namespace SotnWiki.MvcClient.Tests.ApiControllerTests
 {
     [TestFixture]
-    public class MariaAllBossesEmuShould
+    public class CategoryShould
     {
+        [Test]
+        public void ThrowArgumentNullExceptionIfNameParameterIsNull()
+        {
+            //Arrange
+            var mockedRunService = new Mock<IRunService>();
+            var controllerUnderTest = new ApiController(mockedRunService.Object);
+            string expectedExceptionMessage = "name";
+
+            //Act
+            var exc = Assert.Throws<ArgumentNullException>(() => { controllerUnderTest.Category(null); });
+
+            //Assert
+            StringAssert.Contains(expectedExceptionMessage, exc.Message);
+        }
+
+        [Test]
+        public void ThrowArgumentExceptionIfNameParameterIsEmptyString()
+        {
+            //Arrange
+            var mockedRunService = new Mock<IRunService>();
+            var controllerUnderTest = new ApiController(mockedRunService.Object);
+            string expectedExceptionMessage = "name";
+
+            //Act
+            var exc = Assert.Throws<ArgumentException>(() => { controllerUnderTest.Category(""); });
+
+            //Assert
+            StringAssert.Contains(expectedExceptionMessage, exc.Message);
+        }
+
         [Test]
         public void ReturnsObjectOfTypeJsonResult()
         {
@@ -29,7 +60,7 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
             mockedRunService.Setup(x => x.GetRunsInCategory(It.IsAny<string>())).Returns(runs);
 
             //Act
-            var result = controllerUnderTest.MariaAllBossesEmu();
+            var result = controllerUnderTest.Category("asd");
 
             //Assert
             Assert.IsInstanceOf<JsonResult>(result);
@@ -54,7 +85,7 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
                 .Select(x => new { Runner = x.Runner, Time = x.Time, Url = x.Url, Platform = x.Platform.ToString() }).ToList());
 
             //Act
-            var result = controllerUnderTest.MariaAllBossesEmu() as JsonResult;
+            var result = controllerUnderTest.Category("asd") as JsonResult;
             var json = JsonConvert.SerializeObject(result.Data);
 
             //Assert
