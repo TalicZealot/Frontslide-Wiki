@@ -23,7 +23,7 @@ namespace SotnWiki.MvcClient.Controllers
 
         public ActionResult Category(string name)
         {
-            Guard.WhenArgument(name, "name").IsNotNullOrEmpty().Throw();
+            Guard.WhenArgument(name, "name").IsNullOrEmpty().Throw();
 
             var alucardAny = this.runService.GetRunsInCategory(name).OrderBy(x => x.Time)
                 .Select(x => new { Runner = x.Runner, Time = x.Time, Url = x.Url, Platform = x.Platform.ToString() }).ToList();
