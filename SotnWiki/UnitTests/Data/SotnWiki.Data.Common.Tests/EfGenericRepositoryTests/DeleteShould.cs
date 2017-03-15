@@ -25,12 +25,12 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
 
             mockedDbContext.Setup(c => c.Set<Page>()).Returns(mockedPageSet);
             mockedDbContext.Setup(c => c.Pages).Returns(mockedPageSet);
-            string expectedExceptionMessage = "id";
+            string expectedExceptionMessage = "entity";
 
             var repositoryUnderTest = new EfGenericRepository<Page>(mockedDbContext.Object);
 
             //Act & Assert
-            var exc = Assert.Throws<ArgumentNullException>(() => repositoryUnderTest.GetById(null));
+            var exc = Assert.Throws<ArgumentNullException>(() => repositoryUnderTest.Delete(null));
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
