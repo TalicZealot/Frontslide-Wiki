@@ -1,8 +1,5 @@
-﻿using Moq;
-using NUnit.Framework;
-using SotnWiki.Models;
+﻿using NUnit.Framework;
 using System;
-using System.Data.Entity;
 
 namespace SotnWiki.Data.Common.Tests.EfUnitOfWorkTests
 {
