@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextileConverterTests\ScriptToHtmlShould.cs" />
+    <Compile Include="TextileConverterWithDivsTests\ConstructorShould.cs" />
+    <Compile Include="TextileConverterWithDivsTests\ScriptToHtmlShould.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

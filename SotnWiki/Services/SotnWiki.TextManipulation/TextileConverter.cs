@@ -1,4 +1,5 @@
-﻿using SotnWiki.TextManipulation.Contracts;
+﻿using Bytes2you.Validation;
+using SotnWiki.TextManipulation.Contracts;
 using System;
 using Textile;
 
@@ -8,10 +9,8 @@ namespace SotnWiki.TextManipulation
     {
         public string ScriptToHtml(string script)
         {
-            if (script == null)
-            {
-                throw new ArgumentNullException("script");
-            }
+            Guard.WhenArgument(script, "script").IsNullOrEmpty().Throw();
+
             return TextileFormatter.FormatString(script);
         }
     }
