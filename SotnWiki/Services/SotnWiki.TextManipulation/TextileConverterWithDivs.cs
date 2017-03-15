@@ -1,6 +1,5 @@
 ﻿using Bytes2you.Validation;
 using SotnWiki.TextManipulation.Contracts;
-using System;
 using System.Text.RegularExpressions;
 
 namespace SotnWiki.TextManipulation
@@ -18,6 +17,8 @@ namespace SotnWiki.TextManipulation
 
         public string ScriptToHtml(string script)
         {
+            Guard.WhenArgument(script, "script").IsNullOrEmpty().Throw();
+
             string openDivPattern = @"^(div)(\(){0,1}(\w+){0,1}(\)){0,1}(\.)(\n|\r|\r\n)$";
             string closeDivPattern = @"^(enddiv)(\.)(\n|\r|\r\n)$";
             string openDivTag = "<div{0}>";
