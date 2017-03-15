@@ -16,12 +16,10 @@ A lightweight wiki-like web app
 
 # Technical
 
-* Onion architecture
-* Dependency inversion through depencency injection
 * Initial implementation with ASP.NET WebForms client using MVP architectural pattern
 * Reimplemented with ASP.NET MVC5
-* High code coverage unit tests
-* Integration tested
+
+
+* Dependency inversion through depencency injection
 * Automatic unit testing, local deployment and integration testing through Jenkins
 * Automatic daily backups of the runs on speedrun.com/sotn
-* Dynamically generated world record for category pages

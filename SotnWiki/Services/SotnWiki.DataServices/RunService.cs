@@ -35,15 +35,5 @@ namespace SotnWiki.DataServices
 
             return this.runRepository.GetWorldRecordInCategory(categoryName);
         }
-
-        public IEnumerable<Run> GetCvsRuns()
-        {
-            return this.runRepository.GetCvsRuns();
-        }
-
-        public IEnumerable<Run> GetSrComRuns()
-        {
-            return this.runRepository.GetSrComRuns();
-        }
     }
 }
