@@ -1,4 +1,4 @@
-# Frontslide-Wiki  ![SotnWiki](https://raw.githubusercontent.com/TalicZealot/Frontslide-Wiki/master/SotnWiki/SotnWiki.WebFormsClient/Content/richter.png "SotnWiki")
+# Frontslide-Wiki  ![SotnWiki](https://raw.githubusercontent.com/TalicZealot/Frontslide-Wiki/master/SotnWiki/SotnWiki.MvcClient/Content/richter.png "SotnWiki")
 
 
 # Concept
