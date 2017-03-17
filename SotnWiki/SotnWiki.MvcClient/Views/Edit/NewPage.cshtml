@@ -1,4 +1,4 @@
-﻿@model SotnWiki.MvcClient.Models.NewPageModel
+﻿@model SotnWiki.MvcClient.Models.NewPageViewModel
 @{
     ViewBag.Title = "New Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,6 +22,6 @@
     <input type="submit" name="submitButton" value="Submit" />
     if (this.User.IsInRole("Editor") || this.User.IsInRole("Admin"))
     {
-        <input type="submit" name="submitButton" value="Publish" />
+        @Html.CheckBoxFor(m => m.Publish)
     }
 }
