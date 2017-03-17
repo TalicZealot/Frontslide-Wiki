@@ -31,6 +31,7 @@ namespace SotnWiki.DataServices
         public void SubmitEdit(string content, string title)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(content, "content").IsNullOrEmpty().Throw();
 
             var page = this.pageService.GetPageByTitle(title);
             if (page == null)
@@ -50,6 +51,7 @@ namespace SotnWiki.DataServices
         public void PublishEdit(string title, string content, Guid id)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(content, "content").IsNullOrEmpty().Throw();
 
             var pageContentSubmission = this.GetPageContentSubmissionById(id);
             pageContentSubmission.PageHistory = pageContentSubmission.PageEdit;
@@ -63,6 +65,31 @@ namespace SotnWiki.DataServices
             {
                 this.pageRepository.Update(page);
                 this.pageContentSubmissionRepository.Update(pageContentSubmission);
+                unitOfWork.Commit();
+            }
+        }
+
+        public void SubmitAndPublishEdit(string content, string title)
+        {
+            Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(content, "content").IsNullOrEmpty().Throw();
+
+
+            var page = this.pageService.GetPageByTitle(title);
+            if (page == null)
+            {
+                throw new NullReferenceException("Page not found!");
+            }
+
+            var submission = new PageContentSubmission() { Content = content, PageHistory = page };
+            submission.Content = page.Content;
+            page.Content = content;
+            page.LastEdit = DateTime.Now;
+            
+
+            using (var unitOfWork = this.unitOfWorkFactory())
+            {
+                this.pageContentSubmissionRepository.Add(submission);
                 unitOfWork.Commit();
             }
         }

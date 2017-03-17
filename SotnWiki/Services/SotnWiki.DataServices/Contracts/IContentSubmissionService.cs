@@ -14,6 +14,8 @@ namespace SotnWiki.DataServices.Contracts
 
         void PublishEdit(string title, string content, Guid id);
 
+        void SubmitAndPublishEdit(string content, string title);
+
         void DismissEdit(Guid id);
     }
 }

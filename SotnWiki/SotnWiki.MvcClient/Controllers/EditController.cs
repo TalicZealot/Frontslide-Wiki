@@ -6,15 +6,19 @@ using System.Web.Mvc;
 
 namespace SotnWiki.MvcClient.Controllers
 {
+    [Authorize]
     public class EditController : Controller
     {
         private readonly IPageService pageService;
+        private readonly IContentSubmissionService contentSubmissionService;
 
-        public EditController(IPageService pageService)
+        public EditController(IPageService pageService, IContentSubmissionService contentSubmissionService)
         {
-            Guard.WhenArgument(pageService, nameof(IPageService)).IsNull().Throw();
+            Guard.WhenArgument(pageService, "pageService").IsNull().Throw();
+            Guard.WhenArgument(contentSubmissionService, "contentSubmissionService").IsNull().Throw();
 
             this.pageService = pageService;
+            this.contentSubmissionService = contentSubmissionService;
         }
 
         [HttpGet]
@@ -22,11 +26,26 @@ namespace SotnWiki.MvcClient.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
-        public ActionResult Edit(NewPageModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                if (model.Publish && (this.HttpContext.User.IsInRole("admin") || this.HttpContext.User.IsInRole("editor")))
+                {
+                    this.contentSubmissionService.SubmitAndPublishEdit(model.Content, model.Title);
+                }
+                else
+                {
+                    this.contentSubmissionService.SubmitEdit(model.Content, model.Title);
+                }
+
+                return this.RedirectToAction("Page", "Home", new { name = model.Title });
+            }
+
+            return new HttpStatusCodeResult(500);
         }
 
         public ActionResult Edits()
@@ -41,13 +60,18 @@ namespace SotnWiki.MvcClient.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewPage(NewPageModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult NewPage(NewPageViewModel model)
         {
             if (ModelState.IsValid)
             {
                 this.pageService.CreatePage((int)Enum.Parse(typeof(SotnWiki.Models.CharacterIdEnum), model.Character),
                     model.Type, model.Title, model.Content, false);
-                return this.RedirectToAction("Page", "Home", new { name = model.Title });
+                if (model.Publish && (this.HttpContext.User.IsInRole("admin") || this.HttpContext.User.IsInRole("editor")))
+                {
+                    return this.RedirectToAction("Page", "Home", new { name = model.Title });
+                }
+                return this.RedirectToAction("Page", "Home", "Index");
             }
 
             return new HttpStatusCodeResult(500);
