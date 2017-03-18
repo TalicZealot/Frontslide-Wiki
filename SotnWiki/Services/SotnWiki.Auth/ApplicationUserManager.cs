@@ -39,6 +39,7 @@ namespace SotnWiki.Auth
             {
                 MessageFormat = "Your security code is {0}"
             });
+
             manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<ApplicationUser>
             {
                 Subject = "Security Code",
