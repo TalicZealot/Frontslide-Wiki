@@ -22,12 +22,14 @@ namespace SotnWiki.MvcClient.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Edit(string name)
         {
             return View();
         }
         
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel model)
         {
@@ -54,12 +56,14 @@ namespace SotnWiki.MvcClient.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult NewPage()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult NewPage(NewPageViewModel model)
         {
