@@ -7,6 +7,7 @@
 <h1>Edit @Model.Title</h1>
 @using (Html.BeginForm("NewPage", "Edit", "POST"))
 {
+    @Html.AntiForgeryToken()
     <p>This site uses textile markup, for documentation visit <a href="https://txstyle.org/">txstyle.org</a>.</p>
     @Html.TextAreaFor(m => m.Content)
     @Html.ValidationMessageFor(m => m.Content)

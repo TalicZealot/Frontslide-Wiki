@@ -18,6 +18,7 @@ namespace SotnWiki.MvcClient.Controllers
             this.pageService = pageService;
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult Search(string searchPhrase)
         {
             var results = this.pageService.FindPages(searchPhrase);

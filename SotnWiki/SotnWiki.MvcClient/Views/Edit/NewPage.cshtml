@@ -7,6 +7,7 @@
 <h1>New Page</h1>
 @using (Html.BeginForm("NewPage", "Edit", "POST"))
 {
+    @Html.AntiForgeryToken()
     @Html.DropDownListFor(m => m.Character, new SelectList(Enum.GetValues(typeof(SotnWiki.Models.CharacterIdEnum))), "Select section")
     @Html.ValidationMessageFor(m => m.Character)
     @Html.DropDownListFor(m => m.Type, new SelectList(new string[] {"Category", "Glitch", "General"}), "Select type")

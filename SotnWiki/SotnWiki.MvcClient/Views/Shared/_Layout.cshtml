@@ -78,6 +78,7 @@
             <div class="search-panel">
                 @using (Html.BeginForm("Search", "Search", "GET"))
                 {
+                    @Html.AntiForgeryToken()
                     @Html.TextBox("searchPhrase")
                     <input type="submit" value="" />
                 }
