@@ -246,8 +246,9 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EditPageViewModel.cs" />
+    <Compile Include="Models\EditViewModel.cs" />
     <Compile Include="Models\LeaderboardViewModel.cs" />
-    <Compile Include="Models\NewPageModel.cs" />
+    <Compile Include="Models\NewPageViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,6 +267,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
