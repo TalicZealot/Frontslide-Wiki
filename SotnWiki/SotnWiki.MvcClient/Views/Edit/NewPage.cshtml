@@ -13,8 +13,8 @@
     @Html.DropDownListFor(m => m.Type, new SelectList(new string[] {"Category", "Glitch", "General"}), "Select type")
     @Html.ValidationMessageFor(m => m.Type)
     <br/>
-    <span>Title:</span>
     @Html.TextBoxFor(m => m.Title)
+    @Html.LabelFor(m => m.Title)
     @Html.ValidationMessageFor(m => m.Title)
     <p>This site uses textile markup, for documentation visit <a href="https://txstyle.org/">txstyle.org</a>.</p>
     @Html.TextAreaFor(m => m.Content)

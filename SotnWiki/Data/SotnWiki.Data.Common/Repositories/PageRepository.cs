@@ -1,5 +1,7 @@
-﻿using Bytes2you.Validation;
+﻿using AutoMapper;
+using Bytes2you.Validation;
 using SotnWiki.Data.Common.Contracts;
+using SotnWiki.DTOs.PageViewsDTOs;
 using SotnWiki.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,33 +15,51 @@ namespace SotnWiki.Data.Common.Repositories
         {
         }
 
-        public Page GetPageByTitle(string title)
+        public Page GetPageEntityByTitle(string title)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
             return this.DbSet.Where(x => x.IsPublished && string.Equals(x.Title.ToLower(), title.ToLower())).FirstOrDefault();
         }
 
-        public Page GetSubmissionByTitle(string title)
+        public Page GetSubmissionEntityByTitle(string title)
+        {
+            Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
+
+            return this.DbSet.Where(x => !x.IsPublished && string.Equals(x.Title.ToLower(), title.ToLower())).FirstOrDefault();
+        }
+
+        public PageViewDTO GetPageByTitle(string title)
+        {
+            Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
+
+            return this.DbSet.Where(x => x.IsPublished && string.Equals(x.Title.ToLower(), title.ToLower())).ProjectToFirstOrDefault<PageViewDTO>();
+        }
+
+        public bool CheckTitleAvailability(string title)
+        {
+            Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
+
+            return !this.DbSet.Any(x => string.Equals(x.Title.ToLower(), title.ToLower()));
+        }
+
+        public PageViewDTO GetSubmissionByTitle(string title)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
             
-            return this.DbSet.Where(x => !x.IsPublished && string.Equals(x.Title.ToLower(), title.ToLower())).FirstOrDefault();
-            //TODO topmapper projection
+            return this.DbSet.Where(x => !x.IsPublished && string.Equals(x.Title.ToLower(), title.ToLower())).ProjectToFirstOrDefault<PageViewDTO>();
         }
 
-        public IEnumerable<Page> GetSubmissions()
+        public IEnumerable<SubmissionsDTO> GetSubmissions()
         {
-            return this.DbSet.Where(x => !x.IsPublished).ToList();
-            //TODO topmapper projection
+            return this.DbSet.Where(x => !x.IsPublished).ProjectToList<SubmissionsDTO>();
         }
 
-        public IEnumerable<Page> FindPages(string text)
+        public IEnumerable<PageSearchDTO> FindPages(string text)
         {
             return this.DbSet.Where(x => x.IsPublished && x.Title.IndexOf(text) >= 0
                 ||
-                x.IsPublished && x.Content.IndexOf(text) >= 0).ToList();
-            //TODO Autopmapper projection
+                x.IsPublished && x.Content.IndexOf(text) >= 0).ProjectToList<PageSearchDTO>();
         }
     }
 }

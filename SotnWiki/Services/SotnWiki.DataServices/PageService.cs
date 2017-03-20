@@ -2,10 +2,10 @@
 using SotnWiki.Data.Common;
 using SotnWiki.Data.Common.Contracts;
 using SotnWiki.DataServices.Contracts;
+using SotnWiki.DTOs.PageViewsDTOs;
 using SotnWiki.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SotnWiki.DataServices
 {
@@ -26,14 +26,19 @@ namespace SotnWiki.DataServices
             this.unitOfWorkFactory = unitOfWorkFactory;
         }
 
-        public Page GetPageByTitle(string title)
+        public bool CheckTitleAvailability(string title)
+        {
+            return this.pageRepository.CheckTitleAvailability(title);
+        }
+
+        public PageViewDTO GetPageByTitle(string title)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
             return this.pageRepository.GetPageByTitle(title);
         }
 
-        public Page GetSubmissionByTitle(string title)
+        public PageViewDTO GetSubmissionByTitle(string title)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
@@ -86,7 +91,7 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(editedContent, "editedContent").IsNullOrEmpty().Throw();
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            var page = this.GetSubmissionByTitle(title);
+            var page = this.pageRepository.GetSubmissionEntityByTitle(title);
             if (page == null)
             {
                 throw new NullReferenceException("Page not found!");
@@ -105,7 +110,7 @@ namespace SotnWiki.DataServices
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            var page = this.GetSubmissionByTitle(title);
+            var page = this.pageRepository.GetSubmissionEntityByTitle(title);
             if (page == null)
             {
                 throw new NullReferenceException("Page not found!");
@@ -118,20 +123,23 @@ namespace SotnWiki.DataServices
             }
         }
 
-        public IEnumerable<Page> GetSubmissions()
+        public IEnumerable<SubmissionsDTO> GetSubmissions()
         {
             return this.pageRepository.GetSubmissions();
         }
 
-        public IEnumerable<Page> FindPages(string text)
+        public IEnumerable<PageSearchDTO> FindPages(string text)
         {
             Guard.WhenArgument(text, "text").IsNullOrEmpty().Throw();
 
-            Page exactTitleMatch = this.pageRepository.GetPageByTitle(text);
+            PageViewDTO exactTitleMatch = this.pageRepository.GetPageByTitle(text);
 
             if (exactTitleMatch != null)
             {
-                return new List<Page>() { exactTitleMatch };
+                return new List<PageSearchDTO>() { new PageSearchDTO()
+                { Title = exactTitleMatch.Title, Content = exactTitleMatch.Content,
+                    CreatedOn = exactTitleMatch.CreatedOn, LastEdit = exactTitleMatch.LastEdit,
+                    Type = exactTitleMatch.Type } };
             }
 
             return this.pageRepository.FindPages(text);

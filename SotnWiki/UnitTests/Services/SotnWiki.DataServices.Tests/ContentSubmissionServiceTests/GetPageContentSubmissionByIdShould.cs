@@ -12,7 +12,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
     public class GetPageContentSubmissionByIdShould
     {
         [Test]
-        public void CallCommitMethodOfUnitOfWork()
+        public void CallGetByIdMethodOfPageContentSubmissionRepository()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
@@ -32,7 +32,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             submissionServiceUnderTest.GetPageContentSubmissionById(Guid.NewGuid());
 
             //Assert
-            mockedPageContentSubmissionRepository.Verify(m => m.GetById(It.IsAny<Guid>()), Times.Once());
+            mockedPageContentSubmissionRepository.Verify(m => m.GetByIdProjected(It.IsAny<Guid>()), Times.Once());
         }
     }
 }

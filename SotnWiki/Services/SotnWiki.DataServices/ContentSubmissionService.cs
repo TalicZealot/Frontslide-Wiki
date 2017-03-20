@@ -2,6 +2,7 @@
 using SotnWiki.Data.Common;
 using SotnWiki.Data.Common.Contracts;
 using SotnWiki.DataServices.Contracts;
+using SotnWiki.DTOs.EditViewsDTOs;
 using SotnWiki.Models;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
             Guard.WhenArgument(content, "content").IsNullOrEmpty().Throw();
 
-            var page = this.pageService.GetPageByTitle(title);
+            var page = this.pageRepository.GetPageEntityByTitle(title);
             if (page == null)
             {
                 throw new NullReferenceException("Page not found!");
@@ -53,10 +54,10 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
             Guard.WhenArgument(content, "content").IsNullOrEmpty().Throw();
 
-            var pageContentSubmission = this.GetPageContentSubmissionById(id);
+            var pageContentSubmission = this.pageContentSubmissionRepository.GetById(id);
             pageContentSubmission.PageHistory = pageContentSubmission.PageEdit;
             pageContentSubmission.PageEdit = null;
-            var page = this.pageService.GetPageByTitle(title);
+            var page = this.pageRepository.GetPageEntityByTitle(title);
             pageContentSubmission.Content = page.Content;
             page.Content = content;
             page.LastEdit = DateTime.Now;
@@ -75,7 +76,7 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(content, "content").IsNullOrEmpty().Throw();
 
 
-            var page = this.pageService.GetPageByTitle(title);
+            var page = this.pageRepository.GetPageEntityByTitle(title);
             if (page == null)
             {
                 throw new NullReferenceException("Page not found!");
@@ -96,7 +97,7 @@ namespace SotnWiki.DataServices
 
         public void DismissEdit(Guid id)
         {
-            var pageContentSubmission = this.GetPageContentSubmissionById(id);
+            var pageContentSubmission = this.pageContentSubmissionRepository.GetById(id);
 
             using (var unitOfWork = this.unitOfWorkFactory())
             {
@@ -105,16 +106,16 @@ namespace SotnWiki.DataServices
             }
         }
 
-        public PageContentSubmission GetPageContentSubmissionById(Guid id)
+        public EditsViewDTO GetPageContentSubmissionById(Guid id)
         {
-            return this.pageContentSubmissionRepository.GetById(id);
+            return this.pageContentSubmissionRepository.GetByIdProjected(id);
         }
 
-        public IEnumerable<PageContentSubmission> GetSubmissions(string title)
+        public IEnumerable<EditsViewDTO> GetEdits(string title)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            return this.pageContentSubmissionRepository.GetSubmissions(title);
+            return this.pageContentSubmissionRepository.GetEdits(title);
         }
     }
 }

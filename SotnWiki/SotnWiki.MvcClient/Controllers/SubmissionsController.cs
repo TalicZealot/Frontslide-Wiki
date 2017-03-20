@@ -7,12 +7,12 @@ using System.Web.Mvc;
 namespace SotnWiki.MvcClient.Controllers
 {
     [Authorize]
-    public class EditController : Controller
+    public class SubmissionsController : Controller
     {
         private readonly IPageService pageService;
         private readonly IContentSubmissionService contentSubmissionService;
 
-        public EditController(IPageService pageService, IContentSubmissionService contentSubmissionService)
+        public SubmissionsController(IPageService pageService, IContentSubmissionService contentSubmissionService)
         {
             Guard.WhenArgument(pageService, "pageService").IsNull().Throw();
             Guard.WhenArgument(contentSubmissionService, "contentSubmissionService").IsNull().Throw();
@@ -22,34 +22,45 @@ namespace SotnWiki.MvcClient.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(string name)
+        public ActionResult NewPage()
         {
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditViewModel model)
+        public ActionResult NewPage(NewPageViewModel model)
         {
             if (ModelState.IsValid)
             {
+                this.pageService.CreatePage((int)Enum.Parse(typeof(SotnWiki.Models.CharacterIdEnum), model.Character),
+                    model.Type, model.Title, model.Content, false);
                 if (model.Publish && (this.HttpContext.User.IsInRole("admin") || this.HttpContext.User.IsInRole("editor")))
                 {
-                    this.contentSubmissionService.SubmitAndPublishEdit(model.Content, model.Title);
+                    return this.RedirectToAction("Page", "Home", new { name = model.Title });
                 }
-                else
-                {
-                    this.contentSubmissionService.SubmitEdit(model.Content, model.Title);
-                }
-
-                return this.RedirectToAction("Page", "Home", new { name = model.Title });
+                return this.RedirectToAction("Page", "Home", "Index");
             }
 
-            return View(model);
+            return new HttpStatusCodeResult(500);
         }
 
         [Authorize(Roles = "Editor, Admin")]
-        public ActionResult Edits()
+        public ActionResult Submissions()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Editor, Admin")]
+        public ActionResult Publish()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Editor, Admin")]
+        public ActionResult Publish(NewPageViewModel model)
         {
             return View();
         }

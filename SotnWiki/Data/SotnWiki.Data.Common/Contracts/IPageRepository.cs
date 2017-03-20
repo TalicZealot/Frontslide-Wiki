@@ -1,17 +1,24 @@
-﻿using SotnWiki.Models;
+﻿using SotnWiki.DTOs.PageViewsDTOs;
+using SotnWiki.Models;
 using System.Collections.Generic;
 
 namespace SotnWiki.Data.Common.Contracts
 {
     public interface IPageRepository
     {
-        Page GetPageByTitle(string title);
+        bool CheckTitleAvailability(string title);
 
-        Page GetSubmissionByTitle(string title);
+        Page GetPageEntityByTitle(string title);
 
-        IEnumerable<Page> GetSubmissions();
+        Page GetSubmissionEntityByTitle(string title);
 
-        IEnumerable<Page> FindPages(string text);
+        PageViewDTO GetPageByTitle(string title);
+
+        PageViewDTO GetSubmissionByTitle(string title);
+
+        IEnumerable<SubmissionsDTO> GetSubmissions();
+
+        IEnumerable<PageSearchDTO> FindPages(string text);
 
         void Add(Page entity);
 

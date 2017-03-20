@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using SotnWiki.Data.Common.Repositories;
 using SotnWiki.Data.Common.Tests.Mocks;
+using SotnWiki.DTOs.RunViewsDTOs;
 using SotnWiki.Models;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,7 @@ namespace SotnWiki.Data.Common.Tests.RunRepositoryTests
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
         }
 
+        [Ignore("Automapper")]
         [Test]
         public void ReturnObjectOfTypeRun()
         {
@@ -76,7 +78,7 @@ namespace SotnWiki.Data.Common.Tests.RunRepositoryTests
             var result = repositoryUnderTest.GetWorldRecordInCategory("AlucardACE");
 
             //Assert
-            Assert.IsInstanceOf<Run>(result);
+            Assert.IsInstanceOf<LeaderboardRunDTO>(result);
         }
     }
 }

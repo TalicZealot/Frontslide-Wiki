@@ -2,10 +2,9 @@
 using NUnit.Framework;
 using SotnWiki.Data.Common;
 using SotnWiki.Data.Common.Contracts;
+using SotnWiki.DTOs.PageViewsDTOs;
 using SotnWiki.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace SotnWiki.DataServices.Tests.PageServiceTests
 {
@@ -58,7 +57,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
             var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
             var expectedExceptionMessage = "Page not found!";
-            mockedPageRepository.Setup(x => x.GetSubmissionByTitle(It.IsAny<string>())).Returns((Page)null);
+            mockedPageRepository.Setup(x => x.GetSubmissionEntityByTitle(It.IsAny<string>())).Returns((Page)null);
 
             //Act
             var exc = Assert.Throws<NullReferenceException>(() => pageServiceUnderTest.DismissSubmission("aa"));
@@ -81,7 +80,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
                 Content = "iii",
                 LastEdit = null,
             };
-            mockedPageRepository.Setup(x => x.GetSubmissionByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetSubmissionEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             pageServiceUnderTest.DismissSubmission("aa");
@@ -104,7 +103,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
                 Content = "iii",
                 LastEdit = null,
             };
-            mockedPageRepository.Setup(x => x.GetSubmissionByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetSubmissionEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             pageServiceUnderTest.DismissSubmission("aa");

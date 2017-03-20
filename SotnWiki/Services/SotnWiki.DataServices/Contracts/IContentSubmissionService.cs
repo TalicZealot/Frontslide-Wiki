@@ -1,4 +1,4 @@
-﻿using SotnWiki.Models;
+﻿using SotnWiki.DTOs.EditViewsDTOs;
 using System;
 using System.Collections.Generic;
 
@@ -8,9 +8,9 @@ namespace SotnWiki.DataServices.Contracts
     {
         void SubmitEdit(string content, string title);
 
-        IEnumerable<PageContentSubmission> GetSubmissions(string title);
+        IEnumerable<EditsViewDTO> GetEdits(string title);
 
-        PageContentSubmission GetPageContentSubmissionById(Guid id);
+        EditsViewDTO GetPageContentSubmissionById(Guid id);
 
         void PublishEdit(string title, string content, Guid id);
 
