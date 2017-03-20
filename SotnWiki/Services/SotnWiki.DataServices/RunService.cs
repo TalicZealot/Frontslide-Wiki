@@ -2,7 +2,7 @@
 using SotnWiki.Data.Common;
 using SotnWiki.Data.Common.Contracts;
 using SotnWiki.DataServices.Contracts;
-using SotnWiki.Models;
+using SotnWiki.DTOs.RunViewsDTOs;
 using System;
 using System.Collections.Generic;
 
@@ -22,14 +22,14 @@ namespace SotnWiki.DataServices
             this.unitOfWorkFactory = unitOfWorkFactory;
         }
 
-        public IEnumerable<Run> GetRunsInCategory(string categoryName)
+        public IEnumerable<LeaderboardRunDTO> GetRunsInCategory(string categoryName)
         {
             Guard.WhenArgument(categoryName, "categoryName").IsNullOrEmpty().Throw();
 
             return this.runRepository.GetRunsInCategory(categoryName);
         }
 
-        public Run GetWorldRecordInCategory(string categoryName)
+        public LeaderboardRunDTO GetWorldRecordInCategory(string categoryName)
         {
             Guard.WhenArgument(categoryName, "categoryName").IsNullOrEmpty().Throw();
 

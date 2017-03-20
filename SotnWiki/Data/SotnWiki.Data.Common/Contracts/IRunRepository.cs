@@ -1,12 +1,12 @@
-﻿using SotnWiki.Models;
+﻿using SotnWiki.DTOs.RunViewsDTOs;
 using System.Collections.Generic;
 
 namespace SotnWiki.Data.Common.Contracts
 {
     public interface IRunRepository
     {
-        IEnumerable<Run> GetRunsInCategory(string categoryName);
+        IEnumerable<LeaderboardRunDTO> GetRunsInCategory(string categoryName);
 
-        Run GetWorldRecordInCategory(string categoryName);
+        LeaderboardRunDTO GetWorldRecordInCategory(string categoryName);
     }
 }

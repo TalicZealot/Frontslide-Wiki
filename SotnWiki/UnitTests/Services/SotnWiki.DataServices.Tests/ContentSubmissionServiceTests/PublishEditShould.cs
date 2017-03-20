@@ -51,7 +51,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             submissionServiceUnderTest.PublishEdit("title", "new content", Guid.NewGuid());
@@ -82,7 +82,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             submissionServiceUnderTest.PublishEdit("title", "new content", Guid.NewGuid());
@@ -115,7 +115,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
@@ -148,7 +148,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
@@ -181,7 +181,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
@@ -214,7 +214,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
@@ -247,7 +247,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
@@ -281,7 +281,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());

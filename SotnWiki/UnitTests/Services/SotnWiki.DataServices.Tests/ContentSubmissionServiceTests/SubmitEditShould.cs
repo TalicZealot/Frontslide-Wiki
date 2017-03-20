@@ -6,6 +6,7 @@ using SotnWiki.Data.Common;
 using SotnWiki.Models;
 using System.Collections.Generic;
 using SotnWiki.Data.Common.Contracts;
+using SotnWiki.DTOs.PageViewsDTOs;
 
 namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
 {
@@ -94,7 +95,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
                 Content = "aa",
                 LastEdit = null,
             };
-            mockedPageService.Setup(r => r.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(r => r.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             submissionServiceUnderTest.SubmitEdit(expectedContent, "test_title");
@@ -124,7 +125,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
                 Content = "aa",
                 LastEdit = null,
             };
-            mockedPageService.Setup(r => r.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(r => r.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             submissionServiceUnderTest.SubmitEdit(expectedContent, "test_title");

@@ -11,6 +11,8 @@ namespace SotnWiki.MvcClient.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Ninject_Modules;
+    using AutoMapper;
+    using SotnWiki.MvcClient.App_Start.AutomapperProfiles;
 
     public static class NinjectWebCommon 
     {
@@ -64,6 +66,18 @@ namespace SotnWiki.MvcClient.App_Start
         {
             kernel.Load(new ServicesNinjectModule());
             kernel.Load(new DataNinjectModule());
-        }        
+        }
+
+        private static void InitializeAutomapperConfig()
+        {
+            Mapper.Initialize(NinjectWebCommon.AddProfilesToAutomapperConfig);
+        }
+
+        private static void AddProfilesToAutomapperConfig(IMapperConfigurationExpression config)
+        {
+            config.AddProfile(new PageViewsProfile());
+            config.AddProfile(new EditViewsProfile());
+            config.AddProfile(new RunViewsProfile());
+        }
     }
 }

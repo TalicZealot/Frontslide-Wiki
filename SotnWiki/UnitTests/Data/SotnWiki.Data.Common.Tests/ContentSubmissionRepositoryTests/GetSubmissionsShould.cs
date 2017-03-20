@@ -28,7 +28,7 @@ namespace SotnWiki.Data.Common.Tests.ContentSubmissionRepositoryTests
             var repositoryUnderTest = new ContentSubmissionRepository(mockedDbContext.Object);
 
             //Act & Assert
-            var exc = Assert.Throws<ArgumentNullException>(() => { repositoryUnderTest.GetSubmissions(null); });
+            var exc = Assert.Throws<ArgumentNullException>(() => { repositoryUnderTest.GetEdits(null); });
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -51,12 +51,13 @@ namespace SotnWiki.Data.Common.Tests.ContentSubmissionRepositoryTests
             var repositoryUnderTest = new ContentSubmissionRepository(mockedDbContext.Object);
 
             //Act & Assert
-            var exc = Assert.Throws<ArgumentException>(() => { repositoryUnderTest.GetSubmissions(""); });
+            var exc = Assert.Throws<ArgumentException>(() => { repositoryUnderTest.GetEdits(""); });
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
         }
 
+        [Ignore("Automapper")]
         [Test]
         public void ReturnIEnumerableObjectOfTypePageContentSubmission()
         {
@@ -74,7 +75,7 @@ namespace SotnWiki.Data.Common.Tests.ContentSubmissionRepositoryTests
             var repositoryUnderTest = new ContentSubmissionRepository(mockedDbContext.Object);
 
             //Act & Assert
-            var result = repositoryUnderTest.GetSubmissions("page");
+            var result = repositoryUnderTest.GetEdits("page");
 
             //Assert
             Assert.IsInstanceOf<IEnumerable<PageContentSubmission>>(result);

@@ -1,18 +1,21 @@
-﻿using SotnWiki.Models;
+﻿using SotnWiki.DTOs.EditViewsDTOs;
+using SotnWiki.Models;
 using System.Collections.Generic;
 
 namespace SotnWiki.Data.Common.Contracts
 {
     public interface IContentSubmissionRepository
     {
-        IEnumerable<PageContentSubmission> GetSubmissions(string title);
+        IEnumerable<EditsViewDTO> GetEdits(string title);
 
-        PageContentSubmission GetById(object id);
+        EditsViewDTO GetByIdProjected(object id);
 
         void Add(PageContentSubmission entity);
 
         void Delete(PageContentSubmission entity);
 
         void Update(PageContentSubmission entity);
+
+        PageContentSubmission GetById(object id);
     }
 }

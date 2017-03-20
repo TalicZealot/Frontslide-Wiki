@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 using SotnWiki.DataServices.Contracts;
-using SotnWiki.Models;
 using SotnWiki.MvcClient.Controllers;
 using System;
 using System.Web.Mvc;
@@ -51,8 +50,7 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
             var mockedRunService = new Mock<IRunService>();
             var mockedPageService = new Mock<IPageService>();
             var controllerUnderTest = new ApiController(mockedPageService.Object, mockedRunService.Object);
-            var page = new Page() { Title = "asdf" };
-            mockedPageService.Setup(p => p.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageService.Setup(p => p.CheckTitleAvailability(It.IsAny<string>())).Returns(false);
 
             //Act
             var result = controllerUnderTest.CheckTitleAvailability("asd");
@@ -68,8 +66,7 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
             var mockedRunService = new Mock<IRunService>();
             var mockedPageService = new Mock<IPageService>();
             var controllerUnderTest = new ApiController(mockedPageService.Object, mockedRunService.Object);
-            var page = new Page() { Title = "asdf" };
-            mockedPageService.Setup(p => p.GetPageByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageService.Setup(p => p.CheckTitleAvailability(It.IsAny<string>())).Returns(false);
             var expectedJson = "false";
 
             //Act
@@ -87,8 +84,7 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
             var mockedRunService = new Mock<IRunService>();
             var mockedPageService = new Mock<IPageService>();
             var controllerUnderTest = new ApiController(mockedPageService.Object, mockedRunService.Object);
-            var page = new Page() { Title = "asdf" };
-            mockedPageService.Setup(p => p.GetPageByTitle(It.IsAny<string>())).Returns((Page)null);
+            mockedPageService.Setup(p => p.CheckTitleAvailability(It.IsAny<string>())).Returns(true);
             var expectedJson = "true";
 
             //Act

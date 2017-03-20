@@ -1,5 +1,5 @@
 # Frontslide-Wiki  ![SotnWiki](https://raw.githubusercontent.com/TalicZealot/Frontslide-Wiki/master/SotnWiki/SotnWiki.MvcClient/Content/richter.png "SotnWiki")
-
+[![Coverage Status](https://coveralls.io/repos/github/TalicZealot/Frontslide-Wiki/badge.svg?branch=test)](https://coveralls.io/github/TalicZealot/Frontslide-Wiki?branch=test)
 
 # Concept
 

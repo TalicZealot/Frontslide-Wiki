@@ -57,6 +57,10 @@
       <Project>{010d9912-3682-4400-8698-c8d23e8ba23c}</Project>
       <Name>SotnWiki.Data.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\SotnWiki.DTOs\SotnWiki.DTOs.csproj">
+      <Project>{eca94fbd-c719-415c-93fb-3651550e13ca}</Project>
+      <Name>SotnWiki.DTOs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\SotnWiki.Models\SotnWiki.Models.csproj">
       <Project>{5cfebc1d-5e6f-49a2-a146-a11a6f5b2845}</Project>
       <Name>SotnWiki.Models</Name>
@@ -66,6 +70,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

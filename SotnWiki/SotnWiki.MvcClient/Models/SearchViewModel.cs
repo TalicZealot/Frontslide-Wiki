@@ -1,4 +1,4 @@
-﻿using SotnWiki.Models;
+﻿using SotnWiki.DTOs.PageViewsDTOs;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,6 +11,6 @@ namespace SotnWiki.MvcClient.Models
         [RegularExpression("^[a-zA-Z0-9_ %-]*$", ErrorMessage = "phrase can only contain letters, spaces and %")]
         public string searchPhrase { get; set; }
 
-        public List<Page> Results { get; set; }
+        public List<PageSearchDTO> Results { get; set; }
     }
 }

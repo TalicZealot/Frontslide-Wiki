@@ -25,8 +25,7 @@ namespace SotnWiki.MvcClient.Controllers
         {
             Guard.WhenArgument(name, "name").IsNullOrEmpty().Throw();
 
-            var alucardAny = this.runService.GetRunsInCategory(name).OrderBy(x => x.Time)
-                .Select(x => new { Runner = x.Runner, Time = x.Time, Url = x.Url, Platform = x.Platform.ToString() }).ToList();
+            var alucardAny = this.runService.GetRunsInCategory(name).OrderBy(x => x.Time).ToList();
 
             return Json(alucardAny, JsonRequestBehavior.AllowGet);
         }
@@ -35,8 +34,7 @@ namespace SotnWiki.MvcClient.Controllers
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            var page = this.pageService.GetPageByTitle(title);
-            bool available = page == null;
+            var available = this.pageService.CheckTitleAvailability(title);
 
             return Json(available, JsonRequestBehavior.AllowGet);
         }
