@@ -4,8 +4,6 @@ using SotnWiki.Data.Common;
 using SotnWiki.Data.Common.Contracts;
 using SotnWiki.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace SotnWiki.DataServices.Tests.PageServiceTests
 {
@@ -93,7 +91,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
             var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
-            mockedPageRepository.Setup(x => x.GetSubmissionByTitle(It.IsAny<string>())).Returns((Page)null);
+            mockedPageRepository.Setup(x => x.GetSubmissionEntityByTitle(It.IsAny<string>())).Returns((Page)null);
             var expectedExceptionMessage = "Page not found!";
 
             //Act
@@ -117,7 +115,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
                 Content = "aa",
                 LastEdit = null,
             };
-            mockedPageRepository.Setup(x => x.GetSubmissionByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetSubmissionEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             pageServiceUnderTest.PublishPage("aa", "aa");
@@ -140,7 +138,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
                 Content = "aa",
                 LastEdit = null,
             };
-            mockedPageRepository.Setup(x => x.GetSubmissionByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetSubmissionEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             pageServiceUnderTest.PublishPage("aa", "aa");
@@ -164,7 +162,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
                 Content = expectedContent,
                 LastEdit = null,
             };
-            mockedPageRepository.Setup(x => x.GetSubmissionByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageRepository.Setup(x => x.GetSubmissionEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
             pageServiceUnderTest.PublishPage(expectedContent, "aa");

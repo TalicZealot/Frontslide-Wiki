@@ -1,10 +1,6 @@
 ﻿using Bytes2you.Validation;
-using SotnWiki.Data;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Linq.Expressions;
 
 namespace SotnWiki.Data.Common
 {

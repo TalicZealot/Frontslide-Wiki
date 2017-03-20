@@ -6,7 +6,7 @@
     <ul>
         @if (this.Context.User.Identity.IsAuthenticated)
         {
-            <li>@Html.ActionLink("New Page", "NewPage", "Edit")</li>
+            <li>@Html.ActionLink("New Page", "NewPage", "Submissions")</li>
             if ((string)currentAction == "Page")
             {
                 <li>@Html.ActionLink("Edit Page", "Edit", "Edit", new { name = ViewContext.RouteData.Values["name"] }, null)</li>
@@ -21,7 +21,7 @@
                 {
                     <li>@Html.ActionLink("Manage Edits", "Edits", "Edit", new { name = ViewContext.RouteData.Values["name"] }, null)</li>
                 }
-                <li>@Html.ActionLink("Manage Submissions", "Edit", "Edit")</li>
+                <li>@Html.ActionLink("Manage Submissions", "Submissions", "Submissions")</li>
             }
         }
     </ul>

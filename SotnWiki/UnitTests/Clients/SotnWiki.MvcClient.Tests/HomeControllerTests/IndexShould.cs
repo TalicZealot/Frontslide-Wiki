@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using SotnWiki.DataServices.Contracts;
+using SotnWiki.DTOs.PageViewsDTOs;
 using SotnWiki.Models;
 using SotnWiki.MvcClient.Controllers;
 using SotnWiki.MvcClient.Models;
@@ -21,7 +22,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
             var controllerUnderTest = new HomeController(mockedPageService.Object, mockedConverter.Object);
             string expectedContent = "<h1>";
             mockedConverter.Setup(x => x.ScriptToHtml(It.IsAny<string>())).Returns(expectedContent);
-            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns((Page)null);
+            mockedPageService.Setup(x => x.GetPageByTitle(It.IsAny<string>())).Returns((PageViewDTO)null);
 
             //Act
             var result = controllerUnderTest.Index();
@@ -38,7 +39,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
             var mockedPageService = new Mock<IPageService>();
             var controllerUnderTest = new HomeController(mockedPageService.Object , mockedConverter.Object);
             string expectedContent = "<h1>";
-            var page = new SotnWiki.Models.Page()
+            var page = new PageViewDTO()
             {
                 Title = "aa",
                 Content = ".h1"
@@ -61,7 +62,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
             var mockedPageService = new Mock<IPageService>();
             var controllerUnderTest = new HomeController(mockedPageService.Object, mockedConverter.Object);
             string expectedContent = "<h1>";
-            var page = new SotnWiki.Models.Page()
+            var page = new PageViewDTO()
             {
                 Title = "aa",
                 Content = ".h1"
@@ -87,7 +88,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
             var controllerUnderTest = new HomeController(mockedPageService.Object, mockedConverter.Object);
             string expectedContent = "<h1>";
             string expectedTitle = "test-title";
-            var page = new SotnWiki.Models.Page()
+            var page = new PageViewDTO()
             {
                 Title = expectedTitle,
                 Content = ".h1"
@@ -113,7 +114,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
             var controllerUnderTest = new HomeController(mockedPageService.Object, mockedConverter.Object);
             string expectedContent = "<h1>";
             string expectedTitle = "test-title";
-            var page = new SotnWiki.Models.Page()
+            var page = new PageViewDTO()
             {
                 Title = expectedTitle,
                 Content = ".h1"

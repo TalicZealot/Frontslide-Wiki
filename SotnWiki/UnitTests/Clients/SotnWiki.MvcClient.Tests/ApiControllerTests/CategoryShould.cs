@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 using SotnWiki.DataServices.Contracts;
+using SotnWiki.DTOs.RunViewsDTOs;
 using SotnWiki.Models;
 using SotnWiki.MvcClient.Controllers;
 using System;
@@ -53,12 +54,12 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
             var mockedRunService = new Mock<IRunService>();
             var mockedPageService = new Mock<IPageService>();
             var controllerUnderTest = new ApiController(mockedPageService.Object, mockedRunService.Object);
-            var runs = new List<Run>()
+            var runs = new List<LeaderboardRunDTO>()
             {
-                new Run () { Runner = "Dr4gonBlitz", Time = "16:54", Category = Category.CvsAlucardAnyNSC, Platform = Platform.Xbox360},
-                new Run () { Runner = "romscout", Time = "16:59", Category = Category.CvsAlucardAnyNSC, Platform = Platform.Xbox360},
-                new Run () { Runner = "BenAuton", Time = "17:10", Category = Category.CvsAlucardAnyNSC, Platform = Platform.Xbox360},
-                new Run () { Runner = "Metako", Time = "17:26", Category = Category.CvsAlucardAnyNSC, Platform = Platform.Xbox360}
+                new LeaderboardRunDTO () { Runner = "Dr4gonBlitz", Time = "16:54", Platform = "Xbox360"},
+                new LeaderboardRunDTO () { Runner = "romscout", Time = "16:59", Platform = "Xbox360"},
+                new LeaderboardRunDTO () { Runner = "BenAuton", Time = "17:10", Platform = "Xbox360"},
+                new LeaderboardRunDTO () { Runner = "Metako", Time = "17:26", Platform = "Xbox360"}
             };
             mockedRunService.Setup(x => x.GetRunsInCategory(It.IsAny<string>())).Returns(runs);
 
@@ -76,17 +77,16 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
             var mockedRunService = new Mock<IRunService>();
             var mockedPageService = new Mock<IPageService>();
             var controllerUnderTest = new ApiController(mockedPageService.Object, mockedRunService.Object);
-            var runs = new List<Run>()
+            var runs = new List<LeaderboardRunDTO>()
             {
-                new Run () { Runner = "Metako", Time = "17:26", Category = Category.CvsAlucardAnyNSC, Platform = Platform.Xbox360},
-                new Run () { Runner = "Dr4gonBlitz", Time = "16:54", Category = Category.CvsAlucardAnyNSC, Platform = Platform.Xbox360},
-                new Run () { Runner = "romscout", Time = "16:59", Category = Category.CvsAlucardAnyNSC, Platform = Platform.Xbox360},
-                new Run () { Runner = "BenAuton", Time = "17:10", Category = Category.CvsAlucardAnyNSC, Platform = Platform.Xbox360}
+                new LeaderboardRunDTO () { Runner = "Metako", Time = "17:26", Platform = "Xbox360"},
+                new LeaderboardRunDTO () { Runner = "Dr4gonBlitz", Time = "16:54", Platform = "Xbox360"},
+                new LeaderboardRunDTO () { Runner = "romscout", Time = "16:59", Platform = "Xbox360"},
+                new LeaderboardRunDTO () { Runner = "BenAuton", Time = "17:10", Platform = "Xbox360"}
             };
             mockedRunService.Setup(x => x.GetRunsInCategory(It.IsAny<string>())).Returns(runs);
 
-            var expectedJson = JsonConvert.SerializeObject(runs.OrderBy(x => x.Time)
-                .Select(x => new { Runner = x.Runner, Time = x.Time, Url = x.Url, Platform = x.Platform.ToString() }).ToList());
+            var expectedJson = JsonConvert.SerializeObject(runs.OrderBy(x => x.Time));
 
             //Act
             var result = controllerUnderTest.Category("asd") as JsonResult;

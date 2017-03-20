@@ -3,7 +3,7 @@ using NUnit.Framework;
 using SotnWiki.Data.Common;
 using SotnWiki.Data.Common.Contracts;
 using SotnWiki.DataServices.Contracts;
-using SotnWiki.Models;
+using SotnWiki.DTOs.EditViewsDTOs;
 using System;
 using System.Collections.Generic;
 
@@ -22,24 +22,22 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
-            var pendingEdits = new List<PageContentSubmission>();
-            var edit1 = new PageContentSubmission()
+            var pendingEdits = new List<EditsViewDTO>();
+            var edit1 = new EditsViewDTO()
             {
-                Content = "edit1",
-                PageHistory = null
+                Content = "edit1"
             };
-            var edit2 = new PageContentSubmission()
+            var edit2 = new EditsViewDTO()
             {
-                Content = "edit2",
-                PageHistory = null
+                Content = "edit2"
             };
             pendingEdits.Add(edit1);
             pendingEdits.Add(edit2);
 
-            mockedPageContentSubmissionRepository.Setup(x => x.GetSubmissions(It.IsAny<string>())).Returns(pendingEdits);
+            mockedPageContentSubmissionRepository.Setup(x => x.GetEdits(It.IsAny<string>())).Returns(pendingEdits);
 
             //Act
-            var result = submissionServiceUnderTest.GetSubmissions("tuturutka");
+            var result = submissionServiceUnderTest.GetEdits("tuturutka");
 
             //Assert
             CollectionAssert.AreEqual(pendingEdits, result);

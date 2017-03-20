@@ -30,6 +30,13 @@
         });
     });
 
+    router.on('alucardGlitchless', () => {
+        leaderboardsController.getCategory('AlucardGlitchless')
+            .then((runs) => {
+                rowGenerator.generateRows(runs);
+            });
+    });
+
     router.on('richterAny', () => {
         leaderboardsController.getCategory('RichterAny')
         .then((runs) => {

@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
       <HintPath>..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
       <Private>True</Private>
@@ -98,6 +101,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -209,6 +215,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutomapperProfiles\EditViewsProfile.cs" />
+    <Compile Include="App_Start\AutomapperProfiles\PageViewsProfile.cs" />
+    <Compile Include="App_Start\AutomapperProfiles\RunViewsProfile.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\Ninject Modules\DataNinjectModule.cs" />
@@ -221,13 +230,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaderboardsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SubmissionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EditPageViewModel.cs" />
     <Compile Include="Models\EditViewModel.cs" />
-    <Compile Include="Models\LeaderboardViewModel.cs" />
     <Compile Include="Models\NewPageViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
@@ -309,6 +318,10 @@
     <ProjectReference Include="..\Data\SotnWiki.Data\SotnWiki.Data.csproj">
       <Project>{a37d2b8d-2892-4270-9e35-df8b84d65c8e}</Project>
       <Name>SotnWiki.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\SotnWiki.DTOs\SotnWiki.DTOs.csproj">
+      <Project>{eca94fbd-c719-415c-93fb-3651550e13ca}</Project>
+      <Name>SotnWiki.DTOs</Name>
     </ProjectReference>
     <ProjectReference Include="..\Data\SotnWiki.Models\SotnWiki.Models.csproj">
       <Project>{5cfebc1d-5e6f-49a2-a146-a11a6f5b2845}</Project>
