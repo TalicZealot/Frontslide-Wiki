@@ -24,7 +24,19 @@ namespace SotnWiki.MvcClient.Controllers
         [HttpGet]
         public ActionResult Edit(string name)
         {
-            return View();
+            Guard.WhenArgument(name, "name").IsNullOrEmpty().Throw();
+
+            var transformedName = name.Replace('_', ' ').Replace('-', ' ');
+            var page = this.pageService.GetPageByTitle(transformedName);
+            if (page == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new EditViewModel();
+            model.Content = page.Content;
+            model.Title = page.Title;
+            return View(model);
         }
         
         [HttpPost]
