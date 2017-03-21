@@ -56,29 +56,5 @@ namespace SotnWiki.Data.Common.Tests.ContentSubmissionRepositoryTests
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
         }
-
-        [Ignore("Automapper")]
-        [Test]
-        public void ReturnIEnumerableObjectOfTypePageContentSubmission()
-        {
-            //Arrange
-            var mockedDbContext = new Mock<ISotnWikiDbContext>();
-            var page = new Page() { Id = Guid.NewGuid(), Title = "page", Content = "cntnt", IsPublished = true };
-            var submissions = new List<PageContentSubmission>
-            {
-                new PageContentSubmission() { Id = Guid.NewGuid(), Content = "asdasd", PageEdit=page },
-                new PageContentSubmission() { Id = Guid.NewGuid(), Content = "asdasd", PageEdit=page }
-            };
-            var mockedSet = QueryableDbSetMock.GetQueryableMockDbSet<PageContentSubmission>(submissions);
-            mockedDbContext.Setup(c => c.Set<PageContentSubmission>()).Returns(mockedSet);
-            mockedDbContext.Setup(c => c.PageContentSubmissions).Returns(mockedSet);
-            var repositoryUnderTest = new ContentSubmissionRepository(mockedDbContext.Object);
-
-            //Act & Assert
-            var result = repositoryUnderTest.GetEdits("page");
-
-            //Assert
-            Assert.IsInstanceOf<IEnumerable<PageContentSubmission>>(result);
-        }
     }
 }

@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.DTOs.PageViewsDTOs;
-using SotnWiki.Models;
 using SotnWiki.MvcClient.Controllers;
 using SotnWiki.MvcClient.Models;
 using SotnWiki.TextManipulation.Contracts;

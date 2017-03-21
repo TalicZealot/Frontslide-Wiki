@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
 {
     [TestFixture]
-    public class SubmitEditShould
+    public class SubmitAndPublishEditShould
     {
         [Test]
         public void ThrowArgumentNullExceptionWhenTitleArgumentIsNull()
@@ -24,7 +24,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
 
             //Act
-            var exc = Assert.Throws<ArgumentNullException>(() => submissionServiceUnderTest.SubmitEdit("asdasd", null));
+            var exc = Assert.Throws<ArgumentNullException>(() => submissionServiceUnderTest.SubmitAndPublishEdit("asdasd", null));
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -42,7 +42,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
 
             //Act
-            var exc = Assert.Throws<ArgumentException>(() => submissionServiceUnderTest.SubmitEdit("asdasd", ""));
+            var exc = Assert.Throws<ArgumentException>(() => submissionServiceUnderTest.SubmitAndPublishEdit("asdasd", ""));
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -60,7 +60,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
 
             //Act
-            var exc = Assert.Throws<ArgumentNullException>(() => submissionServiceUnderTest.SubmitEdit(null, "asdasd"));
+            var exc = Assert.Throws<ArgumentNullException>(() => submissionServiceUnderTest.SubmitAndPublishEdit(null, "asdasd"));
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -78,7 +78,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
 
             //Act
-            var exc = Assert.Throws<ArgumentException>(() => submissionServiceUnderTest.SubmitEdit("", "asdasd"));
+            var exc = Assert.Throws<ArgumentException>(() => submissionServiceUnderTest.SubmitAndPublishEdit("", "asdasd"));
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -103,7 +103,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var expectedExceptionMessage = "Page not found!";
 
             //Act
-            var exc = Assert.Throws<NullReferenceException>(() => submissionServiceUnderTest.SubmitEdit(expectedContent, "test_title"));
+            var exc = Assert.Throws<NullReferenceException>(() => submissionServiceUnderTest.SubmitAndPublishEdit(expectedContent, "test_title"));
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -133,7 +133,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             mockedPageRepository.Setup(r => r.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
-            submissionServiceUnderTest.SubmitEdit(expectedContent, "test_title");
+            submissionServiceUnderTest.SubmitAndPublishEdit(expectedContent, "test_title");
             var edit = edits[0];
 
             //Assert
@@ -154,7 +154,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
                 x => {
                     edits.Add(x);
                 });
-            string expectedContent = "test content";
+            string expectedContent = "aa";
             var page = new Page()
             {
                 Content = "aa",
@@ -163,11 +163,71 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             mockedPageRepository.Setup(r => r.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
 
             //Act
-            submissionServiceUnderTest.SubmitEdit(expectedContent, "test_title");
+            submissionServiceUnderTest.SubmitAndPublishEdit(expectedContent, "test_title");
+            var edit = edits[0];
+            
+            //Assert
+            Assert.AreEqual(expectedContent, edit.Content);
+        }
+
+        [Test]
+        public void SetsNewContentSubmissiponToHistory()
+        {
+            //Arrange
+            var mockedPageService = new Mock<IPageService>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            var mockedPageRepository = new Mock<IPageRepository>();
+            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
+            var edits = new List<PageContentSubmission>();
+            var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
+            mockedPageContentSubmissionRepository.Setup(x => x.Add(It.IsAny<PageContentSubmission>())).Callback<PageContentSubmission>(
+                x => {
+                    edits.Add(x);
+                });
+            string expectedContent = "aa";
+            var page = new Page()
+            {
+                Content = "aa",
+                LastEdit = null,
+            };
+            mockedPageRepository.Setup(r => r.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
+
+            //Act
+            submissionServiceUnderTest.SubmitAndPublishEdit(expectedContent, "test_title");
             var edit = edits[0];
 
             //Assert
-            Assert.AreEqual(expectedContent, edit.Content);
+            Assert.AreEqual(page, edit.PageHistory);
+        }
+
+        [Test]
+        public void SetsPageContentToContentArgument()
+        {
+            //Arrange
+            var mockedPageService = new Mock<IPageService>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            var mockedPageRepository = new Mock<IPageRepository>();
+            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
+            var edits = new List<PageContentSubmission>();
+            var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
+            mockedPageContentSubmissionRepository.Setup(x => x.Add(It.IsAny<PageContentSubmission>())).Callback<PageContentSubmission>(
+                x => {
+                    edits.Add(x);
+                });
+            string expectedContent = "zzzz";
+            var page = new Page()
+            {
+                Content = "aa",
+                LastEdit = null,
+            };
+            mockedPageRepository.Setup(r => r.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
+
+            //Act
+            submissionServiceUnderTest.SubmitAndPublishEdit(expectedContent, "test_title");
+            var edit = edits[0];
+
+            //Assert
+            Assert.AreEqual(expectedContent, page.Content);
         }
     }
 }

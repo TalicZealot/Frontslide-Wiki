@@ -54,7 +54,9 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
@@ -67,24 +69,32 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="TestStack.FluentMVCTesting, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\TestStack.FluentMVCTesting.3.0.0\lib\NET45\TestStack.FluentMVCTesting.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountControllerTests\ExternalLoginShould.cs" />
     <Compile Include="ApiControllerTests\CategoryShould.cs" />
     <Compile Include="ApiControllerTests\CheckTitleAvailabilityShould.cs" />
     <Compile Include="ApiControllerTests\ConstructorShould.cs" />
+    <Compile Include="EditControllerTests\ConstructorShould.cs" />
+    <Compile Include="EditControllerTests\EditPostShould.cs" />
     <Compile Include="HomeControllerTests\ConstructorShould.cs" />
     <Compile Include="HomeControllerTests\IndexShould.cs" />
     <Compile Include="HomeControllerTests\PageShould.cs" />
+    <Compile Include="LeaderboardsControllerTests\LeaderboardsShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchControllerTests\ConstructorShould.cs" />
+    <Compile Include="SearchControllerTests\SearchShould.cs" />
+    <Compile Include="SubmissionsControllerTests\ConstructorShould.cs" />
+    <Compile Include="SubmissionsControllerTests\NewPageGetShould.cs" />
+    <Compile Include="SubmissionsControllerTests\NewPagePostShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\SotnWiki.DTOs\SotnWiki.DTOs.csproj">
       <Project>{eca94fbd-c719-415c-93fb-3651550e13ca}</Project>
       <Name>SotnWiki.DTOs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Data\SotnWiki.Models\SotnWiki.Models.csproj">
-      <Project>{5cfebc1d-5e6f-49a2-a146-a11a6f5b2845}</Project>
-      <Name>SotnWiki.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Services\SotnWiki.DataServices\SotnWiki.DataServices.csproj">
       <Project>{fd908444-1b93-4eea-b95c-e67754a8b320}</Project>
@@ -103,6 +113,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
