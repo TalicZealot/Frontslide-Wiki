@@ -39,10 +39,10 @@ namespace SotnWiki.MvcClient.Controllers
                 {
                     return this.RedirectToAction("Page", "Home", new { name = model.Title });
                 }
-                return this.RedirectToAction("Page", "Home", "Index");
+                return this.RedirectToAction("Index", "Home");
             }
 
-            return new HttpStatusCodeResult(500);
+            return View(model);
         }
 
         [Authorize(Roles = "Editor, Admin")]
