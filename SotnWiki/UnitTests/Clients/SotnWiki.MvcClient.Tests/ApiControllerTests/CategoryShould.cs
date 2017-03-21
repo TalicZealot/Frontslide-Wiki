@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.DTOs.RunViewsDTOs;
-using SotnWiki.Models;
 using SotnWiki.MvcClient.Controllers;
 using System;
 using System.Collections.Generic;
