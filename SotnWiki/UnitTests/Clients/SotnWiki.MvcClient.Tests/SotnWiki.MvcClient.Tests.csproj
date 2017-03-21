@@ -79,6 +79,7 @@
     <Compile Include="ApiControllerTests\CheckTitleAvailabilityShould.cs" />
     <Compile Include="ApiControllerTests\ConstructorShould.cs" />
     <Compile Include="EditControllerTests\ConstructorShould.cs" />
+    <Compile Include="EditControllerTests\EditGetShould.cs" />
     <Compile Include="EditControllerTests\EditPostShould.cs" />
     <Compile Include="HomeControllerTests\ConstructorShould.cs" />
     <Compile Include="HomeControllerTests\IndexShould.cs" />

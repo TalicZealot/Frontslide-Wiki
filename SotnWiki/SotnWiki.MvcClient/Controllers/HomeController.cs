@@ -39,8 +39,6 @@ namespace SotnWiki.MvcClient.Controllers
             Guard.WhenArgument(name, "name").IsNullOrEmpty().Throw();
 
             var transformedName = name.Replace('_', ' ').Replace('-', ' ');
-
-            ViewBag.Message = "Your application description page.";
             var page = this.pageService.GetPageByTitle(transformedName);
             if (page == null)
             {
