@@ -28,6 +28,8 @@ namespace SotnWiki.DataServices
 
         public bool CheckTitleAvailability(string title)
         {
+            Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
+
             return this.pageRepository.CheckTitleAvailability(title);
         }
 
