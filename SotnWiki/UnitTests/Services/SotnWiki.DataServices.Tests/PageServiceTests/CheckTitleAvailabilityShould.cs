@@ -7,7 +7,7 @@ using System;
 namespace SotnWiki.DataServices.Tests.PageServiceTests
 {
     [TestFixture]
-    public class GetPageByTitleShould
+    public class CheckTitleAvailabilityShould
     {
         [Test]
         public void ThrowArgumentNullExceptionWhenTitleArgumentIsNull()
@@ -21,7 +21,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
             var expectedExceptionMessage = "title";
 
             //Act
-            var exc = Assert.Throws<ArgumentNullException>(() => pageServiceUnderTest.GetPageByTitle(null));
+            var exc = Assert.Throws<ArgumentNullException>(() => pageServiceUnderTest.CheckTitleAvailability(null));
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -39,14 +39,14 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
             var expectedExceptionMessage = "title";
 
             //Act
-            var exc = Assert.Throws<ArgumentException>(() => pageServiceUnderTest.GetPageByTitle(""));
+            var exc = Assert.Throws<ArgumentException>(() => pageServiceUnderTest.CheckTitleAvailability(""));
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
         }
 
         [Test]
-        public void CallGetPageByTitleMethodOfPageRepository()
+        public void CallCheckTitleAvailabilityMethodOfPageRepository()
         {
             //Arrange
             var mockedPageRepository = new Mock<IPageRepository>();
@@ -56,10 +56,45 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
             var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
 
             //Act
-            pageServiceUnderTest.GetPageByTitle("title");
+            var result = pageServiceUnderTest.CheckTitleAvailability("asasd");
 
             //Assert
-            mockedPageRepository.Verify(m => m.GetPageByTitle(It.IsAny<string>()), Times.Once());
+            mockedPageRepository.Verify(m => m.CheckTitleAvailability(It.IsAny<string>()), Times.Once());
+        }
+
+        [Test]
+        public void ReturnsResultOfTypeBool()
+        {
+            //Arrange
+            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedCharacterRepository = new Mock<ICharacterRepository>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+
+            //Act
+            var result = pageServiceUnderTest.CheckTitleAvailability("asasd");
+
+            //Assert
+            Assert.IsInstanceOf<Boolean>(result);
+        }
+
+        [Test]
+        public void ReturnsCorrectValue()
+        {
+            //Arrange
+            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedCharacterRepository = new Mock<ICharacterRepository>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            mockedPageRepository.Setup(r => r.CheckTitleAvailability(It.IsAny<string>())).Returns(true);
+
+            //Act
+            var result = pageServiceUnderTest.CheckTitleAvailability("asasd");
+
+            //Assert
+            Assert.AreEqual(true, result);
         }
     }
 }

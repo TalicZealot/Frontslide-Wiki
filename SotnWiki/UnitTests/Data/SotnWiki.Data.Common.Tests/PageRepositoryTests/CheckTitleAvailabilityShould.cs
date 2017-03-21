@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace SotnWiki.Data.Common.Tests.PageRepositoryTests
 {
     [TestFixture]
-    public class GetSubmissionByTitleShould
+    public class CheckTitleAvailabilityShould
     {
         [Test]
         public void ThrowArgumentNullExceptionWhenTitleIsNull()
@@ -28,7 +28,7 @@ namespace SotnWiki.Data.Common.Tests.PageRepositoryTests
             var repositoryUnderTest = new PageRepository(mockedDbContext.Object);
 
             //Act & Assert
-            var exc = Assert.Throws<ArgumentNullException>(() => { repositoryUnderTest.GetSubmissionByTitle(null); });
+            var exc = Assert.Throws<ArgumentNullException>(() => { repositoryUnderTest.CheckTitleAvailability(null); });
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -51,10 +51,32 @@ namespace SotnWiki.Data.Common.Tests.PageRepositoryTests
             var repositoryUnderTest = new PageRepository(mockedDbContext.Object);
 
             //Act & Assert
-            var exc = Assert.Throws<ArgumentException>(() => { repositoryUnderTest.GetSubmissionByTitle(""); });
+            var exc = Assert.Throws<ArgumentException>(() => { repositoryUnderTest.CheckTitleAvailability(""); });
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
+        }
+
+        [Test]
+        public void ReturnResultOfTypeBool()
+        {
+            //Arrange
+            var mockedDbContext = new Mock<ISotnWikiDbContext>();
+            var pages = new List<Page>
+            {
+                new Page() {Id = Guid.NewGuid(), Title = "page", Content = "cntnt"},
+                new Page() {Id = Guid.NewGuid(), Title = "page", Content = "cntnt"}
+            };
+            var mockedPageSet = QueryableDbSetMock.GetQueryableMockDbSet<Page>(pages);
+            mockedDbContext.Setup(c => c.Set<Page>()).Returns(mockedPageSet);
+            mockedDbContext.Setup(c => c.Pages).Returns(mockedPageSet);
+            var repositoryUnderTest = new PageRepository(mockedDbContext.Object);
+
+            //Act & Assert
+            var result = repositoryUnderTest.CheckTitleAvailability("asd");
+
+            //Assert
+            Assert.IsInstanceOf<Boolean>(result);
         }
     }
 }

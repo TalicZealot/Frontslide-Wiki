@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentSubmissionRepositoryTests\GetByIdProjectedShould.cs" />
     <Compile Include="ContentSubmissionRepositoryTests\GetSubmissionsShould.cs" />
     <Compile Include="EfGenericRepositoryTests\AddShould.cs" />
     <Compile Include="EfGenericRepositoryTests\ConstructorShould.cs" />
@@ -82,9 +83,12 @@
     <Compile Include="EfUnitOfWorkTests\CommitShould.cs" />
     <Compile Include="EfUnitOfWorkTests\ConstructorShould.cs" />
     <Compile Include="Mocks\QueryableDbSetMock.cs" />
+    <Compile Include="PageRepositoryTests\CheckTitleAvailabilityShould.cs" />
     <Compile Include="PageRepositoryTests\FindPagesShould.cs" />
     <Compile Include="PageRepositoryTests\GetPageByTitleShould.cs" />
+    <Compile Include="PageRepositoryTests\GetPageEntityByTitleShould.cs" />
     <Compile Include="PageRepositoryTests\GetSubmissionByTitleShould.cs" />
+    <Compile Include="PageRepositoryTests\GetSubmissionEntityByTitleShould.cs" />
     <Compile Include="PageRepositoryTests\GetSubmissionsShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunRepositoryTests\GetRunsInCategoryShould.cs" />

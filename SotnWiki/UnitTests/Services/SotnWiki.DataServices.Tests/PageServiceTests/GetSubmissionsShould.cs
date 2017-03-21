@@ -4,7 +4,6 @@ using SotnWiki.Data.Common;
 using SotnWiki.Data.Common.Contracts;
 using SotnWiki.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace SotnWiki.DataServices.Tests.PageServiceTests

@@ -48,10 +48,13 @@
     <Compile Include="ContentSubmissionServiceTests\GetPageContentSubmissionByIdShould.cs" />
     <Compile Include="ContentSubmissionServiceTests\GetSubmissionsShould.cs" />
     <Compile Include="ContentSubmissionServiceTests\PublishEditShould.cs" />
+    <Compile Include="ContentSubmissionServiceTests\SubmitAndPublishEditShould.cs" />
     <Compile Include="ContentSubmissionServiceTests\SubmitEditShould.cs" />
+    <Compile Include="PageServiceTests\CheckTitleAvailabilityShould.cs" />
     <Compile Include="PageServiceTests\ConstructorShould.cs" />
     <Compile Include="PageServiceTests\CreatePageShould.cs" />
     <Compile Include="PageServiceTests\DismissSubmissionShould.cs" />
+    <Compile Include="PageServiceTests\FindPagesShould.cs" />
     <Compile Include="PageServiceTests\GetPageByTitleShould.cs" />
     <Compile Include="PageServiceTests\GetSubmissionByTitleShould.cs" />
     <Compile Include="PageServiceTests\GetSubmissionsShould.cs" />

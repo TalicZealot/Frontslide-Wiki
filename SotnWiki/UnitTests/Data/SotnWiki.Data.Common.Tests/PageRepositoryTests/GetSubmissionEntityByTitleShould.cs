@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace SotnWiki.Data.Common.Tests.PageRepositoryTests
 {
     [TestFixture]
-    public class GetSubmissionByTitleShould
+    public class GetSubmissionEntityByTitleShould
     {
         [Test]
         public void ThrowArgumentNullExceptionWhenTitleIsNull()
@@ -28,7 +28,7 @@ namespace SotnWiki.Data.Common.Tests.PageRepositoryTests
             var repositoryUnderTest = new PageRepository(mockedDbContext.Object);
 
             //Act & Assert
-            var exc = Assert.Throws<ArgumentNullException>(() => { repositoryUnderTest.GetSubmissionByTitle(null); });
+            var exc = Assert.Throws<ArgumentNullException>(() => { repositoryUnderTest.GetSubmissionEntityByTitle(null); });
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -51,7 +51,7 @@ namespace SotnWiki.Data.Common.Tests.PageRepositoryTests
             var repositoryUnderTest = new PageRepository(mockedDbContext.Object);
 
             //Act & Assert
-            var exc = Assert.Throws<ArgumentException>(() => { repositoryUnderTest.GetSubmissionByTitle(""); });
+            var exc = Assert.Throws<ArgumentException>(() => { repositoryUnderTest.GetSubmissionEntityByTitle(""); });
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
