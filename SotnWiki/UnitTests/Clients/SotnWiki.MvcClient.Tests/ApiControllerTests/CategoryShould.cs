@@ -15,7 +15,7 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
     public class CategoryShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionIfNameParameterIsNull()
+        public void ThrowArgumentNullException_WhenNameParameterIsNull()
         {
             //Arrange
             var mockedRunService = new Mock<IRunService>();
@@ -31,7 +31,7 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionIfNameParameterIsEmptyString()
+        public void ThrowArgumentException_WhenNameParameterIsEmptyString()
         {
             //Arrange
             var mockedRunService = new Mock<IRunService>();

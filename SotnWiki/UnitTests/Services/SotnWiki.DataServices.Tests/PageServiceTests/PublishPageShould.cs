@@ -11,7 +11,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
     public class PublishPageShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenEditedContentArgumentIsNull()
+        public void ThrowArgumentNullException_WhenEditedContentArgumentIsNull()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -29,7 +29,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenEditedContentArgumentIsEmpty()
+        public void ThrowArgumentException_WhenEditedContentArgumentIsEmpty()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -47,7 +47,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenTitleArgumentIsNull()
+        public void ThrowArgumentNullException_WhenTitleArgumentIsNull()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -65,7 +65,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenTitleArgumentIsEmpty()
+        public void ThrowArgumentException_WhenTitleArgumentIsEmpty()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -83,7 +83,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowNullReferenceExceptionWhenPageIsNotFound()
+        public void ThrowNullReferenceException_WhenPageIsNotFound()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();

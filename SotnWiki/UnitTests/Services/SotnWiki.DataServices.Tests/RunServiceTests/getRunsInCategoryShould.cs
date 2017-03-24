@@ -4,6 +4,8 @@ using NUnit.Framework;
 using SotnWiki.Data.Common;
 using System;
 using SotnWiki.Data.Common.Contracts;
+using System.Collections.Generic;
+using SotnWiki.DTOs.RunViewsDTOs;
 
 namespace SotnWiki.DataServices.Tests.RunServiceTests
 {
@@ -14,7 +16,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
         public class ConstructorShould
         {
             [Test]
-            public void ThrowArgumentNullExceptionWhenPassedCategoryNameIsNull()
+            public void ThrowArgumentNullException_WhenPassedCategoryNameIsNull()
             {
                 //Arrange
                 var mockedRunRepository = new Mock<IRunRepository>();
@@ -47,6 +49,21 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
 
                 //Assert
                 StringAssert.Contains(expectedExceptionMessage, exc.Message);
+            }
+
+            [Test]
+            public void ReturnCollectionOfTypeLeaderboardRunDTO()
+            {
+                //Arrange
+                var mockedRunRepository = new Mock<IRunRepository>();
+                Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };
+                var serviceUnderTest = new RunService(mockedRunRepository.Object, mockedUnitOfWorkFactory);
+
+                //Act
+                var result = serviceUnderTest.GetRunsInCategory("123asd");
+
+                //Assert
+                Assert.IsInstanceOf<IEnumerable<LeaderboardRunDTO>>(result);
             }
         }
     }

@@ -8,7 +8,7 @@ namespace SotnWiki.MvcClient.Tests.SearchControllerTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenPageServicetIsNull()
+        public void ThrowArgumentNullException_WhenPageServicetIsNull()
         {
             //Arrange
             string expectedExceptionMessage = "IPageService";

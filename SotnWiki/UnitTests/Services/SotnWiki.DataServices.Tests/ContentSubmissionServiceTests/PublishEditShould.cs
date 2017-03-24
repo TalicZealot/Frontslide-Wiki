@@ -12,7 +12,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
     public class PublishEditShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenTitleArgumentIsNull()
+        public void ThrowArgumentNullException_WhenTitleArgumentIsNull()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();

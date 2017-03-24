@@ -7,7 +7,7 @@ namespace SotnWiki.Data.Common.Tests.EfUnitOfWorkTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenContextIsNull()
+        public void ThrowArgumentNullException_WhenContextIsNull()
         {
             //Arrange
             string expectedExceptionMessage = "ISotnWikiDbContext";

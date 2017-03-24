@@ -12,7 +12,7 @@ namespace SotnWiki.Data.Common.Tests.PageEfRepositoryTests
     public class CheckTitleAvailabilityShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenTitleIsNull()
+        public void ThrowArgumentNullException_WhenTitleIsNull()
         {
             //Arrange
             var mockedDbContext = new Mock<ISotnWikiDbContext>();
@@ -35,7 +35,7 @@ namespace SotnWiki.Data.Common.Tests.PageEfRepositoryTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenTitleIsEmptyString()
+        public void ThrowArgumentNullException_WhenTitleIsEmptyString()
         {
             //Arrange
             var mockedDbContext = new Mock<ISotnWikiDbContext>();

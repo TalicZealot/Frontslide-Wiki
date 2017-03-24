@@ -12,7 +12,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
     public class GetByIdShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenPassedEntityIsNull()
+        public void ThrowArgumentNullException_WhenPassedEntityIsNull()
         {
             //Arrange
             var pages = new List<Page>

@@ -9,7 +9,7 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionIfPageServiceIsNull()
+        public void ThrowArgumentNullException_WhenPageServiceIsNull()
         {
             //Arrange
             var mockedRunService = new Mock<IRunService>();
@@ -23,7 +23,7 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionIfRunServiceIsNull()
+        public void ThrowArgumentNullException_WhenRunServiceIsNull()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();

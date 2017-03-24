@@ -13,7 +13,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
     public class IndexShould
     {
         [Test]
-        public void ReturnObjectOfTypeHttpNotFoundResultIfPageServiceReturnsNull()
+        public void ReturnObjectOfTypeHttpNotFoundResult_WhenPageServiceReturnsNull()
         {
             //Arrange
             var mockedConverter = new Mock<IMarkupConverter>();

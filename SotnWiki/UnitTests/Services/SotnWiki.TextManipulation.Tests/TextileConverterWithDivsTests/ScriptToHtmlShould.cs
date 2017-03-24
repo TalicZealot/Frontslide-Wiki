@@ -9,7 +9,7 @@ namespace SotnWiki.TextManipulation.Tests.TextileConverterWithDivsTests
     public class ScriptToHtmlShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenContextIsNull()
+        public void ThrowArgumentNullException_WhenContextIsNull()
         {
             //Arrange
             string expectedExceptionMessage = "script";
@@ -24,7 +24,7 @@ namespace SotnWiki.TextManipulation.Tests.TextileConverterWithDivsTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenContextIsEmptyString()
+        public void ThrowArgumentException_WhenContextIsEmptyString()
         {
             //Arrange
             string expectedExceptionMessage = "script";

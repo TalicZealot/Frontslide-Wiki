@@ -27,7 +27,7 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void RenderEditViewWhenModelHasErrors()
+        public void RenderEditView_WhenModelHasErrors()
         {
             //Arrange
             var model = new EditViewModel();
@@ -39,7 +39,7 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void RedirectToThePageWhenModelIsValidAndPublishIsTrue()
+        public void RedirectToThePage_WhenModelIsValidAndPublishIsTrue()
         {
             //Arrange
             var model = new EditViewModel() { Publish = true, Content = "asdasd", Title = "asdasd" };
@@ -55,7 +55,7 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void RedirectToTheHomePageWhenModelIsValidAndPublishIsTrue_ButUserIsNotInRequiredRoles()
+        public void RedirectToTheHomePage_WhenModelIsValidAndPublishIsTrue_ButUserIsNotInRequiredRoles()
         {
             //Arrange
             var model = new EditViewModel() { Publish = true, Content = "asdasd", Title = "asdasd" };
@@ -71,7 +71,7 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void CallSubmitAndPublishEditWhenModelPublishPropertyIsTrueAndUserIsValid()
+        public void CallSubmitAndPublishEdit_WhenModelPublishPropertyIsTrueAndUserIsValid()
         {
             //Arrange
             var model = new EditViewModel() { Publish = true };
@@ -89,7 +89,7 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void NotCallSubmitAndPublishEditWhenModelPublishPropertyIsTrueAndUserIsInvalid()
+        public void NotCallSubmitAndPublishEdit_WhenModelPublishPropertyIsTrueAndUserIsInvalid()
         {
             //Arrange
             var model = new EditViewModel() { Publish = true };
@@ -107,7 +107,7 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void CallSubmitEditWhenModelPublishPropertyIsFalse()
+        public void CallSubmitEdit_WhenModelPublishPropertyIsFalse()
         {
             //Arrange
             var model = new EditViewModel() { Publish = false };

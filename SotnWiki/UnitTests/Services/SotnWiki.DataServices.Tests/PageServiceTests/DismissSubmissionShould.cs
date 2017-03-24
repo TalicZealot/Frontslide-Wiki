@@ -12,7 +12,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
     public class DismissSubmissionShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenTitleIsNull()
+        public void ThrowArgumentNullException_WhenTitleIsNull()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -30,7 +30,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenTitleIsEmpty()
+        public void ThrowArgumentException_WhenTitleIsEmpty()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -48,7 +48,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowNullReferenceExceptionWhenPageIsNotFound()
+        public void ThrowNullReferenceException_WhenPageIsNotFound()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();

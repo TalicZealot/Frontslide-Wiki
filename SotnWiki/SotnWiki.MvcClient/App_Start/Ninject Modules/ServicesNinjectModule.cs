@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using Ninject.Extensions.Conventions;
 using Ninject.Modules;
 using SotnWiki.Auth;
@@ -25,6 +26,7 @@ namespace SotnWiki.MvcClient.App_Start.Ninject_Modules
 
             this.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
             this.Bind<IUserService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
+            this.Bind<IAuthenticationManager>().ToMethod(_ => HttpContext.Current.GetOwinContext().Authentication);
         }
     }
 }

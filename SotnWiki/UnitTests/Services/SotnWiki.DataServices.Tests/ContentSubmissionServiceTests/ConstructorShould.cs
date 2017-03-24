@@ -12,7 +12,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenPageServicetIsNull()
+        public void ThrowArgumentNullException_WhenPageServicetIsNull()
         {
             //Arrange
             var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
@@ -29,7 +29,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenPageContentSubmissionRepositoryIsNull()
+        public void ThrowArgumentNullException_WhenPageContentSubmissionRepositoryIsNull()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
@@ -47,7 +47,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenPageEfRepositoryIsNull()
+        public void ThrowArgumentNullException_WhenPageEfRepositoryIsNull()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
@@ -65,7 +65,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenUnitOfWorkFactoryIsNull()
+        public void ThrowArgumentNullException_WhenUnitOfWorkFactoryIsNull()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();

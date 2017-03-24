@@ -11,7 +11,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenPageEfRepositoryIsNull()
+        public void ThrowArgumentNullException_WhenPageEfRepositoryIsNull()
         {
             //Arrange
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
@@ -27,7 +27,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenCharacterRepositoryIsNull()
+        public void ThrowArgumentNullException_WhenCharacterRepositoryIsNull()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -43,7 +43,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenUnitOfWorkFactoryIsNull()
+        public void ThrowArgumentNullException_WhenUnitOfWorkFactoryIsNull()
         {
             //Arrange
             var mockedCharacterRepository = new Mock<ICharacterRepository>();

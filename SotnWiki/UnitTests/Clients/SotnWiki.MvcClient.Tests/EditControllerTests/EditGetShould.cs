@@ -5,10 +5,6 @@ using SotnWiki.DTOs.PageViewsDTOs;
 using SotnWiki.MvcClient.Controllers;
 using SotnWiki.MvcClient.Models;
 using System;
-using System.Security.Principal;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
 using TestStack.FluentMVCTesting;
 
 namespace SotnWiki.MvcClient.Tests.EditControllerTests
@@ -29,13 +25,13 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenNameIsNull()
+        public void ThrowArgumentNullException_WhenNameIsNull()
         {
             //Arrange
             var model = new EditViewModel();
             string expectedExceptionMessage = "name";
 
-            //Arrange & ACT & Assert
+            //Act
             var exc = Assert.Throws<ArgumentNullException>(() => { controllerUnderTest.Edit((string)null); });
 
             //Assert
@@ -43,13 +39,13 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenNameIsEmptyString()
+        public void ThrowArgumentException_WhenNameIsEmptyString()
         {
             //Arrange
             var model = new EditViewModel();
             string expectedExceptionMessage = "name";
 
-            //Arrange & ACT & Assert
+            //Act
             var exc = Assert.Throws<ArgumentException>(() => { controllerUnderTest.Edit(""); });
 
             //Assert
@@ -67,7 +63,7 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void ReturnHttpNotFoundIfPageIsNotFound()
+        public void ReturnHttpNotFound_WhenPageIsNotFound()
         {
             //Arrange
             mockedPageService.Setup(p => p.GetPageByTitle(It.IsAny<string>())).Returns((PageViewDTO)null);

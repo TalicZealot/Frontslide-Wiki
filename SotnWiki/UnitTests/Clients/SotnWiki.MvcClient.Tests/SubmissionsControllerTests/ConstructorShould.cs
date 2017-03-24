@@ -10,7 +10,7 @@ namespace SotnWiki.MvcClient.Tests.SubmissionsControllerTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenPageServicetIsNull()
+        public void ThrowArgumentNullException_WhenPageServicetIsNull()
         {
             //Arrange
             string expectedExceptionMessage = "pageService";
@@ -24,7 +24,7 @@ namespace SotnWiki.MvcClient.Tests.SubmissionsControllerTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenContentSubmissionServiceIsNull()
+        public void ThrowArgumentNullException_WhenContentSubmissionServiceIsNull()
         {
             //Arrange
             string expectedExceptionMessage = "contentSubmissionService";

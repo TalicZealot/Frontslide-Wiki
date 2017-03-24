@@ -11,7 +11,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenPageServicetIsNull()
+        public void ThrowArgumentNullException_WhenPageServicetIsNull()
         {
             //Arrange
             string expectedExceptionMessage = "IPageService";
@@ -25,7 +25,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenMarkupConverterIsNull()
+        public void ThrowArgumentNullException_WhenMarkupConverterIsNull()
         {
             //Arrange
             string expectedExceptionMessage = "IMarkupConverter";

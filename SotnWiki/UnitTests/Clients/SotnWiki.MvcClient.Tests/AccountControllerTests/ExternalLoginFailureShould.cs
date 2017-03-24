@@ -3,12 +3,12 @@ using Moq;
 using NUnit.Framework;
 using SotnWiki.Auth.Contracts;
 using SotnWiki.MvcClient.Controllers;
-using System.Web.Mvc;
+using TestStack.FluentMVCTesting;
 
 namespace SotnWiki.MvcClient.Tests.AccountControllerTests
 {
     [TestFixture]
-    public class ExternalLoginShould
+    public class ExternalLoginFailureShould
     {
         private AccountController controllerUnderTest;
         private Mock<IUserService> mockedUserService;
@@ -25,17 +25,11 @@ namespace SotnWiki.MvcClient.Tests.AccountControllerTests
         }
 
         [Test]
-        public void ShouldReturnChallengeResult()
+        public void ShouldRenderDefaultView()
         {
-            //Arrange
-            var UrlHelperMock = new Mock<UrlHelper>();
-            controllerUnderTest.Url = UrlHelperMock.Object;
-
-            //Act
-            var result = controllerUnderTest.ExternalLogin("asd", "asd");
-
-            //Assert
-            Assert.IsInstanceOf<HttpUnauthorizedResult>(result);
+            //Arrange & ACT & Assert
+            controllerUnderTest.WithCallTo(c => c.ExternalLoginFailure())
+            .ShouldRenderDefaultView();
         }
     }
 }

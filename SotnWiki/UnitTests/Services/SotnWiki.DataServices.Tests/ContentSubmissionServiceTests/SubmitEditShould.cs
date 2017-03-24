@@ -13,7 +13,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
     public class SubmitEditShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenTitleArgumentIsNull()
+        public void ThrowArgumentNullException_WhenTitleArgumentIsNull()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
@@ -31,7 +31,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenTitleArgumentIsEmptyString()
+        public void ThrowArgumentException_WhenTitleArgumentIsEmptyString()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
@@ -49,7 +49,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenContentArgumentIsNull()
+        public void ThrowArgumentNullException_WhenContentArgumentIsNull()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
@@ -67,7 +67,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenContentArgumentIsEmptyString()
+        public void ThrowArgumentException_WhenContentArgumentIsEmptyString()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
@@ -85,7 +85,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         }
 
         [Test]
-        public void ThrowNullReferenceExceptionWhenPageIsNotFound()
+        public void ThrowNullReferenceException_WhenPageIsNotFound()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();

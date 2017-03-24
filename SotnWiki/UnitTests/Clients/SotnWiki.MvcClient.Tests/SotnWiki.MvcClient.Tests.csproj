@@ -34,6 +34,12 @@
       <HintPath>..\..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
@@ -48,6 +54,9 @@
     <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web" />
@@ -74,7 +83,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountControllerTests\ConstructorShould.cs" />
+    <Compile Include="AccountControllerTests\ExternalLoginCallbackShould.cs" />
+    <Compile Include="AccountControllerTests\ExternalLoginFailureShould.cs" />
     <Compile Include="AccountControllerTests\ExternalLoginShould.cs" />
+    <Compile Include="AccountControllerTests\LogOffShould.cs" />
     <Compile Include="ApiControllerTests\CategoryShould.cs" />
     <Compile Include="ApiControllerTests\CheckTitleAvailabilityShould.cs" />
     <Compile Include="ApiControllerTests\ConstructorShould.cs" />
@@ -96,6 +109,10 @@
     <ProjectReference Include="..\..\..\Data\SotnWiki.DTOs\SotnWiki.DTOs.csproj">
       <Project>{eca94fbd-c719-415c-93fb-3651550e13ca}</Project>
       <Name>SotnWiki.DTOs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\SotnWiki.Auth\SotnWiki.Auth.csproj">
+      <Project>{769fb0d9-55d6-412e-a072-d993c46ab014}</Project>
+      <Name>SotnWiki.Auth</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Services\SotnWiki.DataServices\SotnWiki.DataServices.csproj">
       <Project>{fd908444-1b93-4eea-b95c-e67754a8b320}</Project>

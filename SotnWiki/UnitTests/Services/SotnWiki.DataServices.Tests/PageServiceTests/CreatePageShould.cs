@@ -12,7 +12,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
     public class CreatePageShould
     {
         [Test]
-        public void ThrowArgumentOutOfRangeExceptionWhenCharacterNameArgumentIsLessThanOne()
+        public void ThrowArgumentOutOfRangeException_WhenCharacterNameArgumentIsLessThanOne()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -30,7 +30,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentOutOfRangeExceptionWhenCharacterNameArgumentIsGreaterThanFour()
+        public void ThrowArgumentOutOfRangeException_WhenCharacterNameArgumentIsGreaterThanFour()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -48,7 +48,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenTypeArgumentIsNull()
+        public void ThrowArgumentNullException_WhenTypeArgumentIsNull()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -66,7 +66,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenTypeArgumentIsEmpty()
+        public void ThrowArgumentException_WhenTypeArgumentIsEmpty()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -84,7 +84,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenTitleArgumentIsNull()
+        public void ThrowArgumentNullException_WhenTitleArgumentIsNull()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -102,7 +102,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenTitleArgumentIsEmpty()
+        public void ThrowArgumentException_WhenTitleArgumentIsEmpty()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -120,7 +120,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenContentArgumentIsNull()
+        public void ThrowArgumentNullException_WhenContentArgumentIsNull()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -138,7 +138,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenContentArgumentIsEmpty()
+        public void ThrowArgumentException_WhenContentArgumentIsEmpty()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -156,7 +156,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowNullReferenceExceptionWhenCharacterRepositoryDoesntFindCharacter()
+        public void ThrowNullReferenceException_WhenCharacterRepositoryDoesntFindCharacter()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -238,7 +238,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void CreatePageWithGeneralCharacterPropertyWhenTypeParameterIsGeneral()
+        public void CreatePageWithGeneralCharacterProperty_WhenTypeParameterIsGeneral()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -264,7 +264,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void CreatePageWithCategoryCharacterPropertyWhenTypeParameterIsCategory()
+        public void CreatePageWithCategoryCharacterProperty_WhenTypeParameterIsCategory()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -290,7 +290,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void CreatePageWithGlitchCharacterPropertyWhenTypeParameterIsGlitch()
+        public void CreatePageWithGlitchCharacterProperty_WhenTypeParameterIsGlitch()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();

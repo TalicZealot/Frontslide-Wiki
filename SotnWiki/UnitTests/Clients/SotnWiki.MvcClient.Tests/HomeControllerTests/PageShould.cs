@@ -14,7 +14,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
     public class PageShould
     {
         [Test]
-        public void ReturnObjectOfTypeHttpNotFoundResultIfPageServiceReturnsNull()
+        public void ReturnObjectOfTypeHttpNotFoundResult_WhenPageServiceReturnsNull()
         {
             //Arrange
             var mockedConverter = new Mock<IMarkupConverter>();
@@ -32,7 +32,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionIfPassedNameParameterIsNull()
+        public void ThrowArgumentNullException_WhenPassedNameParameterIsNull()
         {
             //Arrange
             var mockedConverter = new Mock<IMarkupConverter>();
@@ -56,7 +56,7 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionIfPassedNameParameterIsEmptyString()
+        public void ThrowArgumentException_WhenPassedNameParameterIsEmptyString()
         {
             //Arrange
             var mockedConverter = new Mock<IMarkupConverter>();

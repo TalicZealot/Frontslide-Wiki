@@ -10,7 +10,7 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionIfPageServiceIsNull()
+        public void ThrowArgumentNullException_WhenPageServiceIsNull()
         {
             //Arrange
             var mockedContentSubmissionService = new Mock<IContentSubmissionService>();
@@ -24,7 +24,7 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionIfContentSubmissionServiceIsNull()
+        public void ThrowArgumentNullException_WhenContentSubmissionServiceIsNull()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();

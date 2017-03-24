@@ -27,7 +27,7 @@ namespace SotnWiki.MvcClient.Tests.SubmissionsControllerTests
         }
 
         [Test]
-        public void ShouldRenderDefaultViewWithSameModelWhenModelHasErrors()
+        public void ShouldRenderDefaultViewWithSameModel_WhenModelHasErrors()
         {
             //Arrange
             var vm = new NewPageViewModel();
@@ -39,7 +39,7 @@ namespace SotnWiki.MvcClient.Tests.SubmissionsControllerTests
         }
 
         [Test]
-        public void ShouldRedirectToHomePageWhenModelPublishIsFalse()
+        public void ShouldRedirectToHomePage_WhenModelPublishIsFalse()
         {
             //Arrange
             var vm = new NewPageViewModel() { Character = "Alucard", Content = "asdasd", Title = "asdasd", Type = "asdasd", Publish = false };
@@ -50,7 +50,7 @@ namespace SotnWiki.MvcClient.Tests.SubmissionsControllerTests
         }
 
         [Test]
-        public void ShouldRedirectToTheNewPageWhenModelPublishIsTrue()
+        public void ShouldRedirectToTheNewPage_WhenModelPublishIsTrue()
         {
             //Arrange
             var expectedRouteValue = "test-title";

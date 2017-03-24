@@ -11,7 +11,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
     public class DeleteShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenPassedEntityIsNull()
+        public void ThrowArgumentNullException_WhenPassedEntityIsNull()
         {
             //Arrange
             var pages = new List<Page>

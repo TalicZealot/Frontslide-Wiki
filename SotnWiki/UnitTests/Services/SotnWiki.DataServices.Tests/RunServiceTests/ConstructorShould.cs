@@ -9,7 +9,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenRunRepositoryIsNull()
+        public void ThrowArgumentNullException_WhenRunRepositoryIsNull()
         {
             //Arrange
             Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };

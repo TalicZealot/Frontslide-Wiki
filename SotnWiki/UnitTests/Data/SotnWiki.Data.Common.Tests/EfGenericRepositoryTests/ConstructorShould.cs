@@ -10,7 +10,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenContextIsNull()
+        public void ThrowArgumentNullException_WhenContextIsNull()
         {
             //Arrange
             string expectedExceptionMessage = "ISotnWikiDbContext";
@@ -23,7 +23,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenContextDbSetIsNull()
+        public void ThrowArgumentException_WhenContextDbSetIsNull()
         {
             //Arrange
             var mockedDbContext = new Mock<ISotnWikiDbContext>();

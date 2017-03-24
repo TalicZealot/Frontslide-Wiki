@@ -7,7 +7,7 @@ namespace SotnWiki.TextManipulation.Tests.TextileConverterWithDivsTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenRunRepositoryIsNull()
+        public void ThrowArgumentNullException_WhenRunRepositoryIsNull()
         {
             //Arrange
             string expectedExceptionMessage = "IMarkupConverter";

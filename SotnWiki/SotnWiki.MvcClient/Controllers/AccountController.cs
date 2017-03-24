@@ -15,17 +15,19 @@ namespace SotnWiki.MvcClient.Controllers
     {
         private readonly ISignInService signInService;
         private readonly IUserService userService;
+        private readonly IAuthenticationManager authenticationManager;
 
-        public AccountController(ISignInService signInService, IUserService userService)
+        public AccountController(ISignInService signInService, IUserService userService, IAuthenticationManager authenticationManager)
         {
             Guard.WhenArgument(signInService, "signInService").IsNull().Throw();
             Guard.WhenArgument(userService, "userService").IsNull().Throw();
+            Guard.WhenArgument(authenticationManager, "authenticationManager").IsNull().Throw();
 
+            this.authenticationManager = authenticationManager;
             this.signInService = signInService;
             this.userService = userService;
         }
 
-        //
         // POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
@@ -36,12 +38,12 @@ namespace SotnWiki.MvcClient.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-        //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+            //gee thanks for this stupid static method Microsoft DansGame
+            var loginInfo = await this.authenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
                 return RedirectToAction("ExternalLoginFailure");
@@ -58,7 +60,7 @@ namespace SotnWiki.MvcClient.Controllers
                 case SignInStatus.Failure:
                 default:
                     //create new account
-                    var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+                    var info = await this.authenticationManager.GetExternalLoginInfoAsync();
                     if (info == null)
                     {
                         return View("ExternalLoginFailure");
@@ -79,17 +81,15 @@ namespace SotnWiki.MvcClient.Controllers
             }
         }
 
-        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            this.authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
 
-        //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()

@@ -12,7 +12,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
     public class GetSubmissionByTitleShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenTitleArgumentIsNull()
+        public void ThrowArgumentNullException_WhenTitleArgumentIsNull()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();
@@ -30,7 +30,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ThrowArgumentExceptionWhenTitleArgumentIsEmpty()
+        public void ThrowArgumentException_WhenTitleArgumentIsEmpty()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();

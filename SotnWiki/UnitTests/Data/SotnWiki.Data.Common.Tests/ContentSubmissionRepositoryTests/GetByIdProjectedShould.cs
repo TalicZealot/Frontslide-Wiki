@@ -12,7 +12,7 @@ namespace SotnWiki.Data.Common.Tests.ContentSubmissionRepositoryTests
     public class GetByIdProjectedShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenIdIsNull()
+        public void ThrowArgumentNullException_WhenIdIsNull()
         {
             //Arrange
             var mockedDbContext = new Mock<ISotnWikiDbContext>();
