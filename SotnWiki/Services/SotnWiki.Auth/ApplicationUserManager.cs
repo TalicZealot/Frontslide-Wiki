@@ -2,11 +2,12 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using SotnWiki.Auth.Contracts;
 using System;
 
 namespace SotnWiki.Auth
 {
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    public class ApplicationUserManager : UserManager<ApplicationUser>, IUserService
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
@@ -59,6 +60,11 @@ namespace SotnWiki.Auth
                 manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+
+        public ApplicationUser FindById(string userId)
+        {
+            return UserManagerExtensions.FindById(this, userId);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using Bytes2you.Validation;
-using System;
+using SotnWiki.Data.Common.Contracts;
 
-namespace SotnWiki.Data.Common
+namespace SotnWiki.Data
 {
-    public class EfUnitOfWork : IUnitOfWork
+    public class EfUnitOfWork : IEfUnitOfWork
     {
         private readonly ISotnWikiDbContext context;
 

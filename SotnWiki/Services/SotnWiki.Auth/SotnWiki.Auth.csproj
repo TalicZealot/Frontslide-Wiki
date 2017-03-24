@@ -93,6 +93,8 @@
     <Compile Include="ApplicationSignInManager.cs" />
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="ApplicationUserManager.cs" />
+    <Compile Include="Contracts\ISignInService.cs" />
+    <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="IdentityHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -104,9 +106,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

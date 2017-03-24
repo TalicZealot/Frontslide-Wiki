@@ -11,12 +11,12 @@ namespace SotnWiki.DataServices
     public class RunService : IRunService
     {
         private readonly IRunRepository runRepository;
-        private readonly Func<IUnitOfWork> unitOfWorkFactory;
+        private readonly Func<IEfUnitOfWork> unitOfWorkFactory;
 
-        public RunService(IRunRepository runRepository, Func<IUnitOfWork> unitOfWorkFactory)
+        public RunService(IRunRepository runRepository, Func<IEfUnitOfWork> unitOfWorkFactory)
         {
             Guard.WhenArgument(runRepository, nameof(IRunRepository)).IsNull().Throw();
-            Guard.WhenArgument(unitOfWorkFactory, nameof(Func<IUnitOfWork>)).IsNull().Throw();
+            Guard.WhenArgument(unitOfWorkFactory, nameof(Func<IEfUnitOfWork>)).IsNull().Throw();
 
             this.runRepository = runRepository;
             this.unitOfWorkFactory = unitOfWorkFactory;

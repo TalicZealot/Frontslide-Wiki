@@ -4,7 +4,6 @@ using SotnWiki.Data.Common.Tests.Mocks;
 using SotnWiki.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 
 namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
 {
@@ -27,7 +26,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
             mockedDbContext.Setup(c => c.Pages).Returns(mockedPageSet);
             string expectedExceptionMessage = "entity";
 
-            var repositoryUnderTest = new EfGenericRepository<Page>(mockedDbContext.Object);
+            var repositoryUnderTest = new EfRepository<Page>(mockedDbContext.Object);
 
             //Act & Assert
             var exc = Assert.Throws<ArgumentNullException>(() => repositoryUnderTest.Delete(null));

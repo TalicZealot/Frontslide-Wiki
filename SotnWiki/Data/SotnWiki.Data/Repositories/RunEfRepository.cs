@@ -6,11 +6,11 @@ using SotnWiki.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SotnWiki.Data.Common.Repositories
+namespace SotnWiki.Data.Repositories
 {
-    public class RunRepository : EfGenericRepository<Run>, IRunRepository
+    public class RunEfRepository : EfRepository<Run>, IRunRepository
     {
-        public RunRepository(ISotnWikiDbContext context)
+        public RunEfRepository(ISotnWikiDbContext context)
             : base(context)
         {
         }

@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using SotnWiki.Data.Common;
+using SotnWiki.Data.Common.Contracts;
 using System;
 
 namespace SotnWiki.DataServices.Tests.RunServiceTests
@@ -12,7 +12,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
         public void ThrowArgumentNullExceptionWhenRunRepositoryIsNull()
         {
             //Arrange
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };
             string expectedExceptionMessage = "IRunRepository";
 
             //Act

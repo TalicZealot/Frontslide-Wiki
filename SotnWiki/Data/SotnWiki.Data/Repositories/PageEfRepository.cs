@@ -6,11 +6,11 @@ using SotnWiki.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SotnWiki.Data.Common.Repositories
+namespace SotnWiki.Data.Repositories
 {
-    public class PageRepository : EfGenericRepository<Page>, IPageRepository
+    public class PageEfRepository : EfRepository<Page>, IPageEfRepository
     {
-        public PageRepository(ISotnWikiDbContext context)
+        public PageEfRepository(ISotnWikiDbContext context)
             : base(context)
         {
         }
@@ -46,7 +46,7 @@ namespace SotnWiki.Data.Common.Repositories
         public PageViewDTO GetSubmissionByTitle(string title)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
-            
+
             return this.DbSet.Where(x => !x.IsPublished && string.Equals(x.Title.ToLower(), title.ToLower())).ProjectToFirstOrDefault<PageViewDTO>();
         }
 

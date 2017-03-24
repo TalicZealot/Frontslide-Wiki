@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using SotnWiki.Data.Common.Repositories;
+using SotnWiki.Data.Repositories;
 using SotnWiki.Data.Common.Tests.Mocks;
 using SotnWiki.Models;
 using System;
@@ -25,7 +25,7 @@ namespace SotnWiki.Data.Common.Tests.RunRepositoryTests
             var mockedRunSet = QueryableDbSetMock.GetQueryableMockDbSet<Run>(runs);
             mockedDbContext.Setup(c => c.Set<Run>()).Returns(mockedRunSet);
             mockedDbContext.Setup(c => c.Runs).Returns(mockedRunSet);
-            var repositoryUnderTest = new RunRepository(mockedDbContext.Object);
+            var repositoryUnderTest = new RunEfRepository(mockedDbContext.Object);
 
             //Act & Assert
             var exc = Assert.Throws<ArgumentNullException>(() => { repositoryUnderTest.GetRunsInCategory(null); });
@@ -48,7 +48,7 @@ namespace SotnWiki.Data.Common.Tests.RunRepositoryTests
             var mockedRunSet = QueryableDbSetMock.GetQueryableMockDbSet<Run>(runs);
             mockedDbContext.Setup(c => c.Set<Run>()).Returns(mockedRunSet);
             mockedDbContext.Setup(c => c.Runs).Returns(mockedRunSet);
-            var repositoryUnderTest = new RunRepository(mockedDbContext.Object);
+            var repositoryUnderTest = new RunEfRepository(mockedDbContext.Object);
 
             //Act & Assert
             var exc = Assert.Throws<ArgumentException>(() => { repositoryUnderTest.GetRunsInCategory(""); });
@@ -71,7 +71,7 @@ namespace SotnWiki.Data.Common.Tests.RunRepositoryTests
             var mockedRunSet = QueryableDbSetMock.GetQueryableMockDbSet<Run>(runs);
             mockedDbContext.Setup(c => c.Set<Run>()).Returns(mockedRunSet);
             mockedDbContext.Setup(c => c.Runs).Returns(mockedRunSet);
-            var repositoryUnderTest = new RunRepository(mockedDbContext.Object);
+            var repositoryUnderTest = new RunEfRepository(mockedDbContext.Object);
 
             //Act & Assert
             var result = repositoryUnderTest.GetRunsInCategory("AlucardACE");

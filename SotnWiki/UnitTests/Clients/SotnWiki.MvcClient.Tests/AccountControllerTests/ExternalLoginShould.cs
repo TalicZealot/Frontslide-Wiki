@@ -11,11 +11,11 @@ namespace SotnWiki.MvcClient.Tests.AccountControllerTests
     {
         private AccountController controllerUnderTest;
 
-        [SetUp]
-        public void Setup()
-        {
-            controllerUnderTest = new AccountController();
-        }
+        //[SetUp]
+        //public void Setup()
+        //{
+        //    controllerUnderTest = new AccountController();
+        //}
 
         //[Test]
         //public void Render_default_view_for_get_to_index()

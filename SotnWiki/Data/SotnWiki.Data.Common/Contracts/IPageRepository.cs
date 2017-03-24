@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SotnWiki.Data.Common.Contracts
 {
-    public interface IPageRepository
+    public interface IPageEfRepository
     {
         bool CheckTitleAvailability(string title);
 

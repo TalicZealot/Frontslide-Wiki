@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Bytes2you.Validation;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SotnWiki.Auth;
+using SotnWiki.Auth.Contracts;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -11,41 +13,16 @@ namespace SotnWiki.MvcClient.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private readonly ISignInService signInService;
+        private readonly IUserService userService;
 
-        public AccountController()
+        public AccountController(ISignInService signInService, IUserService userService)
         {
-        }
+            Guard.WhenArgument(signInService, "signInService").IsNull().Throw();
+            Guard.WhenArgument(userService, "userService").IsNull().Throw();
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            this.signInService = signInService;
+            this.userService = userService;
         }
 
         //
@@ -71,7 +48,7 @@ namespace SotnWiki.MvcClient.Controllers
             }
 
             // Sign in the user with this external login provider if the user already has a login
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            var result = await this.signInService.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -87,13 +64,13 @@ namespace SotnWiki.MvcClient.Controllers
                         return View("ExternalLoginFailure");
                     }
                     var user = new ApplicationUser { UserName = info.DefaultUserName, Email = info.DefaultUserName };
-                    var createUserResult = await UserManager.CreateAsync(user);
+                    var createUserResult = await this.userService.CreateAsync(user);
                     if (createUserResult.Succeeded)
                     {
-                        createUserResult = await UserManager.AddLoginAsync(user.Id, info.Login);
+                        createUserResult = await this.userService.AddLoginAsync(user.Id, info.Login);
                         if (createUserResult.Succeeded)
                         {
-                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                             return RedirectToLocal(returnUrl);
                         }
                     }
@@ -124,16 +101,14 @@ namespace SotnWiki.MvcClient.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (this.userService != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    this.userService.Dispose();
                 }
 
-                if (_signInManager != null)
+                if (this.signInService != null)
                 {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    this.signInService.Dispose();
                 }
             }
 

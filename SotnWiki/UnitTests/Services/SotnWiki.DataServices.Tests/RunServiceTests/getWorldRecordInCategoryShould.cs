@@ -22,7 +22,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
             {
                 //Arrange
                 var mockedRunRepository = new Mock<IRunRepository>();
-                Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
+                Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };
                 var serviceUnderTest = new RunService(mockedRunRepository.Object, mockedUnitOfWorkFactory);
                 string expectedExceptionMessage = "categoryName";
 
@@ -40,7 +40,7 @@ namespace SotnWiki.DataServices.Tests.RunServiceTests
             {
                 //Arrange
                 var mockedRunRepository = new Mock<IRunRepository>();
-                Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
+                Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };
                 var serviceUnderTest = new RunService(mockedRunRepository.Object, mockedUnitOfWorkFactory);
                 string expectedExceptionMessage = "categoryName";
 

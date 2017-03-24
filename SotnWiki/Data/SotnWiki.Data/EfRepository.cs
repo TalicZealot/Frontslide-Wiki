@@ -2,14 +2,14 @@
 using System;
 using System.Data.Entity;
 
-namespace SotnWiki.Data.Common
+namespace SotnWiki.Data
 {
-    public class EfGenericRepository<T> where T : class
+    public class EfRepository<T> where T : class
     {
         private readonly ISotnWikiDbContext context;
         private readonly IDbSet<T> dbSet;
 
-        public EfGenericRepository(ISotnWikiDbContext context)
+        public EfRepository(ISotnWikiDbContext context)
         {
             Guard.WhenArgument(context, nameof(ISotnWikiDbContext)).IsNull().Throw();
             this.context = context;

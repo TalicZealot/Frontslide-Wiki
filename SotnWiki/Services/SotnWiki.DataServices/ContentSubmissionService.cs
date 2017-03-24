@@ -12,20 +12,20 @@ namespace SotnWiki.DataServices
     public class ContentSubmissionService : IContentSubmissionService
     {
         private readonly IContentSubmissionRepository pageContentSubmissionRepository;
-        private readonly IPageRepository pageRepository;
-        private readonly Func<IUnitOfWork> unitOfWorkFactory;
+        private readonly IPageEfRepository PageEfRepository;
+        private readonly Func<IEfUnitOfWork> unitOfWorkFactory;
         private readonly IPageService pageService;
 
-        public ContentSubmissionService(IContentSubmissionRepository pageContentSubmissionRepository, IPageRepository pageRepository, Func<IUnitOfWork> unitOfWorkFactory, IPageService pageService)
+        public ContentSubmissionService(IContentSubmissionRepository pageContentSubmissionRepository, IPageEfRepository PageEfRepository, Func<IEfUnitOfWork> unitOfWorkFactory, IPageService pageService)
         {
             Guard.WhenArgument(pageService, nameof(IPageService)).IsNull().Throw();
             Guard.WhenArgument(pageContentSubmissionRepository, nameof(IContentSubmissionRepository)).IsNull().Throw();
-            Guard.WhenArgument(pageRepository, nameof(IPageRepository)).IsNull().Throw();
-            Guard.WhenArgument(unitOfWorkFactory, nameof(Func<IUnitOfWork>)).IsNull().Throw();
+            Guard.WhenArgument(PageEfRepository, nameof(IPageEfRepository)).IsNull().Throw();
+            Guard.WhenArgument(unitOfWorkFactory, nameof(Func<IEfUnitOfWork>)).IsNull().Throw();
 
             this.pageService = pageService;
             this.pageContentSubmissionRepository = pageContentSubmissionRepository;
-            this.pageRepository = pageRepository;
+            this.PageEfRepository = PageEfRepository;
             this.unitOfWorkFactory = unitOfWorkFactory;
         }
 
@@ -34,7 +34,7 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
             Guard.WhenArgument(content, "content").IsNullOrEmpty().Throw();
 
-            var page = this.pageRepository.GetPageEntityByTitle(title);
+            var page = this.PageEfRepository.GetPageEntityByTitle(title);
             if (page == null)
             {
                 throw new NullReferenceException("Page not found!");
@@ -57,14 +57,14 @@ namespace SotnWiki.DataServices
             var pageContentSubmission = this.pageContentSubmissionRepository.GetById(id);
             pageContentSubmission.PageHistory = pageContentSubmission.PageEdit;
             pageContentSubmission.PageEdit = null;
-            var page = this.pageRepository.GetPageEntityByTitle(title);
+            var page = this.PageEfRepository.GetPageEntityByTitle(title);
             pageContentSubmission.Content = page.Content;
             page.Content = content;
             page.LastEdit = DateTime.Now;
 
             using (var unitOfWork = this.unitOfWorkFactory())
             {
-                this.pageRepository.Update(page);
+                this.PageEfRepository.Update(page);
                 this.pageContentSubmissionRepository.Update(pageContentSubmission);
                 unitOfWork.Commit();
             }
@@ -76,7 +76,7 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(content, "content").IsNullOrEmpty().Throw();
 
 
-            var page = this.pageRepository.GetPageEntityByTitle(title);
+            var page = this.PageEfRepository.GetPageEntityByTitle(title);
             if (page == null)
             {
                 throw new NullReferenceException("Page not found!");

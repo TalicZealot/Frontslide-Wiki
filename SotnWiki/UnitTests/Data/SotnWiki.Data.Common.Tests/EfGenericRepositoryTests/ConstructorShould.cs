@@ -16,7 +16,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
             string expectedExceptionMessage = "ISotnWikiDbContext";
 
             //Act & Assert
-            var exc = Assert.Throws<ArgumentNullException>(() => { new EfGenericRepository<Page>(null); });
+            var exc = Assert.Throws<ArgumentNullException>(() => { new EfRepository<Page>(null); });
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -31,7 +31,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
             string expectedExceptionMessage = "DbContext does not contain DbSet";
 
             //Act & Assert
-            var exc = Assert.Throws<ArgumentException>(() => { new EfGenericRepository<Page>(mockedDbContext.Object); });
+            var exc = Assert.Throws<ArgumentException>(() => { new EfRepository<Page>(mockedDbContext.Object); });
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);

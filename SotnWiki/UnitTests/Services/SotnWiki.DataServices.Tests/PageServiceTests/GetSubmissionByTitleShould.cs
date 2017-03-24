@@ -15,11 +15,11 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         public void ThrowArgumentNullExceptionWhenTitleArgumentIsNull()
         {
             //Arrange
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageEfRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
             var expectedExceptionMessage = "title";
 
             //Act
@@ -33,11 +33,11 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         public void ThrowArgumentExceptionWhenTitleArgumentIsEmpty()
         {
             //Arrange
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageEfRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
             var expectedExceptionMessage = "title";
 
             //Act
@@ -48,20 +48,20 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void CallGetAllMethodOfPageRepository()
+        public void CallGetAllMethodOfPageEfRepository()
         {
             //Arrange
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var submissionServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var submissionServiceUnderTest = new PageService(mockedPageEfRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
 
             //Act
             submissionServiceUnderTest.GetSubmissionByTitle("title");
 
             //Assert
-            mockedPageRepository.Verify(x => x.GetSubmissionByTitle(It.IsAny<string>()), Times.Once());
+            mockedPageEfRepository.Verify(x => x.GetSubmissionByTitle(It.IsAny<string>()), Times.Once());
         }
     }
 }

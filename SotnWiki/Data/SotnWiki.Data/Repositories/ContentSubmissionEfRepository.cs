@@ -6,11 +6,11 @@ using SotnWiki.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SotnWiki.Data.Common.Repositories
+namespace SotnWiki.Data.Repositories
 {
-    public class ContentSubmissionRepository : EfGenericRepository<PageContentSubmission>, IContentSubmissionRepository
+    public class ContentSubmissionEfRepository : EfRepository<PageContentSubmission>, IContentSubmissionRepository
     {
-        public ContentSubmissionRepository(ISotnWikiDbContext context)
+        public ContentSubmissionEfRepository(ISotnWikiDbContext context)
             : base(context)
         {
         }

@@ -17,11 +17,11 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         public void ThrowArgumentNullExceptionWhenTextArgumentIsNull()
         {
             //Arrange
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageEfRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
             var expectedExceptionMessage = "text";
 
             //Act
@@ -35,11 +35,11 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         public void ThrowArgumentExceptionWhenTextArgumentIsEmpty()
         {
             //Arrange
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageEfRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
             var expectedExceptionMessage = "text";
 
             //Act
@@ -50,14 +50,14 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void CallGetPageByTitleMethodOfPageRepository()
+        public void CallGetPageByTitleMethodOfPageEfRepository()
         {
             //Arrange
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageEfRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
             Expression<Func<Page, bool>> filter = (Page model) => !model.IsPublished;
             Expression<Func<Page, Type>> select = (Page model) => model.GetType();
 
@@ -65,18 +65,18 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
             pageServiceUnderTest.FindPages("asdasd");
 
             //Assert
-            mockedPageRepository.Verify(m => m.GetPageByTitle(It.IsAny<string>()), Times.Once());
+            mockedPageEfRepository.Verify(m => m.GetPageByTitle(It.IsAny<string>()), Times.Once());
         }
 
         [Test]
-        public void CallFindPagesMethodOfPageRepositoryIfPageIsNotFound()
+        public void CallFindPagesMethodOfPageEfRepositoryIfPageIsNotFound()
         {
             //Arrange
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageEfRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
             Expression<Func<Page, bool>> filter = (Page model) => !model.IsPublished;
             Expression<Func<Page, Type>> select = (Page model) => model.GetType();
 
@@ -84,18 +84,18 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
             pageServiceUnderTest.FindPages("asdasd");
 
             //Assert
-            mockedPageRepository.Verify(m => m.FindPages(It.IsAny<string>()), Times.Once());
+            mockedPageEfRepository.Verify(m => m.FindPages(It.IsAny<string>()), Times.Once());
         }
 
         [Test]
         public void ReturnResultOfTypeIenumerableOfPageSearchDTO()
         {
             //Arrange
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageEfRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
             Expression<Func<Page, bool>> filter = (Page model) => !model.IsPublished;
             Expression<Func<Page, Type>> select = (Page model) => model.GetType();
 

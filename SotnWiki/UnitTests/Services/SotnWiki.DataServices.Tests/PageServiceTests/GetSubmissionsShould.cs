@@ -12,14 +12,14 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
     public class GetSubmissionsShould
     {
         [Test]
-        public void CallGetSubmissionsMethodOfPageRepository()
+        public void CallGetSubmissionsMethodOfPageEfRepository()
         {
             //Arrange
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var pageServiceUnderTest = new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var pageServiceUnderTest = new PageService(mockedPageEfRepository.Object, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
             Expression<Func<Page, bool>> filter = (Page model) => !model.IsPublished;
             Expression<Func<Page, Type>> select = (Page model) => model.GetType();
 
@@ -27,7 +27,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
             pageServiceUnderTest.GetSubmissions();
 
             //Assert
-            mockedPageRepository.Verify(m => m.GetSubmissions(), Times.Once());
+            mockedPageEfRepository.Verify(m => m.GetSubmissions(), Times.Once());
         }
     }
 }

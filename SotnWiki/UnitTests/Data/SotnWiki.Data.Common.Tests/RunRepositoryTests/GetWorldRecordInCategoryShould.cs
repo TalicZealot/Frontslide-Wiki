@@ -1,8 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
-using SotnWiki.Data.Common.Repositories;
 using SotnWiki.Data.Common.Tests.Mocks;
-using SotnWiki.DTOs.RunViewsDTOs;
+using SotnWiki.Data.Repositories;
 using SotnWiki.Models;
 using System;
 using System.Collections.Generic;
@@ -26,7 +25,7 @@ namespace SotnWiki.Data.Common.Tests.RunRepositoryTests
             var mockedRunSet = QueryableDbSetMock.GetQueryableMockDbSet<Run>(runs);
             mockedDbContext.Setup(c => c.Set<Run>()).Returns(mockedRunSet);
             mockedDbContext.Setup(c => c.Runs).Returns(mockedRunSet);
-            var repositoryUnderTest = new RunRepository(mockedDbContext.Object);
+            var repositoryUnderTest = new RunEfRepository(mockedDbContext.Object);
 
             //Act & Assert
             var exc = Assert.Throws<ArgumentNullException>(() => { repositoryUnderTest.GetWorldRecordInCategory(null); });
@@ -49,7 +48,7 @@ namespace SotnWiki.Data.Common.Tests.RunRepositoryTests
             var mockedRunSet = QueryableDbSetMock.GetQueryableMockDbSet<Run>(runs);
             mockedDbContext.Setup(c => c.Set<Run>()).Returns(mockedRunSet);
             mockedDbContext.Setup(c => c.Runs).Returns(mockedRunSet);
-            var repositoryUnderTest = new RunRepository(mockedDbContext.Object);
+            var repositoryUnderTest = new RunEfRepository(mockedDbContext.Object);
 
             //Act & Assert
             var exc = Assert.Throws<ArgumentException>(() => { repositoryUnderTest.GetWorldRecordInCategory(""); });

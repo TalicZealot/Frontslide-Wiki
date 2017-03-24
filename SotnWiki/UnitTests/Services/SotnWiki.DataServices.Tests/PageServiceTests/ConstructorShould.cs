@@ -11,12 +11,12 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
     public class ConstructorShould
     {
         [Test]
-        public void ThrowArgumentNullExceptionWhenPageRepositoryIsNull()
+        public void ThrowArgumentNullExceptionWhenPageEfRepositoryIsNull()
         {
             //Arrange
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
-            string expectedExceptionMessage = "IPageRepository";
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };
+            string expectedExceptionMessage = "IPageEfRepository";
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => {
                 new PageService(null, mockedCharacterRepository.Object, mockedUnitOfWorkFactory);
@@ -30,12 +30,12 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         public void ThrowArgumentNullExceptionWhenCharacterRepositoryIsNull()
         {
             //Arrange
-            var mockedPageRepository = new Mock<IPageRepository>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };
             string expectedExceptionMessage = "ICharacterRepository";
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => {
-                new PageService(mockedPageRepository.Object, null, mockedUnitOfWorkFactory);
+                new PageService(mockedPageEfRepository.Object, null, mockedUnitOfWorkFactory);
             });
 
             //Assert
@@ -47,11 +47,11 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         {
             //Arrange
             var mockedCharacterRepository = new Mock<ICharacterRepository>();
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             string expectedExceptionMessage = "Func";
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => {
-                new PageService(mockedPageRepository.Object, mockedCharacterRepository.Object, null);
+                new PageService(mockedPageEfRepository.Object, mockedCharacterRepository.Object, null);
             });
 
             //Assert

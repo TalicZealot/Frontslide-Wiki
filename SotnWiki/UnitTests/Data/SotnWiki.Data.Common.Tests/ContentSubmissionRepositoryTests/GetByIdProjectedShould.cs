@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using SotnWiki.Data.Common.Repositories;
+using SotnWiki.Data.Repositories;
 using SotnWiki.Data.Common.Tests.Mocks;
 using SotnWiki.Models;
 using System;
@@ -25,7 +25,7 @@ namespace SotnWiki.Data.Common.Tests.ContentSubmissionRepositoryTests
             var mockedSet = QueryableDbSetMock.GetQueryableMockDbSet<PageContentSubmission>(submissions);
             mockedDbContext.Setup(c => c.Set<PageContentSubmission>()).Returns(mockedSet);
             mockedDbContext.Setup(c => c.PageContentSubmissions).Returns(mockedSet);
-            var repositoryUnderTest = new ContentSubmissionRepository(mockedDbContext.Object);
+            var repositoryUnderTest = new ContentSubmissionEfRepository(mockedDbContext.Object);
 
             //Act & Assert
             var exc = Assert.Throws<ArgumentNullException>(() => { repositoryUnderTest.GetByIdProjected(null); });

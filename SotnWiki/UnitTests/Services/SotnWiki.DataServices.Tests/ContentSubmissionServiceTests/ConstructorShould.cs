@@ -16,13 +16,13 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         {
             //Arrange
             var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
-            var mockedPageRepository = new Mock<IPageRepository>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object;};
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object;};
             string expectedExceptionMessage = "IPageService";
 
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => {
-                new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, null); });
+                new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageEfRepository.Object, mockedUnitOfWorkFactory, null); });
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
@@ -33,13 +33,13 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
-            var mockedPageRepository = new Mock<IPageRepository>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };
             string expectedExceptionMessage = "IContentSubmissionRepository";
 
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => {
-                new ContentSubmissionService(null, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
+                new ContentSubmissionService(null, mockedPageEfRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
             });
 
             //Assert
@@ -47,13 +47,13 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionWhenPageRepositoryIsNull()
+        public void ThrowArgumentNullExceptionWhenPageEfRepositoryIsNull()
         {
             //Arrange
             var mockedPageService = new Mock<IPageService>();
             var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IUnitOfWork>().Object; };
-            string expectedExceptionMessage = "IPageRepository";
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };
+            string expectedExceptionMessage = "IPageEfRepository";
 
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => {
@@ -70,12 +70,12 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             //Arrange
             var mockedPageService = new Mock<IPageService>();
             var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
-            var mockedPageRepository = new Mock<IPageRepository>();
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
             string expectedExceptionMessage = "Func";
 
             //Act
             var exc = Assert.Throws<ArgumentNullException>(() => {
-                new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, null, mockedPageService.Object);
+                new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageEfRepository.Object, null, mockedPageService.Object);
             });
 
             //Assert

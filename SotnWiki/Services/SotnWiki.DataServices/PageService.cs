@@ -11,17 +11,17 @@ namespace SotnWiki.DataServices
 {
     public class PageService : IPageService
     {
-        private readonly IPageRepository pageRepository;
+        private readonly IPageEfRepository PageEfRepository;
         private readonly ICharacterRepository characterRepository;
-        private readonly Func<IUnitOfWork> unitOfWorkFactory;
+        private readonly Func<IEfUnitOfWork> unitOfWorkFactory;
 
-        public PageService(IPageRepository pageRepository, ICharacterRepository characterRepository, Func<IUnitOfWork> unitOfWorkFactory)
+        public PageService(IPageEfRepository PageEfRepository, ICharacterRepository characterRepository, Func<IEfUnitOfWork> unitOfWorkFactory)
         {
             Guard.WhenArgument(characterRepository, nameof(ICharacterRepository)).IsNull().Throw();
-            Guard.WhenArgument(pageRepository, nameof(IPageRepository)).IsNull().Throw();
-            Guard.WhenArgument(unitOfWorkFactory, nameof(Func<IUnitOfWork>)).IsNull().Throw();
+            Guard.WhenArgument(PageEfRepository, nameof(IPageEfRepository)).IsNull().Throw();
+            Guard.WhenArgument(unitOfWorkFactory, nameof(Func<IEfUnitOfWork>)).IsNull().Throw();
 
-            this.pageRepository = pageRepository;
+            this.PageEfRepository = PageEfRepository;
             this.characterRepository = characterRepository;
             this.unitOfWorkFactory = unitOfWorkFactory;
         }
@@ -30,21 +30,21 @@ namespace SotnWiki.DataServices
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            return this.pageRepository.CheckTitleAvailability(title);
+            return this.PageEfRepository.CheckTitleAvailability(title);
         }
 
         public PageViewDTO GetPageByTitle(string title)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            return this.pageRepository.GetPageByTitle(title);
+            return this.PageEfRepository.GetPageByTitle(title);
         }
 
         public PageViewDTO GetSubmissionByTitle(string title)
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            return this.pageRepository.GetSubmissionByTitle(title);
+            return this.PageEfRepository.GetSubmissionByTitle(title);
         }
 
         public void CreatePage(int characterId, string type, string title, string content, bool publish)
@@ -83,7 +83,7 @@ namespace SotnWiki.DataServices
 
             using (var unitOfWork = this.unitOfWorkFactory())
             {
-                this.pageRepository.Add(pageToCreate);
+                this.PageEfRepository.Add(pageToCreate);
                 unitOfWork.Commit();
             }
         }
@@ -93,7 +93,7 @@ namespace SotnWiki.DataServices
             Guard.WhenArgument(editedContent, "editedContent").IsNullOrEmpty().Throw();
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            var page = this.pageRepository.GetSubmissionEntityByTitle(title);
+            var page = this.PageEfRepository.GetSubmissionEntityByTitle(title);
             if (page == null)
             {
                 throw new NullReferenceException("Page not found!");
@@ -103,7 +103,7 @@ namespace SotnWiki.DataServices
             page.IsPublished = true;
             using (var unitOfWork = this.unitOfWorkFactory())
             {
-                this.pageRepository.Update(page);
+                this.PageEfRepository.Update(page);
                 unitOfWork.Commit();
             }
         }
@@ -112,7 +112,7 @@ namespace SotnWiki.DataServices
         {
             Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            var page = this.pageRepository.GetSubmissionEntityByTitle(title);
+            var page = this.PageEfRepository.GetSubmissionEntityByTitle(title);
             if (page == null)
             {
                 throw new NullReferenceException("Page not found!");
@@ -120,21 +120,21 @@ namespace SotnWiki.DataServices
 
             using (var unitOfWork = this.unitOfWorkFactory())
             {
-                this.pageRepository.Delete(page);
+                this.PageEfRepository.Delete(page);
                 unitOfWork.Commit();
             }
         }
 
         public IEnumerable<SubmissionsDTO> GetSubmissions()
         {
-            return this.pageRepository.GetSubmissions();
+            return this.PageEfRepository.GetSubmissions();
         }
 
         public IEnumerable<PageSearchDTO> FindPages(string text)
         {
             Guard.WhenArgument(text, "text").IsNullOrEmpty().Throw();
 
-            PageViewDTO exactTitleMatch = this.pageRepository.GetPageByTitle(text);
+            PageViewDTO exactTitleMatch = this.PageEfRepository.GetPageByTitle(text);
 
             if (exactTitleMatch != null)
             {
@@ -144,7 +144,7 @@ namespace SotnWiki.DataServices
                     Type = exactTitleMatch.Type } };
             }
 
-            return this.pageRepository.FindPages(text);
+            return this.PageEfRepository.FindPages(text);
         }
     }
 }

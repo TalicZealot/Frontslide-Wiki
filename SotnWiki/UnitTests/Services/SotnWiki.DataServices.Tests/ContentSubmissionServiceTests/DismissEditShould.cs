@@ -17,10 +17,10 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             //Arrange
             var mockedPageService = new Mock<IPageService>();
             var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
-            var mockedPageRepository = new Mock<IPageRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageEfRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
 
             var edit = new PageContentSubmission()
             {
@@ -43,10 +43,10 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             //Arrange
             var mockedPageService = new Mock<IPageService>();
             var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
-            var mockedPageRepository = new Mock<IPageRepository>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            Func<IUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
-            var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
+            var mockedUnitOfWork = new Mock<IEfUnitOfWork>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return mockedUnitOfWork.Object; };
+            var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageEfRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
 
             var edit = new PageContentSubmission()
             {

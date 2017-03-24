@@ -1,13 +1,13 @@
 ﻿using Moq;
 using NUnit.Framework;
-using SotnWiki.Data.Common.Repositories;
+using SotnWiki.Data.Repositories;
 using SotnWiki.Data.Common.Tests.Mocks;
 using SotnWiki.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SotnWiki.Data.Common.Tests.PageRepositoryTests
+namespace SotnWiki.Data.Common.Tests.PageEfRepositoryTests
 {
     [TestFixture]
     public class FindPagesShould
@@ -26,7 +26,7 @@ namespace SotnWiki.Data.Common.Tests.PageRepositoryTests
             var mockedPageSet = QueryableDbSetMock.GetQueryableMockDbSet<Page>(pages);
             mockedDbContext.Setup(c => c.Set<Page>()).Returns(mockedPageSet);
             mockedDbContext.Setup(c => c.Pages).Returns(mockedPageSet);
-            var repositoryUnderTest = new PageRepository(mockedDbContext.Object);
+            var repositoryUnderTest = new PageEfRepository(mockedDbContext.Object);
 
             //Act & Assert
             var result = repositoryUnderTest.FindPages("pag");
@@ -50,7 +50,7 @@ namespace SotnWiki.Data.Common.Tests.PageRepositoryTests
             var mockedPageSet = QueryableDbSetMock.GetQueryableMockDbSet<Page>(pages);
             mockedDbContext.Setup(c => c.Set<Page>()).Returns(mockedPageSet);
             mockedDbContext.Setup(c => c.Pages).Returns(mockedPageSet);
-            var repositoryUnderTest = new PageRepository(mockedDbContext.Object);
+            var repositoryUnderTest = new PageEfRepository(mockedDbContext.Object);
 
             //Act & Assert
             var result = repositoryUnderTest.FindPages("mayhem").ToList();
