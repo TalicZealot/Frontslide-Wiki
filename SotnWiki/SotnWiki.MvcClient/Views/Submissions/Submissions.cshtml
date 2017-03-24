@@ -1,0 +1,16 @@
+﻿@model SubmissionsViewModel
+@{
+    ViewBag.Title = "Pending Submissions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var grid = new WebGrid(Model.Results, ajaxUpdateContainerId: "results", rowsPerPage: 20);
+}
+
+<h1>Pending page submissions</h1>
+@Scripts.Render("~/bundles/jquery")
+<div id="results">
+    @grid.GetHtml(
+    displayHeader: false,
+    columns: new[] {
+        grid.Column("Content", "Content", format:(item) => new HtmlString(String.Format(@"<div><strong><a href=""publish/{0}"">{1}&nbsp:</a></strong><span>{2}</span></div>", item.Title.Replace(' ', '_'), item.Title, item.CreatedOn)))
+    })
+</div>

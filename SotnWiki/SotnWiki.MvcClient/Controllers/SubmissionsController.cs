@@ -2,6 +2,7 @@
 using SotnWiki.DataServices.Contracts;
 using SotnWiki.MvcClient.Models;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace SotnWiki.MvcClient.Controllers
@@ -33,12 +34,15 @@ namespace SotnWiki.MvcClient.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (model.Publish && (this.HttpContext.User.IsInRole("Admin") || this.HttpContext.User.IsInRole("Editor")))
+                {
+                    this.pageService.CreatePage((int)Enum.Parse(typeof(SotnWiki.Models.CharacterIdEnum), model.Character),
+                    model.Type, model.Title, model.Content, model.Publish);
+                    return this.RedirectToAction("Page", "Home", new { title = model.Title.Replace(' ', '_') });
+                }
+
                 this.pageService.CreatePage((int)Enum.Parse(typeof(SotnWiki.Models.CharacterIdEnum), model.Character),
                     model.Type, model.Title, model.Content, false);
-                if (model.Publish && (this.HttpContext.User.IsInRole("admin") || this.HttpContext.User.IsInRole("editor")))
-                {
-                    return this.RedirectToAction("Page", "Home", new { name = model.Title });
-                }
                 return this.RedirectToAction("Index", "Home");
             }
 
@@ -48,21 +52,40 @@ namespace SotnWiki.MvcClient.Controllers
         [Authorize(Roles = "Editor, Admin")]
         public ActionResult Submissions()
         {
-            return View();
+            var submissions = this.pageService.GetSubmissions();
+            var model = new SubmissionsViewModel();
+            model.Results = submissions.ToList();
+
+            return View(model);
         }
 
         [HttpGet]
         [Authorize(Roles = "Editor, Admin")]
-        public ActionResult Publish()
+        public ActionResult Publish(string title)
         {
-            return View();
+            var transformedTitle = title.Replace('_', ' ').Replace('-', ' ');
+            var submission = this.pageService.GetSubmissionByTitle(transformedTitle);
+            var model = new EditViewModel()
+            {
+                Content = submission.Content,
+                Title = submission.Title
+            };
+
+            return View(model);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize(Roles = "Editor, Admin")]
-        public ActionResult Publish(NewPageViewModel model)
+        public ActionResult Publish(EditViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                this.pageService.PublishPage(model.Content, model.Title);
+                return this.RedirectToAction("Page", "Home", new { title = model.Title.Replace(' ', '_') });
+            }
+
+            return View(model);
         }
     }
 }

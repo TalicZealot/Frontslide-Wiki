@@ -18,14 +18,17 @@ namespace SotnWiki.MvcClient.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult Search(string searchPhrase)
+        public ActionResult Search(SearchViewModel model)
         {
-            var results = this.pageService.FindPages(searchPhrase);
-            var model = new SearchViewModel();
-            model.Results = results.ToList();
-            model.searchPhrase = searchPhrase;
+            if (ModelState.IsValid)
+            {
+                var results = this.pageService.FindPages(model.searchPhrase);
+                model.Results = results.ToList();
 
-            return View(model);
+                return View(model);
+            }
+
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }

@@ -18,18 +18,26 @@ namespace SotnWiki.MvcClient
             routes.MapRoute(
                 name: "NewPage",
                 url: "NewPage",
-                defaults: new { controller = "Edit", action = "NewPage" }
+                defaults: new { controller = "Submissions", action = "NewPage" }
             );
 
             routes.MapRoute(
                 name: "Edit",
-                url: "Edit/{name}",
-                defaults: new { controller = "Edit", action = "Edit" }
+                url: "Edit/{title}",
+                defaults: new { controller = "Edit", action = "Edit" },
+                constraints: new { title = "{^[a-zA-Z0-9-_]{5,15}$}" }
+            );
+
+            routes.MapRoute(
+                name: "Publish",
+                url: "Publish/{title}",
+                defaults: new { controller = "Submissions", action = "Publish" },
+                constraints: new { title = "{^[a-zA-Z0-9-_]{5,15}$}" }
             );
 
             routes.MapRoute(
                 name: "Search",
-                url: "Search/{searchPhrase}",
+                url: "Search_Results",
                 defaults: new { controller = "Search", action = "Search" }
             );
 
@@ -41,14 +49,16 @@ namespace SotnWiki.MvcClient
 
             routes.MapRoute(
                 name: "Edits",
-                url: "{name}/Edits",
-                defaults: new { controller = "Edit", action = "Edits" }
+                url: "{title}/Edits",
+                defaults: new { controller = "Edit", action = "Edits" },
+                constraints: new { title = "{^[a-zA-Z0-9-_]{5,15}$}" }
             );
 
             routes.MapRoute(
                 name: "Page",
-                url: "{name}",
-                defaults: new { controller = "Home", action = "Page" }
+                url: "{title}",
+                defaults: new { controller = "Home", action = "Page" },
+                constraints: new { title = "{^[a-zA-Z0-9-_]{5,15}$}" }
             );
 
             routes.MapRoute(

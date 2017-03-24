@@ -22,8 +22,12 @@ namespace SotnWiki.MvcClient.Tests.SearchControllerTests
         [Test]
         public void ShouldRenderDefaultViewWithModelSearchViewModel()
         {
+            //Arrange
+            var modelStub = new SearchViewModel();
+            modelStub.searchPhrase = "asdasd";
+
             //Act & Assert
-            controllerUnderTest.WithCallTo(c => c.Search(It.IsAny<string>()))
+            controllerUnderTest.WithCallTo(c => c.Search(modelStub))
                 .ShouldRenderDefaultView()
                 .WithModel<SearchViewModel>();
         }

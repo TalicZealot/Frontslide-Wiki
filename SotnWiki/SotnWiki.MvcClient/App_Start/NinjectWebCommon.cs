@@ -49,6 +49,7 @@ namespace SotnWiki.MvcClient.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+                InitializeAutomapperConfig();
                 return kernel;
             }
             catch

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace SotnWiki.Data.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<SotnWikiDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<SotnWikiDbContext>
     {
         public Configuration()
         {

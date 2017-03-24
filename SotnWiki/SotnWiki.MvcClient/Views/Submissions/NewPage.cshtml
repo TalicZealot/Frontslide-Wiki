@@ -1,28 +1,29 @@
-﻿@model SotnWiki.MvcClient.Models.NewPageViewModel
+﻿@model NewPageViewModel
 @{
     ViewBag.Title = "New Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>New Page</h1>
-@using (Html.BeginForm("NewPage", "Edit", "POST"))
+@using (Html.BeginForm("NewPage", "Submissions", FormMethod.Post, new { @class = "pageForm" }))
 {
     @Html.AntiForgeryToken()
-    @Html.DropDownListFor(m => m.Character, new SelectList(Enum.GetValues(typeof(SotnWiki.Models.CharacterIdEnum))), "Select section")
-    @Html.ValidationMessageFor(m => m.Character)
-    @Html.DropDownListFor(m => m.Type, new SelectList(new string[] {"Category", "Glitch", "General"}), "Select type")
-    @Html.ValidationMessageFor(m => m.Type)
-    <br/>
+    @Html.LabelFor(m => m.Title)<span>&nbsp;:</span>
     @Html.TextBoxFor(m => m.Title)
-    @Html.LabelFor(m => m.Title)
+    @Html.DropDownListFor(m => m.Character, new SelectList(Enum.GetValues(typeof(SotnWiki.Models.CharacterIdEnum))), "Select section")
+    @Html.DropDownListFor(m => m.Type, new SelectList(new string[] { "Category", "Glitch", "General" }), "Select type")
+    <br/>
     @Html.ValidationMessageFor(m => m.Title)
+    @Html.ValidationMessageFor(m => m.Character)
+    @Html.ValidationMessageFor(m => m.Type)
     <p>This site uses textile markup, for documentation visit <a href="https://txstyle.org/">txstyle.org</a>.</p>
-    @Html.TextAreaFor(m => m.Content)
+    @Html.TextAreaFor(m => m.Content, new { @class = "editPageText" })
     @Html.ValidationMessageFor(m => m.Content)
     <br/>
-    <input type="submit" name="submitButton" value="Submit" />
     if (this.User.IsInRole("Editor") || this.User.IsInRole("Admin"))
     {
+        @Html.LabelFor(m => m.Publish)
         @Html.CheckBoxFor(m => m.Publish)
     }
+    <input type="submit" name="submitButton" value="Submit" />
 }

@@ -2,11 +2,11 @@
 
 namespace SotnWiki.MvcClient.Models
 {
-    public class ExternalLoginConfirmationViewModel
-    {
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-    }
+    //public class ExternalLoginConfirmationViewModel
+    //{
+    //    [Display(Name = "Email")]
+    //    public string Email { get; set; }
+    //}
 
     public class ExternalLoginListViewModel
     {
