@@ -46,9 +46,18 @@
     <Reference Include="AutoMapper, Version=6.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.0.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper.EF6, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.EF6.1.0.0\lib\net45\AutoMapper.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
       <HintPath>..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="DelegateDecompiler, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93b26a10a04705bd, processorArchitecture=MSIL">
+      <HintPath>..\packages\DelegateDecompiler.0.23.0\lib\net40-client\DelegateDecompiler.dll</HintPath>
+    </Reference>
+    <Reference Include="DelegateDecompiler.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93b26a10a04705bd, processorArchitecture=MSIL">
+      <HintPath>..\packages\DelegateDecompiler.EntityFramework.0.23.0\lib\net45\DelegateDecompiler.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -79,6 +88,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Reflection, Version=1.1.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Reflection.1.1.0.0\lib\Mono.Reflection.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.1-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -236,10 +248,12 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EditPageViewModel.cs" />
+    <Compile Include="Models\EditsViewModel.cs" />
     <Compile Include="Models\EditViewModel.cs" />
     <Compile Include="Models\NewPageViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
+    <Compile Include="Models\SubmissionsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -297,12 +311,17 @@
     <Content Include="Views\Home\Page.cshtml" />
     <Content Include="Views\Shared\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Shared\_EditorPanelPartial.cshtml" />
-    <Content Include="Views\Edit\NewPage.cshtml" />
+    <Content Include="Views\Submissions\NewPage.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Edit\Edit.cshtml" />
     <Content Include="Views\Leaderboards\Leaderboards.cshtml" />
+    <Content Include="Views\Edit\Edits.cshtml" />
+    <Content Include="Views\Submissions\Submissions.cshtml" />
+    <Content Include="Views\Submissions\Publish.cshtml" />
+    <Content Include="Views\Shared\_searchFormPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="Errors\" />
   </ItemGroup>

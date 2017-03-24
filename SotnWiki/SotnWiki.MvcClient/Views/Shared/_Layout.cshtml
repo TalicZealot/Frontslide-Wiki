@@ -22,16 +22,16 @@
                     <span class="expand retracted">Alucard</span>
                     <ul class="dropdown">
                         <li>
-                            @Html.ActionLink("Main", "Page", "Home", new { name = "Alucard" }, null)
+                            @Html.ActionLink("Main", "Page", "Home", new { title = "Alucard" }, null)
                         </li>
                         <li>
-                            @Html.ActionLink("Any%", "Page", "Home", new { name = "Alucard_Any%" }, null)
+                            @Html.ActionLink("Any%", "Page", "Home", new { title = "Alucard_Any%" }, null)
                         </li>
                         <li>
-                            @Html.ActionLink("All Bosses", "Page", "Home", new { name = "Alucard_All_Bosses" }, null)
+                            @Html.ActionLink("All Bosses", "Page", "Home", new { title = "Alucard_All_Bosses" }, null)
                         </li>
                         <li>
-                            @Html.ActionLink("Glitchless", "Page", "Home", new { name = "Alucard_Glitchless" }, null)
+                            @Html.ActionLink("Glitchless", "Page", "Home", new { title = "Alucard_Glitchless" }, null)
                         </li>
                     </ul>
                 </li>
@@ -39,13 +39,13 @@
                     <span class="expand retracted">Richter</span>
                     <ul class="dropdown">
                         <li>
-                            @Html.ActionLink("Main", "Page", "Home", new { name = "Richter" }, null)
+                            @Html.ActionLink("Main", "Page", "Home", new { title = "Richter" }, null)
                         </li>
                         <li>
-                            @Html.ActionLink("Any%", "Page", "Home", new { name = "Richter_Any%" }, null)
+                            @Html.ActionLink("Any%", "Page", "Home", new { title = "Richter_Any%" }, null)
                         </li>
                         <li>
-                            @Html.ActionLink("All Bosses", "Page", "Home", new { name = "Richter_All_Bosses" }, null)
+                            @Html.ActionLink("All Bosses", "Page", "Home", new { title = "Richter_All_Bosses" }, null)
                         </li>
                     </ul>
                 </li>
@@ -53,13 +53,13 @@
                     <span class="expand retracted">Maria</span>
                     <ul class="dropdown">
                         <li>
-                            @Html.ActionLink("Main", "Page", "Home", new { name = "Maria" }, null)
+                            @Html.ActionLink("Main", "Page", "Home", new { title = "Maria" }, null)
                         </li>
                         <li>
-                            @Html.ActionLink("Any%", "Page", "Home", new { name = "Maria_Any%" }, null)
+                            @Html.ActionLink("Any%", "Page", "Home", new { title = "Maria_Any%" }, null)
                         </li>
                         <li>
-                            @Html.ActionLink("All Bosses", "Page", "Home", new { name = "Maria_All_Bosses" }, null)
+                            @Html.ActionLink("All Bosses", "Page", "Home", new { title = "Maria_All_Bosses" }, null)
                         </li>
                     </ul>
                 </li>
@@ -70,18 +70,13 @@
                             <a href="https://www.speedrun.com/sotn">speedrun.com/sotn</a>
                         </li>
                         <li>
-                            @Html.ActionLink("Leaderboards", "Leaderboards", "Leaderboards")
+                            @Html.ActionLink("Leaderboards Backup", "Leaderboards", "Leaderboards")
                         </li>
                     </ul>
                 </li>
             </ul>
             <div class="search-panel">
-                @using (Html.BeginForm("Search", "Search", "GET"))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.TextBox("searchPhrase")
-                    <input type="submit" value="" />
-                }
+                @Html.Partial("_searchFormPartial", new SearchViewModel())
             </div>
         </nav>
         <main>

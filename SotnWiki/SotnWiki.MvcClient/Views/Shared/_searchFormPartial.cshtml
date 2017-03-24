@@ -1,0 +1,10 @@
+﻿@model SearchViewModel
+
+@using (Html.BeginForm("Search", "Search", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.TextBoxFor(m => m.searchPhrase)
+    <input type="submit" value="" />
+    <br />
+    @Html.ValidationMessageFor(m => m.searchPhrase)
+}

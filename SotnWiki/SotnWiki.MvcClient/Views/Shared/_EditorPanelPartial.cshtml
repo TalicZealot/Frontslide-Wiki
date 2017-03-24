@@ -9,17 +9,21 @@
             <li>@Html.ActionLink("New Page", "NewPage", "Submissions")</li>
             if ((string)currentAction == "Page")
             {
-                <li>@Html.ActionLink("Edit Page", "Edit", "Edit", new { name = ViewContext.RouteData.Values["name"] }, null)</li>
+                <li>@Html.ActionLink("Edit Page", "Edit", "Edit", new { title = ViewContext.RouteData.Values["title"] }, null)</li>
             }
             if ((string)currentAction == "Index")
             {
-                <li>@Html.ActionLink("Edit Page", "Edit", "Edit", new { name = "main-page" }, null)</li>
+                <li>@Html.ActionLink("Edit Page", "Edit", "Edit", new { title = "main-page" }, null)</li>
             }
             if (this.User.IsInRole("Editor") || this.User.IsInRole("Admin"))
             {
-                if ((string)currentAction == "Index" || (string)currentAction == "Page")
+                if ((string)currentAction == "Page")
                 {
-                    <li>@Html.ActionLink("Manage Edits", "Edits", "Edit", new { name = ViewContext.RouteData.Values["name"] }, null)</li>
+                    <li>@Html.ActionLink("Manage Edits", "Edits", "Edit", new { title = ViewContext.RouteData.Values["title"] }, null)</li>
+                }
+                if ((string)currentAction == "Index")
+                {
+                    <li>@Html.ActionLink("Manage Edits", "Edits", "Edit", new { title = "main-page" }, null)</li>
                 }
                 <li>@Html.ActionLink("Manage Submissions", "Submissions", "Submissions")</li>
             }

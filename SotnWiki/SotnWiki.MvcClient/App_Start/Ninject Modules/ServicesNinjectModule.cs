@@ -17,8 +17,8 @@ namespace SotnWiki.MvcClient.App_Start.Ninject_Modules
                 .BindDefaultInterface()
             );
 
-            this.Bind<IMarkupConverter>().To<TextileConverter>().WhenInjectedInto(typeof(IMarkupConverter));
-            this.Bind<IMarkupConverter>().To<TextileConverterWithDivs>().InRequestScope();
+            this.Bind<IMarkupConverter>().To<TextileConverter>().WhenInjectedInto(typeof(IMarkupConverter)).InSingletonScope();
+            this.Bind<IMarkupConverter>().To<TextileConverterWithDivs>().InSingletonScope();
         }
     }
 }

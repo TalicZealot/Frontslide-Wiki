@@ -39,10 +39,15 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void RedirectToThePageWhenModelIsValid()
+        public void RedirectToThePageWhenModelIsValidAndPublishIsTrue()
         {
             //Arrange
-            var model = new EditViewModel() { Publish = false };
+            var model = new EditViewModel() { Publish = true, Content = "asdasd", Title = "asdasd" };
+            var mockedHttpCOntext = new Mock<HttpContextBase>();
+            var mockedUser = new Mock<IPrincipal>();
+            mockedHttpCOntext.SetupGet(h => h.User).Returns(mockedUser.Object);
+            mockedUser.Setup(u => u.IsInRole(It.IsAny<string>())).Returns(true);
+            controllerUnderTest.ControllerContext = new ControllerContext(mockedHttpCOntext.Object, new RouteData(), controllerUnderTest);
 
             //Arrange & Act & Assert
             controllerUnderTest.WithCallTo(c => c.Edit(model))
@@ -50,7 +55,23 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
         }
 
         [Test]
-        public void CallSubmitAndPublishEditWhenModelPublishPropertyIsTrue()
+        public void RedirectToTheHomePageWhenModelIsValidAndPublishIsTrue_ButUserIsNotInRequiredRoles()
+        {
+            //Arrange
+            var model = new EditViewModel() { Publish = true, Content = "asdasd", Title = "asdasd" };
+            var mockedHttpCOntext = new Mock<HttpContextBase>();
+            var mockedUser = new Mock<IPrincipal>();
+            mockedHttpCOntext.SetupGet(h => h.User).Returns(mockedUser.Object);
+            mockedUser.Setup(u => u.IsInRole(It.IsAny<string>())).Returns(false);
+            controllerUnderTest.ControllerContext = new ControllerContext(mockedHttpCOntext.Object, new RouteData(), controllerUnderTest);
+
+            //Arrange & Act & Assert
+            controllerUnderTest.WithCallTo(c => c.Edit(model))
+            .ShouldRedirectTo<HomeController>(x => x.Index());
+        }
+
+        [Test]
+        public void CallSubmitAndPublishEditWhenModelPublishPropertyIsTrueAndUserIsValid()
         {
             //Arrange
             var model = new EditViewModel() { Publish = true };
@@ -65,6 +86,24 @@ namespace SotnWiki.MvcClient.Tests.EditControllerTests
 
             //Assert
             mockedContentSubmissionService.Verify(m => m.SubmitAndPublishEdit(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
+        }
+
+        [Test]
+        public void NotCallSubmitAndPublishEditWhenModelPublishPropertyIsTrueAndUserIsInvalid()
+        {
+            //Arrange
+            var model = new EditViewModel() { Publish = true };
+            var mockedHttpCOntext = new Mock<HttpContextBase>();
+            var mockedUser = new Mock<IPrincipal>();
+            mockedHttpCOntext.SetupGet(h => h.User).Returns(mockedUser.Object);
+            mockedUser.Setup(u => u.IsInRole(It.IsAny<string>())).Returns(false);
+            controllerUnderTest.ControllerContext = new ControllerContext(mockedHttpCOntext.Object, new RouteData(), controllerUnderTest);
+
+            //Act
+            var result = controllerUnderTest.Edit(model);
+
+            //Assert
+            mockedContentSubmissionService.Verify(m => m.SubmitAndPublishEdit(It.IsAny<string>(), It.IsAny<string>()), Times.Never());
         }
 
         [Test]

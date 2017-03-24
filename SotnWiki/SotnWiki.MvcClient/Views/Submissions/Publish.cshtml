@@ -1,11 +1,11 @@
 ﻿@model EditViewModel
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Publish";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit @Model.Title</h1>
-@using (Html.BeginForm("NewPage", "Edit", FormMethod.Post, new { @class = "pageForm" }))
+<h1>Edit and publish page "@Model.Title"</h1>
+@using (Html.BeginForm("Submissions", "Publish", FormMethod.Post, new { @class = "pageForm" }))
 {
     @Html.AntiForgeryToken()
     <p>This site uses textile markup, for documentation visit <a href="https://txstyle.org/">txstyle.org</a>.</p>

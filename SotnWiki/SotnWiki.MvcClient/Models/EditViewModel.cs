@@ -4,8 +4,6 @@ namespace SotnWiki.MvcClient.Models
 {
     public class EditViewModel
     {
-        [Required]
-        [StringLength(25, MinimumLength = 4)]
         public string Title { get; set; }
 
         [Required]

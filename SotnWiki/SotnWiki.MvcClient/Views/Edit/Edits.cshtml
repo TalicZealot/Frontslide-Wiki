@@ -1,11 +1,11 @@
-﻿@model SearchViewModel
+﻿@model EditsViewModel
 @{
-    ViewBag.Title = "Results";
+    ViewBag.Title = "Pending Submissions";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var grid = new WebGrid(Model.Results, ajaxUpdateContainerId:"results", rowsPerPage: 20);
+    var grid = new WebGrid(Model.Results, ajaxUpdateContainerId: "results", rowsPerPage: 20);
 }
 
-<h1>Search Results for "@Model.searchPhrase"</h1>
+<h1>Pending page submissions</h1>
 @Scripts.Render("~/bundles/jquery")
 <div id="results">
     @grid.GetHtml(

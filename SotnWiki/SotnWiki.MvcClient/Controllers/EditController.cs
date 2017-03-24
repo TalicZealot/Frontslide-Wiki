@@ -22,12 +22,12 @@ namespace SotnWiki.MvcClient.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(string name)
+        public ActionResult Edit(string title)
         {
-            Guard.WhenArgument(name, "name").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(title, "name").IsNullOrEmpty().Throw();
 
-            var transformedName = name.Replace('_', ' ').Replace('-', ' ');
-            var page = this.pageService.GetPageByTitle(transformedName);
+            var transformedTitle = title.Replace('_', ' ').Replace('-', ' ');
+            var page = this.pageService.GetPageByTitle(transformedTitle);
             if (page == null)
             {
                 return HttpNotFound();
@@ -48,22 +48,46 @@ namespace SotnWiki.MvcClient.Controllers
                 if (model.Publish && (this.HttpContext.User.IsInRole("admin") || this.HttpContext.User.IsInRole("editor")))
                 {
                     this.contentSubmissionService.SubmitAndPublishEdit(model.Content, model.Title);
+                    return this.RedirectToAction("Page", "Home", new { title = model.Title });
                 }
                 else
                 {
                     this.contentSubmissionService.SubmitEdit(model.Content, model.Title);
+                    return this.RedirectToAction("Index", "Home");
                 }
-
-                return this.RedirectToAction("Page", "Home", new { name = model.Title });
             }
 
             return View(model);
         }
 
         [Authorize(Roles = "Editor, Admin")]
-        public ActionResult Edits()
+        public ActionResult Edits(string title)
         {
-            return View();
+            var transformedTitle = title.Replace('_', ' ').Replace('-', ' ');
+            var edits = this.contentSubmissionService.GetEdits(transformedTitle);
+            var model = new EditsViewModel();
+            model.Results = edits;
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult PublishEdit(string id)
+        {
+            var edit = this.contentSubmissionService.GetPageContentSubmissionById(Guid.Parse(id));
+            var model = new EditViewModel()
+            {
+                Content = edit.Content,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PublishEdit(EditViewModel model)
+        {
+            return View(model);
         }
     }
 }

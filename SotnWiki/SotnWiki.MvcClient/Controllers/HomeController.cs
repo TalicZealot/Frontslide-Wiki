@@ -34,12 +34,12 @@ namespace SotnWiki.MvcClient.Controllers
             return View(model);
         }
 
-        public ActionResult Page(string name)
+        public ActionResult Page(string title)
         {
-            Guard.WhenArgument(name, "name").IsNullOrEmpty().Throw();
+            Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
 
-            var transformedName = name.Replace('_', ' ').Replace('-', ' ');
-            var page = this.pageService.GetPageByTitle(transformedName);
+            var transformedTitle = title.Replace('_', ' ').Replace('-', ' ');
+            var page = this.pageService.GetPageByTitle(transformedTitle);
             if (page == null)
             {
                 return HttpNotFound();
