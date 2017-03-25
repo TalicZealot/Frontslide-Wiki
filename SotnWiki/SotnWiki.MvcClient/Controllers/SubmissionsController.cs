@@ -65,11 +65,17 @@ namespace SotnWiki.MvcClient.Controllers
         {
             var transformedTitle = title.Replace('_', ' ').Replace('-', ' ');
             var submission = this.pageService.GetSubmissionByTitle(transformedTitle);
+            if (submission == null)
+            {
+                return HttpNotFound();
+            }
+
             var model = new EditViewModel()
             {
                 Content = submission.Content,
                 Title = submission.Title
             };
+            ModelState.Clear();
 
             return View(model);
         }

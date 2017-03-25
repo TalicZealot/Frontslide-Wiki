@@ -1,17 +1,19 @@
 ﻿@model EditViewModel
 @{
-    ViewBag.Title = "Publish";
+    ViewBag.Title = "Publish Edit " + Model.Id;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit and publish page "@Model.Title"</h1>
-@using (Html.BeginForm("Submissions", "Publish", FormMethod.Post, new { @class = "pageForm" }))
+<h1>Publish Edit "@Model.Id"</h1>
+@using (Html.BeginForm("PublishEdit", "Edit", FormMethod.Post, new { @class = "pageForm" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.PageId)
     @Html.HiddenFor(m => m.Title)
     <p>This site uses textile markup, for documentation visit <a href="https://txstyle.org/">txstyle.org</a>.</p>
     @Html.TextAreaFor(m => m.Content, new { @class = "editPageText" })
     @Html.ValidationMessageFor(m => m.Content)
     <br />
-    <input type="submit" name="submitButton" value="Publish" />
+    <input type="submit" name="submitButton" value="Submit" />
 }

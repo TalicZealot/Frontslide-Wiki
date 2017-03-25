@@ -56,28 +56,5 @@ namespace SotnWiki.Data.Common.Tests.PageEfRepositoryTests
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
         }
-
-        [Ignore("Automapper")]
-        [Test]
-        public void ReturnObjectOfTypePage()
-        {
-            //Arrange
-            var mockedDbContext = new Mock<ISotnWikiDbContext>();
-            var pages = new List<Page>
-            {
-                new Page() {Id = Guid.NewGuid(), Title = "page", Content = "cntnt", IsPublished = true},
-                new Page() {Id = Guid.NewGuid(), Title = "pagea", Content = "cntnta", IsPublished = true}
-            };
-            var mockedPageSet = QueryableDbSetMock.GetQueryableMockDbSet<Page>(pages);
-            mockedDbContext.Setup(c => c.Set<Page>()).Returns(mockedPageSet);
-            mockedDbContext.Setup(c => c.Pages).Returns(mockedPageSet);
-            var repositoryUnderTest = new PageEfRepository(mockedDbContext.Object);
-
-            //Act & Assert
-            var result = repositoryUnderTest.GetPageByTitle("page");
-
-            //Assert
-            Assert.IsInstanceOf<Page>(result);
-        }
     }
 }

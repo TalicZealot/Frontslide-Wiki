@@ -36,5 +36,19 @@ namespace SotnWiki.MvcClient.Tests.SubmissionsControllerTests
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
         }
+
+        [Test]
+        public void ReturnsAnInstance_WhenParametersAreNotNull()
+        {
+            //Arrange
+            var mockedContentSubmissionService = new Mock<IContentSubmissionService>();
+            var mockedPageService = new Mock<IPageService>();
+
+            //Act
+            var result = new SubmissionsController(mockedPageService.Object, mockedContentSubmissionService.Object);
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
     }
 }

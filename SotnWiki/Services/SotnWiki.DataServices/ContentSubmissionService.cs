@@ -49,15 +49,14 @@ namespace SotnWiki.DataServices
             }
         }
 
-        public void PublishEdit(string title, string content, Guid id)
+        public void PublishEdit(Guid pageId, string content, Guid id)
         {
-            Guard.WhenArgument(title, "title").IsNullOrEmpty().Throw();
             Guard.WhenArgument(content, "content").IsNullOrEmpty().Throw();
 
             var pageContentSubmission = this.pageContentSubmissionRepository.GetById(id);
             pageContentSubmission.PageHistory = pageContentSubmission.PageEdit;
             pageContentSubmission.PageEdit = null;
-            var page = this.PageEfRepository.GetPageEntityByTitle(title);
+            var page = this.PageEfRepository.GetById(pageId);
             pageContentSubmission.Content = page.Content;
             page.Content = content;
             page.LastEdit = DateTime.Now;

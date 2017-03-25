@@ -81,5 +81,21 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
         }
+
+        [Test]
+        public void ReturnsAnInstance_WhenParametersAreNotNull()
+        {
+            //Arrange
+            var mockedPageEfRepository = new Mock<IPageEfRepository>();
+            var mockedPageService = new Mock<IPageService>();
+            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
+            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };
+
+            //Act
+            var result = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageEfRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
     }
 }

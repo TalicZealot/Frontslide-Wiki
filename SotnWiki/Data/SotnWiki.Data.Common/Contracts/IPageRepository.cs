@@ -20,6 +20,8 @@ namespace SotnWiki.Data.Common.Contracts
 
         IEnumerable<PageSearchDTO> FindPages(string text);
 
+        Page GetById(object id);
+
         void Add(Page entity);
 
         void Delete(Page entity);

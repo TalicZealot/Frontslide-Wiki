@@ -35,5 +35,19 @@ namespace SotnWiki.MvcClient.Tests.ApiControllerTests
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
         }
+
+        [Test]
+        public void ReturnsAnInstance_WhenParametersAreNotNull()
+        {
+            //Arrange
+            var mockedRunService = new Mock<IRunService>();
+            var mockedPageService = new Mock<IPageService>();
+
+            //Act
+            var result = new ApiController(mockedPageService.Object, mockedRunService.Object);
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
     }
 }

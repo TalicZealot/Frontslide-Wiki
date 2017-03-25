@@ -94,9 +94,13 @@
     <Compile Include="EditControllerTests\ConstructorShould.cs" />
     <Compile Include="EditControllerTests\EditGetShould.cs" />
     <Compile Include="EditControllerTests\EditPostShould.cs" />
+    <Compile Include="EditControllerTests\EditsShould.cs" />
+    <Compile Include="EditControllerTests\PublishEditGetShould.cs" />
+    <Compile Include="EditControllerTests\PublishEditPostShould.cs" />
     <Compile Include="HomeControllerTests\ConstructorShould.cs" />
     <Compile Include="HomeControllerTests\IndexShould.cs" />
     <Compile Include="HomeControllerTests\PageShould.cs" />
+    <Compile Include="LeaderboardsControllerTests\ConstructorShould.cs" />
     <Compile Include="LeaderboardsControllerTests\LeaderboardsShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchControllerTests\ConstructorShould.cs" />
@@ -104,6 +108,9 @@
     <Compile Include="SubmissionsControllerTests\ConstructorShould.cs" />
     <Compile Include="SubmissionsControllerTests\NewPageGetShould.cs" />
     <Compile Include="SubmissionsControllerTests\NewPagePostShould.cs" />
+    <Compile Include="SubmissionsControllerTests\PublishGetShould.cs" />
+    <Compile Include="SubmissionsControllerTests\PublishPostShould.cs" />
+    <Compile Include="SubmissionsControllerTests\SubmissionsShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Data\SotnWiki.DTOs\SotnWiki.DTOs.csproj">

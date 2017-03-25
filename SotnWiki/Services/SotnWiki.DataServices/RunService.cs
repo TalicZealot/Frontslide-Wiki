@@ -16,7 +16,7 @@ namespace SotnWiki.DataServices
         public RunService(IRunRepository runRepository, Func<IEfUnitOfWork> unitOfWorkFactory)
         {
             Guard.WhenArgument(runRepository, nameof(IRunRepository)).IsNull().Throw();
-            Guard.WhenArgument(unitOfWorkFactory, nameof(Func<IEfUnitOfWork>)).IsNull().Throw();
+            Guard.WhenArgument(unitOfWorkFactory, "EfUnitOfWork").IsNull().Throw();
 
             this.runRepository = runRepository;
             this.unitOfWorkFactory = unitOfWorkFactory;

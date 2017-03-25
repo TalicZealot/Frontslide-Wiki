@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
+using SotnWiki.DataServices.Contracts;
 using SotnWiki.MvcClient.Controllers;
 using System;
 
@@ -18,6 +20,19 @@ namespace SotnWiki.MvcClient.Tests.SearchControllerTests
 
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
+        }
+
+        [Test]
+        public void ReturnsAnInstance_WhenParametersAreNotNull()
+        {
+            //Arrange
+            var mockedPageService = new Mock<IPageService>();
+
+            //Act
+            var result = new SearchController(mockedPageService.Object);
+
+            //Assert
+            Assert.IsNotNull(result);
         }
     }
 }

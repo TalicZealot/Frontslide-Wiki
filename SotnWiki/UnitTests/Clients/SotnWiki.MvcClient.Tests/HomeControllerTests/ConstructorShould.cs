@@ -37,5 +37,19 @@ namespace SotnWiki.MvcClient.Tests.HomeControllerTests
             //Assert
             StringAssert.Contains(expectedExceptionMessage, exc.Message);
         }
+
+        [Test]
+        public void ReturnsAnInstance_WhenParametersAreNotNull()
+        {
+            //Arrange
+            var mockedConverter = new Mock<IMarkupConverter>();
+            var mockedPageService = new Mock<IPageService>();
+
+            //Act
+            var result = new HomeController(mockedPageService.Object, mockedConverter.Object);
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
     }
 }

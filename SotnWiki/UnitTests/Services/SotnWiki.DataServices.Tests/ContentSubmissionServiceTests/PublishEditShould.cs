@@ -12,24 +12,6 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
     public class PublishEditShould
     {
         [Test]
-        public void ThrowArgumentNullException_WhenTitleArgumentIsNull()
-        {
-            //Arrange
-            var mockedPageService = new Mock<IPageService>();
-            var mockedPageContentSubmissionRepository = new Mock<IContentSubmissionRepository>();
-            var mockedPageEfRepository = new Mock<IPageEfRepository>();
-            Func<IEfUnitOfWork> mockedUnitOfWorkFactory = () => { return new Mock<IEfUnitOfWork>().Object; };
-            string expectedExceptionMessage = "title";
-            var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageEfRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
-
-            //Act
-            var exc = Assert.Throws<ArgumentNullException>(() => submissionServiceUnderTest.PublishEdit(null, "", Guid.NewGuid()));
-
-            //Assert
-            StringAssert.Contains(expectedExceptionMessage, exc.Message);
-        }
-
-        [Test]
         public void ClearThePageEditForeignKeyOfThePageContentSubmission()
         {
             //Arrange
@@ -40,6 +22,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageEfRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
             var page = new Page()
             {
+                Id = Guid.NewGuid(),
                 Content = "page old content",
                 LastEdit = null,
             };
@@ -51,10 +34,10 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageEfRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageEfRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(page);
 
             //Act
-            submissionServiceUnderTest.PublishEdit("title", "new content", Guid.NewGuid());
+            submissionServiceUnderTest.PublishEdit(page.Id, "new content", Guid.NewGuid());
 
             //Assert
             Assert.AreEqual(null, edit.PageEdit);
@@ -71,6 +54,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var submissionServiceUnderTest = new ContentSubmissionService(mockedPageContentSubmissionRepository.Object, mockedPageEfRepository.Object, mockedUnitOfWorkFactory, mockedPageService.Object);
             var page = new Page()
             {
+                Id = Guid.NewGuid(),
                 Content = "page old content",
                 LastEdit = null,
             };
@@ -82,10 +66,10 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageEfRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageEfRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(page);
 
             //Act
-            submissionServiceUnderTest.PublishEdit("title", "new content", Guid.NewGuid());
+            submissionServiceUnderTest.PublishEdit(page.Id, "new content", Guid.NewGuid());
 
             //Assert
             Assert.AreEqual(page, edit.PageHistory);
@@ -104,6 +88,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var expectedEditContent = "page old content";
             var page = new Page()
             {
+                Id = Guid.NewGuid(),
                 Content = expectedEditContent,
                 LastEdit = null,
             };
@@ -115,10 +100,10 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageEfRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageEfRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(page);
 
             //Act
-            submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
+            submissionServiceUnderTest.PublishEdit(page.Id, expectedPageContent, Guid.NewGuid());
 
             //Assert
             Assert.AreEqual(expectedEditContent, edit.Content);
@@ -137,6 +122,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var expectedEditContent = "page old content";
             var page = new Page()
             {
+                Id = Guid.NewGuid(),
                 Content = expectedEditContent,
                 LastEdit = null,
             };
@@ -148,10 +134,10 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageEfRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageEfRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(page);
 
             //Act
-            submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
+            submissionServiceUnderTest.PublishEdit(page.Id, expectedPageContent, Guid.NewGuid());
 
             //Assert
             Assert.AreEqual(expectedPageContent, page.Content);
@@ -170,6 +156,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var expectedEditContent = "page old content";
             var page = new Page()
             {
+                Id = Guid.NewGuid(),
                 Content = expectedEditContent,
                 LastEdit = null,
             };
@@ -181,10 +168,10 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageEfRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageEfRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(page);
 
             //Act
-            submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
+            submissionServiceUnderTest.PublishEdit(page.Id, expectedPageContent, Guid.NewGuid());
 
             //Assert
             Assert.IsNotNull(page.LastEdit);
@@ -203,6 +190,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var expectedEditContent = "page old content";
             var page = new Page()
             {
+                Id = Guid.NewGuid(),
                 Content = expectedEditContent,
                 LastEdit = null,
             };
@@ -214,10 +202,10 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageEfRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageEfRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(page);
 
             //Act
-            submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
+            submissionServiceUnderTest.PublishEdit(page.Id, expectedPageContent, Guid.NewGuid());
 
             //Assert
             mockedPageEfRepository.Verify(m => m.Update(It.IsAny<Page>()), Times.Once());
@@ -236,6 +224,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var expectedEditContent = "page old content";
             var page = new Page()
             {
+                Id = Guid.NewGuid(),
                 Content = expectedEditContent,
                 LastEdit = null,
             };
@@ -247,10 +236,10 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageEfRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageEfRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(page);
 
             //Act
-            submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
+            submissionServiceUnderTest.PublishEdit(page.Id, expectedPageContent, Guid.NewGuid());
 
             //Assert
             mockedPageContentSubmissionRepository.Verify(m => m.Update(It.IsAny<PageContentSubmission>()), Times.Once());
@@ -270,6 +259,7 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             var expectedEditContent = "page old content";
             var page = new Page()
             {
+                Id = Guid.NewGuid(),
                 Content = expectedEditContent,
                 LastEdit = null,
             };
@@ -281,10 +271,10 @@ namespace SotnWiki.DataServices.Tests.ContentSubmissionServiceTests
             };
 
             mockedPageContentSubmissionRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(edit);
-            mockedPageEfRepository.Setup(x => x.GetPageEntityByTitle(It.IsAny<string>())).Returns(page);
+            mockedPageEfRepository.Setup(x => x.GetById(It.IsAny<Guid>())).Returns(page);
 
             //Act
-            submissionServiceUnderTest.PublishEdit("title", expectedPageContent, Guid.NewGuid());
+            submissionServiceUnderTest.PublishEdit(page.Id, expectedPageContent, Guid.NewGuid());
 
             //Assert
             mockedUnitOfWork.Verify(m => m.Commit(), Times.Once());

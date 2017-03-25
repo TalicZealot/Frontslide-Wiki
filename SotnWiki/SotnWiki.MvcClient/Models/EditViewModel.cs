@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace SotnWiki.MvcClient.Models
 {
@@ -6,10 +7,14 @@ namespace SotnWiki.MvcClient.Models
     {
         public string Title { get; set; }
 
+        public Guid Id { get; set; }
+
         [Required]
         [StringLength(35000, MinimumLength = 300, ErrorMessage = "Invalid content length.")]
         public string Content { get; set; }
 
         public bool Publish { get; set; }
+
+        public Guid PageId { get; set; }
     }
 }

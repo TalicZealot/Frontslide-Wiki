@@ -319,6 +319,7 @@
     <Content Include="Views\Submissions\Submissions.cshtml" />
     <Content Include="Views\Submissions\Publish.cshtml" />
     <Content Include="Views\Shared\_searchFormPartial.cshtml" />
+    <Content Include="Views\Edit\PublishEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

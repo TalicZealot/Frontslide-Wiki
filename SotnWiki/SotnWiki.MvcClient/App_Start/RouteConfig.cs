@@ -24,21 +24,31 @@ namespace SotnWiki.MvcClient
             routes.MapRoute(
                 name: "Edit",
                 url: "Edit/{title}",
-                defaults: new { controller = "Edit", action = "Edit" },
-                constraints: new { title = "{^[a-zA-Z0-9-_]{5,15}$}" }
+                defaults: new { controller = "Edit", action = "Edit" }
             );
 
             routes.MapRoute(
                 name: "Publish",
                 url: "Publish/{title}",
-                defaults: new { controller = "Submissions", action = "Publish" },
-                constraints: new { title = "{^[a-zA-Z0-9-_]{5,15}$}" }
+                defaults: new { controller = "Submissions", action = "Publish" }
+            );
+
+            routes.MapRoute(
+                name: "PublishEdit",
+                url: "{title}/PublishEdit/{id}",
+                defaults: new { controller = "Edit", action = "PublishEdit" }
             );
 
             routes.MapRoute(
                 name: "Search",
-                url: "Search_Results",
+                url: "SearchResults",
                 defaults: new { controller = "Search", action = "Search" }
+            );
+
+            routes.MapRoute(
+                name: "Submissions",
+                url: "Submissions",
+                defaults: new { controller = "Submissions", action = "Submissions" }
             );
 
             routes.MapRoute(
@@ -50,15 +60,13 @@ namespace SotnWiki.MvcClient
             routes.MapRoute(
                 name: "Edits",
                 url: "{title}/Edits",
-                defaults: new { controller = "Edit", action = "Edits" },
-                constraints: new { title = "{^[a-zA-Z0-9-_]{5,15}$}" }
+                defaults: new { controller = "Edit", action = "Edits" }
             );
 
             routes.MapRoute(
                 name: "Page",
                 url: "{title}",
-                defaults: new { controller = "Home", action = "Page" },
-                constraints: new { title = "{^[a-zA-Z0-9-_]{5,15}$}" }
+                defaults: new { controller = "Home", action = "Page" }
             );
 
             routes.MapRoute(

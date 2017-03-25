@@ -7,5 +7,7 @@ namespace SotnWiki.DTOs.EditViewsDTOs
         public Guid Id { get; set; }
 
         public string Content { get; set; }
+
+        public Guid PageId { get; set; }
     }
 }

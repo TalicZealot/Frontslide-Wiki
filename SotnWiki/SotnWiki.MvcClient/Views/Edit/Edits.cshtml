@@ -11,6 +11,6 @@
     @grid.GetHtml(
     displayHeader: false,
     columns: new[] {
-        grid.Column("Content", "Content", format:(item) => new HtmlString(String.Format(@"<div><h3><a href=""/{0}"">{1}</a></h3><p>{1}</p></div>", item.Title.Replace(' ', '_'), item.Title, item.Content)))
+        grid.Column("Content", "Content", format:(item) => new HtmlString(String.Format(@"<div><h3><a href=""{0}/publishedit/{1}"">{1}</a></h3></div>", ViewContext.RouteData.Values["title"], item.Id)))
     })
 </div>

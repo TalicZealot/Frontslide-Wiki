@@ -56,7 +56,7 @@ namespace SotnWiki.MvcClient.Tests.AccountControllerTests
         }
 
         [Test]
-        public void ReturnsAnInstance_WhenBothParametersAreNotNull()
+        public void ReturnsAnInstance_WhenParametersAreNotNull()
         {
             //Arrange
             var mockedUserService = new Mock<IUserService>();

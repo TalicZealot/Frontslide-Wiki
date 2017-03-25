@@ -12,7 +12,7 @@ namespace SotnWiki.DataServices.Contracts
 
         EditsViewDTO GetPageContentSubmissionById(Guid id);
 
-        void PublishEdit(string title, string content, Guid id);
+        void PublishEdit(Guid pageId, string content, Guid id);
 
         void SubmitAndPublishEdit(string content, string title);
 

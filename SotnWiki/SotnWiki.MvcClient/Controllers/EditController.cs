@@ -36,6 +36,8 @@ namespace SotnWiki.MvcClient.Controllers
             var model = new EditViewModel();
             model.Content = page.Content;
             model.Title = page.Title;
+            ModelState.Clear();
+
             return View(model);
         }
         
@@ -45,7 +47,7 @@ namespace SotnWiki.MvcClient.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.Publish && (this.HttpContext.User.IsInRole("admin") || this.HttpContext.User.IsInRole("editor")))
+                if (model.Publish && (this.HttpContext.User.IsInRole("Admin") || this.HttpContext.User.IsInRole("Editor")))
                 {
                     this.contentSubmissionService.SubmitAndPublishEdit(model.Content, model.Title);
                     return this.RedirectToAction("Page", "Home", new { title = model.Title });
@@ -72,21 +74,45 @@ namespace SotnWiki.MvcClient.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Editor, Admin")]
         public ActionResult PublishEdit(string id)
         {
-            var edit = this.contentSubmissionService.GetPageContentSubmissionById(Guid.Parse(id));
+            Guid parsedId;
+            var parseResult = Guid.TryParse(id, out parsedId);
+            if (parseResult == false)
+            {
+                return HttpNotFound();
+            }
+
+            var edit = this.contentSubmissionService.GetPageContentSubmissionById(parsedId);
+            if (edit == null)
+            {
+                return HttpNotFound();
+            }
+
             var model = new EditViewModel()
             {
+                Title = (string)RouteData.Values["title"],
+                Id = edit.Id,
                 Content = edit.Content,
+                PageId = edit.PageId
             };
+            ModelState.Clear();
 
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Editor, Admin")]
         public ActionResult PublishEdit(EditViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                this.contentSubmissionService.PublishEdit(model.PageId, model.Content, model.Id);
+                return this.RedirectToAction("Page", "Home", new { title = (string)RouteData.Values["title"] });
+            }
+
             return View(model);
         }
     }

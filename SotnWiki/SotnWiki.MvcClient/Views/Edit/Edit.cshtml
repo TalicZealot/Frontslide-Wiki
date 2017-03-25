@@ -1,13 +1,14 @@
 ﻿@model EditViewModel
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit" + @Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit @Model.Title</h1>
-@using (Html.BeginForm("NewPage", "Edit", FormMethod.Post, new { @class = "pageForm" }))
+<h1>Edit "@Model.Title"</h1>
+@using (Html.BeginForm("Edit", "Edit", FormMethod.Post, new { @class = "pageForm" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Title)
     <p>This site uses textile markup, for documentation visit <a href="https://txstyle.org/">txstyle.org</a>.</p>
     @Html.TextAreaFor(m => m.Content, new { @class = "editPageText" })
     @Html.ValidationMessageFor(m => m.Content)
