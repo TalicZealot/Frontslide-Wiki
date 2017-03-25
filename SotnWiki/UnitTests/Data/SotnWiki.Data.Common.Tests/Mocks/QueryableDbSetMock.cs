@@ -2,6 +2,7 @@
 using System.Linq;
 using Moq;
 using System.Collections.Generic;
+using System;
 
 namespace SotnWiki.Data.Common.Tests.Mocks
 {
@@ -16,6 +17,8 @@ namespace SotnWiki.Data.Common.Tests.Mocks
             dbSet.As<IQueryable<T>>().Setup(m => m.Expression).Returns(queryable.Expression);
             dbSet.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(queryable.ElementType);
             dbSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(queryable.GetEnumerator());
+
+            dbSet.Setup(s => s.Find(It.IsAny<Guid>())).Returns(sourceList.FirstOrDefault());
 
             return dbSet.Object;
         }

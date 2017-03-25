@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SotnWiki.Auth;
 using SotnWiki.Auth.Contracts;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -97,6 +98,7 @@ namespace SotnWiki.MvcClient.Controllers
             return View();
         }
 
+        [ExcludeFromCodeCoverage]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -119,6 +121,7 @@ namespace SotnWiki.MvcClient.Controllers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
+        [ExcludeFromCodeCoverage]
         private IAuthenticationManager AuthenticationManager
         {
             get
@@ -127,6 +130,7 @@ namespace SotnWiki.MvcClient.Controllers
             }
         }
 
+        [ExcludeFromCodeCoverage]
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -135,6 +139,7 @@ namespace SotnWiki.MvcClient.Controllers
             }
         }
 
+        [ExcludeFromCodeCoverage]
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))

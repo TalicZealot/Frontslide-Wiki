@@ -20,7 +20,7 @@ namespace SotnWiki.MvcClient.Tests.SearchControllerTests
         }
 
         [Test]
-        public void ShouldRenderDefaultViewWithModelSearchViewModel()
+        public void ShouldRenderDefaultViewWithModelSearchViewModel_WhenModelStateIsValid()
         {
             //Arrange
             var modelStub = new SearchViewModel();
@@ -30,6 +30,18 @@ namespace SotnWiki.MvcClient.Tests.SearchControllerTests
             controllerUnderTest.WithCallTo(c => c.Search(modelStub))
                 .ShouldRenderDefaultView()
                 .WithModel<SearchViewModel>();
+        }
+
+        [Test]
+        public void ShouldReditectToHomepage_WhenModelStateIsNotValid()
+        {
+            //Arrange
+            var modelStub = new SearchViewModel();
+            modelStub.searchPhrase = "asdasd";
+
+            //Act & Assert
+            controllerUnderTest.WithModelErrors().WithCallTo(c => c.Search(modelStub))
+                .ShouldRedirectTo<HomeController>(typeof(HomeController).GetMethod("Index"));
         }
     }
 }

@@ -76,6 +76,7 @@
     <Compile Include="EfGenericRepositoryTests\UpdateShould.cs" />
     <Compile Include="EfUnitOfWorkTests\CommitShould.cs" />
     <Compile Include="EfUnitOfWorkTests\ConstructorShould.cs" />
+    <Compile Include="EfUnitOfWorkTests\DisposeShould.cs" />
     <Compile Include="Mocks\QueryableDbSetMock.cs" />
     <Compile Include="PageRepositoryTests\CheckTitleAvailabilityShould.cs" />
     <Compile Include="PageRepositoryTests\FindPagesShould.cs" />

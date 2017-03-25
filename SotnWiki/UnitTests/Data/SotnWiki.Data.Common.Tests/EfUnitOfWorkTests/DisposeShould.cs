@@ -4,20 +4,17 @@ using NUnit.Framework;
 namespace SotnWiki.Data.Common.Tests.EfUnitOfWorkTests
 {
     [TestFixture]
-    public class CommitShould
+    public class DisposeShould
     {
         [Test]
-        public void CallContextSaveChanges()
+        public void NotThrow()
         {
             //Arrange
             var mockedDbContext = new Mock<ISotnWikiDbContext>();
             var unitOfWorkUnderTest = new EfUnitOfWork(mockedDbContext.Object);
 
-            //Act & Assert
-            unitOfWorkUnderTest.Commit();
-
             //Assert
-            mockedDbContext.Verify(c => c.SaveChanges(), Times.Once());
+            Assert.DoesNotThrow(() => unitOfWorkUnderTest.Dispose());
         }
     }
 }
