@@ -167,6 +167,7 @@ namespace SotnWiki.MvcClient.Controllers
             public string RedirectUri { get; set; }
             public string UserId { get; set; }
 
+            [ExcludeFromCodeCoverage]
             public override void ExecuteResult(ControllerContext context)
             {
                 var properties = new AuthenticationProperties { RedirectUri = RedirectUri };

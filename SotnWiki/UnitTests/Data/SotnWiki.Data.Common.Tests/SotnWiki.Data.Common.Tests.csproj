@@ -69,11 +69,11 @@
   <ItemGroup>
     <Compile Include="ContentSubmissionRepositoryTests\GetByIdProjectedShould.cs" />
     <Compile Include="ContentSubmissionRepositoryTests\GetSubmissionsShould.cs" />
-    <Compile Include="EfGenericRepositoryTests\AddShould.cs" />
-    <Compile Include="EfGenericRepositoryTests\ConstructorShould.cs" />
-    <Compile Include="EfGenericRepositoryTests\DeleteShould.cs" />
-    <Compile Include="EfGenericRepositoryTests\GetByIdShould.cs" />
-    <Compile Include="EfGenericRepositoryTests\UpdateShould.cs" />
+    <Compile Include="EfRepositoryTests\AddShould.cs" />
+    <Compile Include="EfRepositoryTests\ConstructorShould.cs" />
+    <Compile Include="EfRepositoryTests\DeleteShould.cs" />
+    <Compile Include="EfRepositoryTests\GetByIdShould.cs" />
+    <Compile Include="EfRepositoryTests\UpdateShould.cs" />
     <Compile Include="EfUnitOfWorkTests\CommitShould.cs" />
     <Compile Include="EfUnitOfWorkTests\ConstructorShould.cs" />
     <Compile Include="EfUnitOfWorkTests\DisposeShould.cs" />

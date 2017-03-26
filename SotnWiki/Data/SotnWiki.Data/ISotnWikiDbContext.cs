@@ -6,6 +6,11 @@ namespace SotnWiki.Data
 {
     public interface ISotnWikiDbContext
     {
+        bool SetAdded(object entity);
+
+        bool SetDeleted(object entity);
+
+        bool SetModified(object entity);
 
         DbSet<T> Set<T>() where T : class;
 

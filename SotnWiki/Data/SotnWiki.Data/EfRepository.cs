@@ -32,13 +32,9 @@ namespace SotnWiki.Data
         public void Add(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
-            var entry = this.context.Entry(entity);
 
-            if (entry.State != EntityState.Detached)
-            {
-                entry.State = EntityState.Added;
-            }
-            else
+            var result = this.context.SetAdded(entity);
+            if(!result)
             {
                 this.dbSet.Add(entity);
             }
@@ -47,12 +43,9 @@ namespace SotnWiki.Data
         public void Delete(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
-            var entry = this.context.Entry(entity);
-            if (entry.State != EntityState.Deleted)
-            {
-                entry.State = EntityState.Deleted;
-            }
-            else
+
+            var result = this.context.SetDeleted(entity);
+            if (!result)
             {
                 this.dbSet.Attach(entity);
                 this.dbSet.Remove(entity);
@@ -68,12 +61,13 @@ namespace SotnWiki.Data
         public void Update(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
-            var entry = this.context.Entry(entity);
-            if (entry.State == EntityState.Detached)
+
+            var result = this.context.SetModified(entity);
+            if (!result)
             {
                 this.dbSet.Attach(entity);
+                this.context.SetModified(entity);
             }
-            entry.State = EntityState.Modified;
         }
     }
 }

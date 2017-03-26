@@ -19,6 +19,8 @@ namespace SotnWiki.Data.Common.Tests.Mocks
             dbSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(queryable.GetEnumerator());
 
             dbSet.Setup(s => s.Find(It.IsAny<Guid>())).Returns(sourceList.FirstOrDefault());
+            dbSet.Setup(s => s.Add(It.IsAny<T>())).Throws(new ArgumentNullException("verify add call"));
+            dbSet.Setup(s => s.Remove(It.IsAny<T>())).Throws(new ArgumentNullException("verify remove call"));
 
             return dbSet.Object;
         }
