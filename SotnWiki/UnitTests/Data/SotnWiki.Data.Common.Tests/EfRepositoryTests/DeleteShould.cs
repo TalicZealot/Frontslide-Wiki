@@ -61,7 +61,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
         }
 
         [Test]
-        public void CallRemoveMethodOfDbset_WhenSetDeletedReturnsFalse()
+        public void CallAttachMethodOfDbset_WhenSetDeletedReturnsFalse()
         {
             //Arrange
             var pages = new List<Page>
@@ -79,8 +79,8 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
             var repositoryUnderTest = new EfRepository<Page>(mockedDbContext.Object);
 
             //Act & Assert
-            var exc = Assert.Throws<ArgumentNullException>(() => repositoryUnderTest.Delete(pages[0]));
-            StringAssert.Contains("remove", exc.Message);
+            var exc = Assert.Throws<ArgumentNullException>(() => repositoryUnderTest.Delete(new Page()));
+            StringAssert.Contains("attach", exc.Message);
         }
     }
 }
