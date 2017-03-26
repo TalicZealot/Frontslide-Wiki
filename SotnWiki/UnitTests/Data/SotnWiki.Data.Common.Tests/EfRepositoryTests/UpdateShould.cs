@@ -36,7 +36,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
         }
 
         [Test]
-        public void CallSetDeletedMethodOfDbContext()
+        public void CallSetModifiedMethodOfDbContext()
         {
             //Arrange
             var pages = new List<Page>
@@ -54,7 +54,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
             var repositoryUnderTest = new EfRepository<Page>(mockedDbContext.Object);
 
             //Act & Assert
-            repositoryUnderTest.Add(pages[0]);
+            repositoryUnderTest.Update(pages[0]);
 
             //Assert
             mockedDbContext.Verify(mc => mc.SetModified(It.IsAny<object>()), Times.Once());

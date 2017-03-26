@@ -54,14 +54,14 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
             var repositoryUnderTest = new EfRepository<Page>(mockedDbContext.Object);
 
             //Act & Assert
-            repositoryUnderTest.Add(pages[0]);
+            repositoryUnderTest.Delete(new Page());
 
             //Assert
             mockedDbContext.Verify(mc => mc.SetDeleted(It.IsAny<object>()), Times.Once());
         }
 
         [Test]
-        public void CallAddMethodOfDbset_WhenSetAddedReturnsFalse()
+        public void CallRemoveMethodOfDbset_WhenSetAddedReturnsFalse()
         {
             //Arrange
             var pages = new List<Page>
