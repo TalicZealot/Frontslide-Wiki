@@ -1,6 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using SotnWiki.Data.Common;
 using SotnWiki.Data.Common.Contracts;
 using System;
 
@@ -80,7 +79,7 @@ namespace SotnWiki.DataServices.Tests.PageServiceTests
         }
 
         [Test]
-        public void ReturnsCorrectValue()
+        public void ReturnCorrectValue()
         {
             //Arrange
             var mockedPageEfRepository = new Mock<IPageEfRepository>();

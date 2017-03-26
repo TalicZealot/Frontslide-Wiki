@@ -19,6 +19,8 @@ namespace SotnWiki.Data
 
         IDbSet<Run> Runs { get; set; }
 
+        Database Database { get; }
+
         int SaveChanges();
     }
 }

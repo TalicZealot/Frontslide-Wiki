@@ -33,14 +33,30 @@ namespace SotnWiki.Data
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
             var entry = this.context.Entry(entity);
-            entry.State = EntityState.Added;
+
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Added;
+            }
+            else
+            {
+                this.dbSet.Add(entity);
+            }
         }
 
         public void Delete(T entity)
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
             var entry = this.context.Entry(entity);
-            entry.State = EntityState.Deleted;
+            if (entry.State != EntityState.Deleted)
+            {
+                entry.State = EntityState.Deleted;
+            }
+            else
+            {
+                this.dbSet.Attach(entity);
+                this.dbSet.Remove(entity);
+            }
         }
 
         public T GetById(object id)
@@ -53,6 +69,10 @@ namespace SotnWiki.Data
         {
             Guard.WhenArgument(entity, "entity").IsNull().Throw();
             var entry = this.context.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this.dbSet.Attach(entity);
+            }
             entry.State = EntityState.Modified;
         }
     }
