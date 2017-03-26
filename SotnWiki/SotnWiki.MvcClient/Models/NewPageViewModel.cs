@@ -21,5 +21,9 @@ namespace SotnWiki.MvcClient.Models
         public string Content { get; set; }
 
         public bool Publish { get; set; }
+
+        [Required]
+        [StringLength(4, MinimumLength = 4, ErrorMessage ="Title not available.")]
+        public string TitleAvailable { get; set; }
     }
 }

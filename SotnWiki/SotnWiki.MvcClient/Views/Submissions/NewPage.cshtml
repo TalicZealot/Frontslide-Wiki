@@ -8,17 +8,22 @@
 @using (Html.BeginForm("NewPage", "Submissions", FormMethod.Post, new { @class = "pageForm" }))
 {
     @Html.AntiForgeryToken()
-    @Html.LabelFor(m => m.Title)<span>&nbsp;:</span>
-    @Html.TextBoxFor(m => m.Title)
+    @Html.HiddenFor(m => m.TitleAvailable)
+    @Html.TextBoxFor(m => m.Title, new { @placeholder = "Title" })<button id="titleStatus" class="unknownTitleStatus" title="title availability"> </button>
     @Html.DropDownListFor(m => m.Character, new SelectList(Enum.GetValues(typeof(SotnWiki.Models.CharacterIdEnum))), "Select section")
     @Html.DropDownListFor(m => m.Type, new SelectList(new string[] { "Category", "Glitch", "General" }), "Select type")
     <br/>
-    @Html.ValidationMessageFor(m => m.Title)
-    @Html.ValidationMessageFor(m => m.Character)
-    @Html.ValidationMessageFor(m => m.Type)
+    <div class="validationMessages">
+        @Html.ValidationMessageFor(m => m.TitleAvailable)
+        @Html.ValidationMessageFor(m => m.Title)
+        @Html.ValidationMessageFor(m => m.Character)
+        @Html.ValidationMessageFor(m => m.Type)
+    </div>
     <p>This site uses textile markup, for documentation visit <a href="https://txstyle.org/">txstyle.org</a>.</p>
     @Html.TextAreaFor(m => m.Content, new { @class = "editPageText" })
-    @Html.ValidationMessageFor(m => m.Content)
+    <div class="validationMessages">
+        @Html.ValidationMessageFor(m => m.Content)
+    </div>
     <br/>
     if (this.User.IsInRole("Editor") || this.User.IsInRole("Admin"))
     {
@@ -27,3 +32,5 @@
     }
     <input type="submit" name="submitButton" value="Submit" />
 }
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/titleCheck")

@@ -20,6 +20,7 @@ namespace SotnWiki.MvcClient.Controllers
             this.pageService = pageService;
         }
 
+        [OutputCache(Duration = 3600, VaryByParam = "none", Location = System.Web.UI.OutputCacheLocation.ServerAndClient)]
         public ActionResult Index()
         {
             var page = this.pageService.GetPageByTitle("Main Page");

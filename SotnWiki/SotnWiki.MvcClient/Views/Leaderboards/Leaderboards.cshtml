@@ -4,61 +4,78 @@
 }
 
 <div class="leaderboards-panel">
-    <ul id="cvs-menu" class="leaderboards-nav">
-        <li>
-            <p>Alucard</p>
-            <div>
-                <a href="#cvsalucardanynsc">cvsalucardanynsc</a>
-                <a href="#cvsalucardallbosses">cvsalucardallbosses</a>
-                <a href="#cvsalucardace">cvsalucardace</a>
-                <a href="#cvsalucardlowpercentwolf">cvsalucardlowpercentwolf</a>
-            </div>
-        </li>
-        <li>
-            <p>Richter</p>
-            <div>
-                <a href="#cvsrichterAny">cvsrichterAny</a>
-                <a href="#cvsrichterAllBosses">cvsrichterAllBosses</a>
-            </div>
-        </li>
-        <li>
-            <p>Maria</p>
-            <div>
-                <a href="#cvsmariaAny">cvsmariaAny</a>
-                <a href="#cvsmariaAllBosses">cvsmariaAllBosses</a>
-                <a href="#cvsmariaAnyEmu">cvsmariaAnyEmu</a>
-                <a href="#cvsmariaAllBossesEmu">cvsmariaAllBossesEmu</a>
-            </div>
-        </li>
+    <ul class="site-select">
+        <li id="srcomSelect">Speedrun.com Backup</li>
+        <li id="cvsSelect" class="active-select">CvSpeedruns Archive</li>
     </ul>
-    <ul id="srcom-menu" class="leaderboards-nav">
-        <li>
-            <p>Alucard</p>
-            <div>
-                <a href="#alucardanynsc">Any% NSC</a>
-                <a href="#alucardallbosses">allbosses</a>
-                <a href="#alucardglitchless">glitchless</a>
-                <a href="#alucardace">ace</a>
-                <a href="#alucardlowpercentwolf">lowpercentwolf</a>
-            </div>
-        </li>
-        <li>
-            <p>Richter</p>
-            <div>
-                <a href="#richterAny">Any</a>
-                <a href="#richterAllBosses">AllBosses</a>
-            </div>
-        </li>
-        <li>
-            <p>Maria</p>
-            <div>
-                <a href="#mariaAny">Any</a>
-                <a href="#mariaAllBosses">AllBosses</a>
-                <a href="#mariaAnyEmu">AnyEmu</a>
-                <a href="#mariaAllBossesEmu">AllBossesEmu</a>
-            </div>
-        </li>
-    </ul>
+    <table id="cvs-menu" class="leaderboards-nav">
+        <thead>
+            <tr>
+                <th>Alucard</th>
+                <th>Richter</th>
+                <th>Maria</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>
+                <p class="space-between">
+                    <a href="#cvsalucardanynsc">Any% NSC</a>
+                    <a href="#cvsalucardallbosses">All Bosses</a>
+                    <a href="#cvsalucardglitchless">Glitchless</a>
+                    <a href="#cvsalucardace">Any% ACE</a>
+                    <a href="#cvsalucardlowpercentwolf">Low% Wolf</a>
+                </p>
+            </td>
+            <td>
+                <p class="space-between">
+                    <a href="#cvsrichterAny">Any%</a>
+                    <a href="#cvsrichterAllBosses">All Bosses</a>
+                </p>
+            </td>
+            <td>
+                <p class="space-between">
+                    <a href="#cvsmariaAny">Any%</a>
+                    <a href="#cvsmariaAllBosses">All Bosses</a>
+                    <a href="#cvsmariaAnyEmu">Any% Emu</a>
+                    <a href="#cvsmariaAllBossesEmu">All Bosses Emu</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+    <table id="srcom-menu" class="leaderboards-nav hidden-leaderboard-menu">
+        <thead>
+            <tr>
+                <th>Alucard</th>
+                <th>Richter</th>
+                <th>Maria</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>
+                <p class="space-between">
+                    <a href="#alucardanynsc">Any% NSC</a>
+                    <a href="#alucardallbosses">All Bosses</a>
+                    <a href="#alucardglitchless">Glitchless</a>
+                    <a href="#alucardace">Any% ACE</a>
+                    <a href="#alucardlowpercentwolf">Low% Wolf</a>
+                </p>
+            </td>
+            <td>
+                <p class="space-between">
+                    <a href="#richterAny">Any%</a>
+                    <a href="#richterAllBosses">All Bosses</a>
+                </p>
+            </td>
+            <td>
+                <p class="space-between">
+                    <a href="#mariaAny">Any%</a>
+                    <a href="#mariaAllBosses">All Bosses</a>
+                    <a href="#mariaAnyEmu">Any% Emu</a>
+                    <a href="#mariaAllBossesEmu">All Bosses Emu</a>
+                </p>
+            </td>
+        </tr>
+    </table>
     <table id="leaderboard" class="leaderboard">
         <thead>
             <tr>
@@ -72,4 +89,5 @@
         </thead>
     </table>
 </div>
+@Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/spa")

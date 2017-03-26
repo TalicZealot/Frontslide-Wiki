@@ -14,8 +14,13 @@ namespace SotnWiki.MvcClient
                         "~/Scripts/spa/navigo.min.js",
                         "~/Scripts/spa/navigo-router.js",
                         "~/Scripts/spa/row-generator.js",
+                        "~/Scripts/spa/menu-switch.js",
                         "~/Scripts/spa/leaderboards-controller.js",
                         "~/Scripts/spa/indexjs"));
+
+            bundles.Add(new ScriptBundle("~/bundles/titleCheck").Include(
+                        "~/Scripts/titleAvailableCheck.js",
+                        "~/Scripts/titleCheckAjax.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

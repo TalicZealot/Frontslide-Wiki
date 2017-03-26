@@ -21,6 +21,7 @@ namespace SotnWiki.MvcClient.Controllers
             this.runService = runService;
         }
 
+        [OutputCache(Duration = 7200, VaryByParam = "name", Location = System.Web.UI.OutputCacheLocation.ServerAndClient)]
         public ActionResult Category(string name)
         {
             Guard.WhenArgument(name, "name").IsNullOrEmpty().Throw();

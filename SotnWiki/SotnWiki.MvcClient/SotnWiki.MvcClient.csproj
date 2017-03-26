@@ -258,7 +258,7 @@
   <ItemGroup>
     <Content Include="Content\arrow-expand.png" />
     <Content Include="Content\arrow-expanded.png" />
-    <Content Include="Content\cvsLogo.png" />
+    <Content Include="Content\availabilityIcons.png" />
     <Content Include="Content\richter.png" />
     <Content Include="Content\search.png" />
     <Content Include="Content\sign-in-with-twitter-link.png" />
@@ -285,9 +285,12 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\spa\index.js" />
     <Content Include="Scripts\spa\leaderboards-controller.js" />
+    <Content Include="Scripts\spa\menu-switch.js" />
     <Content Include="Scripts\spa\navigo-router.js" />
     <Content Include="Scripts\spa\navigo.min.js" />
     <Content Include="Scripts\spa\row-generator.js" />
+    <Content Include="Scripts\titleAvailableCheck.js" />
+    <Content Include="Scripts\titleCheckAjax.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
