@@ -61,7 +61,7 @@ namespace SotnWiki.Data.Common.Tests.EfGenericRepositoryTests
         }
 
         [Test]
-        public void CallRemoveMethodOfDbset_WhenSetAddedReturnsFalse()
+        public void CallRemoveMethodOfDbset_WhenSetDeletedReturnsFalse()
         {
             //Arrange
             var pages = new List<Page>

@@ -21,6 +21,7 @@ namespace SotnWiki.Data.Common.Tests.Mocks
             dbSet.Setup(s => s.Find(It.IsAny<Guid>())).Returns(sourceList.FirstOrDefault());
             dbSet.Setup(s => s.Add(It.IsAny<T>())).Throws(new ArgumentNullException("verify add call"));
             dbSet.Setup(s => s.Remove(It.IsAny<T>())).Throws(new ArgumentNullException("verify remove call"));
+            dbSet.Setup(s => s.Attach(It.IsAny<T>())).Throws(new ArgumentNullException("verify attach call"));
 
             return dbSet.Object;
         }
