@@ -9,8 +9,8 @@ namespace SotnWiki.Auth.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(SotnWiki.Auth.ApplicationDbContext context)
