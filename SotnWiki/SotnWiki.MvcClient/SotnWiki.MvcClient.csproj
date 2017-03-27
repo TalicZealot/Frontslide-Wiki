@@ -259,9 +259,13 @@
     <Content Include="Content\arrow-expand.png" />
     <Content Include="Content\arrow-expanded.png" />
     <Content Include="Content\availabilityIcons.png" />
+    <Content Include="Content\error-pages.css" />
     <Content Include="Content\richter.png" />
     <Content Include="Content\search.png" />
     <Content Include="Content\sign-in-with-twitter-link.png" />
+    <Content Include="Errors\403.html" />
+    <Content Include="Errors\404.html" />
+    <Content Include="Errors\500.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -326,7 +330,6 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Errors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

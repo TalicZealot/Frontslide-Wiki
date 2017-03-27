@@ -13,7 +13,9 @@ namespace SotnWiki.MvcClient.App_Start
     using Ninject_Modules;
     using AutoMapper;
     using SotnWiki.MvcClient.App_Start.AutomapperProfiles;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();

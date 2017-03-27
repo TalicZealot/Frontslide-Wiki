@@ -1,6 +1,6 @@
 ﻿@model EditViewModel
 @{
-    ViewBag.Title = "Edit" + @Model.Title;
+    ViewBag.Title = "Edit" + Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,11 +11,14 @@
     @Html.HiddenFor(m => m.Title)
     <p>This site uses textile markup, for documentation visit <a href="https://txstyle.org/">txstyle.org</a>.</p>
     @Html.TextAreaFor(m => m.Content, new { @class = "editPageText" })
-    @Html.ValidationMessageFor(m => m.Content)
+    <div class="validationMessages">
+        @Html.ValidationMessageFor(m => m.Content)
+    </div>
     <br />
-    <input type="submit" name="submitButton" value="Submit" />
     if (this.User.IsInRole("Editor") || this.User.IsInRole("Admin"))
     {
+        @Html.LabelFor(m => m.Publish)
         @Html.CheckBoxFor(m => m.Publish)
     }
+    <input type="submit" name="submitButton" value="Submit" />
 }

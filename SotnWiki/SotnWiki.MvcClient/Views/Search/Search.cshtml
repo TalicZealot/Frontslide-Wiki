@@ -1,6 +1,6 @@
 ﻿@model SearchViewModel
 @{
-    ViewBag.Title = "Results";
+    ViewBag.Title = "Search Results";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var grid = new WebGrid(Model.Results, ajaxUpdateContainerId:"results", rowsPerPage: 20);
 }
